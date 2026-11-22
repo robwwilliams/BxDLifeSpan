@@ -60,7 +60,8 @@ richText <- function(x, y, label, cex = map.cex, font = 1, vadj = 1){
   for(i in seq_along(pieces)){
     if(pieces[i] == "") next
     f <- if(i %% 2 == 0) (if(font == 2) 4 else 3) else font
-    text(x, y, pieces[i], adj = c(0, vadj), cex = cex, font = f, xpd = NA)
+    lead <- sub("^( *).*$", "\\1", pieces[i])                                  # SVG drops spaces at the ends of a text element,
+    text(x + strwidth(lead, cex = cex, font = f), y, trimws(pieces[i]), adj = c(0, vadj), cex = cex, font = f, xpd = NA)   # so place them as offsets
     x <- x + strwidth(pieces[i], cex = cex, font = f)
   }
 }

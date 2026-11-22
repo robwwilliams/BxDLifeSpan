@@ -3,7 +3,7 @@
 *Draft by Claude (Opus 5.5) for Rob Williams, 21 November 2026. Not yet reviewed. The style follows Arends et al. 2026 (*Nature* 654:437): British (Oxford) spelling, "Fig. N |", and bold panel letters. Each number comes from the files named under its figure.*
 
 *Before submission:*
-- *A Nature legend title states the finding. These titles describe instead, because no genome-wide thresholds have been computed yet; permutations over strains would supply them.*
+- *A Nature legend title states the finding. These titles describe instead. Genome-wide thresholds exist so far only for the strain-mean maps of Fig. 2a,b (1,000 permutations of strains); the individual-mouse maps, the body-weight maps and the CTL maps still need theirs.*
 - *The small model notes under each panel belong in these legends and in Methods; drop them from the final panels.*
 
 ## Fig. 2: lifespan
@@ -21,9 +21,16 @@ Shading gives −log10 *P* of the genotype term (likelihood-ratio test, 1 d.f.),
 **e**, Both diets, main effect of genotype, with diet as a further covariate: *n* = 1,745 mice of 119 strains at T50 and 402 mice of 86 strains at T770.
 **f**, Genotype × diet interaction in the mice of **e**. Warm colours where the *D* − *B* difference in lifespan is larger on the high-fat diet, cool colours where it is smaller; −log10 *P* of the interaction term (likelihood-ratio test, 1 d.f.).
 
-In **c**–**f**, kinship explains 33% of the variance in age at death at T20 on both diets (35% on chow, 38% on high fat), and 8–31% from T650 to T770. The strain means of **a**,**b** were also mapped weighted by the inverse of each mean's variance and by numbers of mice; both gave similar maps (*r* = 0.97–0.999 and 0.87–0.97 over markers at each T-age) with the same strongest loci (Methods). *P* values are not corrected for the number of markers or T-ages, and neighbouring survivorships share most of their mice. Exploratory analyses.
+**Genome-wide significance (a,b).** Thresholds come from 1,000 permutations of strains, in which each strain took the whole actuarial series of another, so the nesting of survivorships was kept.
+- **5% for a single T-age:** −log10 *P* 4.4 on both diets, between 4.2 and 4.5 at every T-age on chow and up to T620 on high fat. In the smallest late high-fat survivorships (14–30 strains) it runs from 3.5 to 5.9.
+- **5% for any marker at any T-age:** 5.5 on chow and 5.9 on high fat.
+- **Loci that pass the single-T-age threshold:**
+  - on chow, Chr 1 at 5.0 Mb (*D* allele, 6.3 at T770, which also passes for any T-age) and Chr 9 at 107 Mb (*B*, 4.5 at T680);
+  - on high fat, Chr 1 at 23.5 Mb (*D*, 5.0 at T20, passing from T20 to T110 and at T500) and Chr 2 at 157.5 Mb (*B*, 4.9 at T260, passing from T20 to T260).
 
-*Source: `qtl2_strainmeans.R` (**a**,**b**; outputs `qtl2_*_means_*_Progressive.txt`, `qtl2_means_N.txt`, `qtl2_means_variance.txt`; the comparison of weightings in `compare_weights.R`, `output/compare_weights.txt` and `output/maps/Strain_means_three_weightings.svg`) and `qtl2_individuals.R` (**c**–**f**); panels `output/maps/Figure2_lifespan_six.svg`. Rob, 21 November 2026: keep equal weights in the figure, and note the other two weightings in the legend and Methods.*
+In **c**–**f**, kinship explains 33% of the variance in age at death at T20 on both diets (35% on chow, 38% on high fat), and 8–31% from T650 to T770. The strain means of **a**,**b** were also mapped weighted by the inverse of each mean's variance and by numbers of mice; both gave similar maps (*r* = 0.97–0.999 and 0.87–0.97 over markers at each T-age) with the same strongest loci (Methods). The shading shows −log10 *P* of each scan, not corrected for the number of markers or T-ages; neighbouring survivorships share most of their mice. Exploratory analyses.
+
+*Source: `qtl2_strainmeans.R` (**a**,**b**; thresholds from `qtl2_permutations.R`, `output/qtl2_permutation_thresholds.txt`, and the loci that pass from `significant_loci.R`, `output/significant_loci.txt`; outputs `qtl2_*_means_*_Progressive.txt`, `qtl2_means_N.txt`, `qtl2_means_variance.txt`; the comparison of weightings in `compare_weights.R`, `output/compare_weights.txt` and `output/maps/Strain_means_three_weightings.svg`) and `qtl2_individuals.R` (**c**–**f**); panels `output/maps/Figure2_lifespan_six.svg`. Rob, 21 November 2026: keep equal weights in the figure, and note the other two weightings in the legend and Methods.*
 
 **If Fig. 2 keeps Danny Arends's maps instead** (`output/maps/Figure2_lifespan.svg`, four panels), they read as follows:
 - **a**,**b**, Strain means of age at death, for strains with at least 3 mice alive at the T-age, regressed on genotype (F test). Strains are weighted by their numbers of mice, with each strain's mean set-up age (180-day classes) as a covariate and no kinship. The right *y* axis gives the numbers of strains: 93 at T50 to 46 at T770 on chow, and 87 to 14 on high fat.

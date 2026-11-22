@@ -101,6 +101,13 @@ f1Model <- function(m){
     mapping("qtl2_strainF1.R", "robwwilliams/BxDLifeSpan"))
 }
 f1N <- function(d){ if(!file.exists("output/qtl2_meansF1_N.txt")) return(NULL); n <- read.table("output/qtl2_meansF1_N.txt", sep = "\t", header = TRUE); n <- n[n[, "diet"] == d, ]; (n[, "strains"] + n[, "F1"])[match(plotTPS, n[, "T"])] }
+# Genome-wide 5% thresholds of the strain-means maps, from qtl2_permutations.R: per scan (median over T-ages) and any T-age
+gwNote <- function(d){
+  if(!file.exists("output/qtl2_permutation_maxima.txt")) return(NULL)
+  r <- read.table("output/qtl2_permutation_maxima.txt", sep = "\t", header = TRUE); r <- as.matrix(r[r[, "diet"] == d, -(1:2)])
+  sprintf("Genome-wide 5%%: −log10 *P* %.1f at one T-age, %.1f at any T-age (%s permutations of strains)", median(apply(r, 2, quantile, 0.95)),
+          quantile(apply(r, 1, max), 0.95), format(nrow(r), big.mark = ","))
+}
 withSource <- function(model, lods){ c(model[1], paste(model[2], "Results:", attr(lods, "source"), "—", drawn)) }
 
 lifespan.signs <- c("*D*: longer life", "*B*: longer life")
@@ -122,13 +129,13 @@ panels <- list(
                 sign.labels = c("*r*(*D*) > *r*(*B*)", "*r*(*B*) > *r*(*D*)")),
   CTL_HF = list(lods = readResult("output/CTL_HF_LODmatrix.txt", "", ""), main = "Correlated trait loci (CTL), body weight with lifespan: high-fat diet", model = ctlModel,
                 sign.labels = c("*r*(*D*) > *r*(*B*)", "*r*(*B*) > *r*(*D*)")),
-  means_CD_equal = list(lods = readResult("output/qtl2_CD_means_equal_Progressive.txt", "", ""), N = meansN("CD"), N.title = "Strains", model = meansModel("equal"),
+  means_CD_equal = list(lods = readResult("output/qtl2_CD_means_equal_Progressive.txt", "", ""), N = meansN("CD"), N.title = "Strains", model = meansModel("equal"), gw.note = gwNote("CD"),
                         sign.labels = lifespan.signs, main = "Lifespan: strain means on chow diet, R/qtl2 with LOCO kinship, equal weights"),
   means_CD_N = list(lods = readResult("output/qtl2_CD_means_N_Progressive.txt", "", ""), N = meansN("CD"), N.title = "Strains", model = meansModel("N"),
                     sign.labels = lifespan.signs, main = "Lifespan: strain means on chow diet, R/qtl2 with LOCO kinship, weighted by number of mice"),
   means_CD_var = list(lods = readResult("output/qtl2_CD_means_var_Progressive.txt", "", ""), N = meansN("CD"), N.title = "Strains", model = meansModel("var"),
                       sign.labels = lifespan.signs, main = "Lifespan: strain means on chow diet, R/qtl2 with LOCO kinship, weighted by inverse variance"),
-  means_HF_equal = list(lods = readResult("output/qtl2_HF_means_equal_Progressive.txt", "", ""), N = meansN("HF"), N.title = "Strains", model = meansModel("equal"),
+  means_HF_equal = list(lods = readResult("output/qtl2_HF_means_equal_Progressive.txt", "", ""), N = meansN("HF"), N.title = "Strains", model = meansModel("equal"), gw.note = gwNote("HF"),
                         sign.labels = lifespan.signs, main = "Lifespan: strain means on high-fat diet, R/qtl2 with LOCO kinship, equal weights"),
   means_HF_N = list(lods = readResult("output/qtl2_HF_means_N_Progressive.txt", "", ""), N = meansN("HF"), N.title = "Strains", model = meansModel("N"),
                     sign.labels = lifespan.signs, main = "Lifespan: strain means on high-fat diet, R/qtl2 with LOCO kinship, weighted by number of mice"),

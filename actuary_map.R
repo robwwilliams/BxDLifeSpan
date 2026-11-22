@@ -25,6 +25,9 @@
 #     lightness, as the warm side does (Danny's were five blues).
 #   - The right-axis title (Strains, Mice) beside its numbers, reading top to bottom, so that it is not read as part of
 #     the legend.
+#   - Nature-style panel letters (a, b, ...) at the far left of each panel on a page of several; ticks along the top of
+#     each chromosome as well as the bottom; chromosome numbers set lower, clear of the ticks; the model note close under
+#     its own panel; and, where permutations have given one, the genome-wide threshold as the first line under the panel.
 # SVG through svglite (Arial, each label an editable text element, no text stretching), or PDF when the file name ends
 # in .pdf
 #
@@ -66,6 +69,12 @@ richText <- function(x, y, label, cex = map.cex, font = 1, vadj = 1){
   }
 }
 
+# Width of such a label, in user coordinates
+richWidth <- function(label, cex = map.cex){
+  pieces <- strsplit(label, "*", fixed = TRUE)[[1]]
+  sum(sapply(seq_along(pieces), function(i) strwidth(pieces[i], cex = cex, font = if(i %% 2 == 0) 3 else 1)))
+}
+
 # The legend, in the right margin: -log10 P bins for each sign, with what the sign means
 mapLegend <- function(sign.labels, x0 = 1.3){
   bw <- 0.36; bh <- 0.2
@@ -86,20 +95,23 @@ mapLegend <- function(sign.labels, x0 = 1.3){
 
 # One panel: lods is markers x T-ages (columns X50 ... X770, as byTPS returns), N the numbers on the right axis
 actuaryMap <- function(lods, map, layout, N = NULL, N.title = NULL, main = "", model = NULL, tps = plotTPS, threshold = 1,
-                       sign.labels = c("*D* allele higher", "*B* allele higher"), chr.numbers = TRUE){
+                       sign.labels = c("*D* allele higher", "*B* allele higher"), chr.numbers = TRUE, letter = NULL, gw.note = NULL){
   lods <- lods[, paste0("X", tps), drop = FALSE]
   nr <- length(tps)
   plot(c(1, layout$l.x), c(1, 1 + nr), t = 'n', bty = 'n', xlab = "", xaxt = 'n', ylab = "", yaxt = 'n', xaxs = "i", yaxs = "i")
   title(main = main, adj = 0, line = 1.3, cex.main = 2)
+  if(!is.null(letter)) mtext(letter, side = 3, line = 1.3, at = grconvertX(0.15, "inches", "user"), adj = 0, font = 2, cex = 2.3)
   abline(h = 1:nr, col = rgb(0.5, 0.5, 0.5))
   chr.pe <- 0
   for(chr in layout$chrs){
     chr.s <- layout$start[chr]; chr.l <- layout$length[chr]
     rect(chr.s, 0, chr.s + chr.l, 1 + nr, col = rgb(1, 1, 1, 0.5), border = NA)
     tk <- seq(25e6, chr.l, 25e6)
-    axis(1, at = chr.s + tk[tk %% 50e6 != 0], labels = FALSE, tcl = -0.25, lwd = 0, lwd.ticks = 1)   # 25 Mb
-    axis(1, at = chr.s + tk[tk %% 50e6 == 0], labels = FALSE, tcl = -0.5, lwd = 0, lwd.ticks = 1)    # 50 Mb
-    if(chr.numbers) mtext(chr, side = 1, line = 1.15, at = chr.s + chr.l / 2, cex = 2.5)
+    for(side in c(1, 3)){
+      axis(side, at = chr.s + tk[tk %% 50e6 != 0], labels = FALSE, tcl = -0.25, lwd = 0, lwd.ticks = 1)   # 25 Mb
+      axis(side, at = chr.s + tk[tk %% 50e6 == 0], labels = FALSE, tcl = -0.5, lwd = 0, lwd.ticks = 1)    # 50 Mb
+    }
+    if(chr.numbers) mtext(chr, side = 1, line = 1.7, at = chr.s + chr.l / 2, cex = 2.5)
     rect(chr.pe, 0, chr.s, 1 + nr, col = "white", border = NA)
     abline(v = chr.s)
     abline(v = chr.s + chr.l)
@@ -136,9 +148,14 @@ actuaryMap <- function(lods, map, layout, N = NULL, N.title = NULL, main = "", m
     }
   }
   mapLegend(sign.labels)
+  line0 <- if(chr.numbers) 4.3 else 1.1                                          # just under its own panel
+  if(!is.null(gw.note)){                                                          # the genome-wide threshold first, larger than the model note
+    richText(par("usr")[1], grconvertY(grconvertY(par("usr")[3], "user", "inches") - 0.2 * (line0 + 0.3), "inches", "user"), gw.note, cex = 1.1, vadj = 1)
+    line0 <- line0 + 1.5
+  }
   if(!is.null(model)){
     model <- unlist(lapply(model, strwrap, width = 320))                        # about 330 characters fit on a line; two lines leave room above the next title
-    for(l in seq_along(model)){ mtext(model[l], side = 1, line = 4.9 + 1.05 * (l - 1), adj = 0, cex = 0.8, col = "grey25") }
+    for(l in seq_along(model)){ mtext(model[l], side = 1, line = line0 + 1.05 * (l - 1), adj = 0, cex = 0.8, col = "grey25") }
   }
 }
 
@@ -152,6 +169,9 @@ actuaryPage <- function(file, panels, map, layout = mapLayout(map), width = 24, 
   }
   op <- par(mfrow = c(length(panels), 1))
   par(mai = map.mai, omi = c(0, 0, 0, 0), cex = 1)
-  for(i in seq_along(panels)){ do.call(actuaryMap, c(panels[[i]], list(map = map, layout = layout, chr.numbers = !bottom.only || i == length(panels)))) }
+  for(i in seq_along(panels)){
+    lt <- if(length(panels) > 1) letters[i] else NULL                                  # Nature panel letters on a page of several
+    do.call(actuaryMap, c(panels[[i]], list(map = map, layout = layout, chr.numbers = !bottom.only || i == length(panels), letter = lt)))
+  }
   invisible(dev.off())
 }

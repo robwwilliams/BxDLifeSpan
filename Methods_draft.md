@@ -24,4 +24,10 @@
 
 **Scores.** Each scan's LOD was converted to *P* with the χ² distribution on 1 d.f. Maps show −log10 *P*, signed by the direction of the *D* − *B* effect from `scan1coef` with the same model.
 
-*Sources: `qtl2_cross.R`, `qtl2_strainmeans.R`, `qtl2_individuals.R` and `compare_weights.R` (outputs `compare_weights.txt` and `qtl2_means_variance.txt`) in robwwilliams/BxDLifeSpan.*
+**Genome-wide thresholds.** For the strain-mean maps, thresholds came from 1,000 permutations of strains, drawn from a fixed seed.
+- **In each permutation,** every strain took the strain means of another strain at all T-ages, so the nesting of the survivorships was kept and only the link between genotype and lifespan was broken. Strains kept their genotypes and kinship.
+- **The largest −log10 *P*** over markers was recorded at each T-age, and over markers and T-ages together.
+- **The 95th percentiles** gave a 5% threshold for a single T-age: median 4.4 on both diets, 4.2–4.5 at every T-age on chow and up to T620 on high fat, and 3.5–5.9 in the smallest late high-fat survivorships of 14–30 strains.
+- **They also gave a threshold for any marker at any T-age:** 5.5 on chow and 5.9 on high fat.
+
+*Sources: `qtl2_cross.R`, `qtl2_strainmeans.R`, `qtl2_individuals.R`, `compare_weights.R` (outputs `compare_weights.txt` and `qtl2_means_variance.txt`), `qtl2_permutations.R` (`qtl2_permutation_thresholds.txt`) and `significant_loci.R` (`significant_loci.txt`) in robwwilliams/BxDLifeSpan.*

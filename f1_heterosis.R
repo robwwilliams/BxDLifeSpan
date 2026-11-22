@@ -4,7 +4,8 @@
 # Rob Williams's fork, 21 November 2026. Exploratory. Rob asked whether a categorical cofactor (short x short against
 # long x long) is enough to correct the strain + F1 maps (qtl2_strainF1.R) for heterosis. This tabulates, for each F1 type
 # and diet: the parents' strain means and their midparent, the F1 mean, heterosis (F1 - midparent), and the fraction of
-# the genome at which the parents differ (so the F1 is heterozygous). All mice of each group (T-age 20). Within a class, a
+# the genome at which the parents differ (so the F1 is heterozygous); also heterosis as a percent of the midparent, and the
+# F1 mean minus its better parent's. All mice of each group (T-age 20). Within a class, a
 # heterogeneity test asks whether heterosis differs among F1 types by more than sampling error: Q = sum((h - mean h)^2 / SE^2)
 # on (types - 1) d.f., with SE^2 = var(F1) / n(F1) + (var(parent 1) / n + var(parent 2) / n) / 4 and the mean weighted by 1 / SE^2.
 #   Rscript f1_heterosis.R [path to the F1 table]
@@ -31,7 +32,9 @@ for(d in c("CD", "HF")){
   se <- sqrt(fv / fn + (v[p1] / n[p1] + v[p2] / n[p2]) / 4)
   out <- rbind(out, data.frame(diet = d, F1 = types, class = ifelse(p1 %in% short, "short x short", "long x long"), mice = as.numeric(fn),
                                parent1 = round(m[p1]), parent2 = round(m[p2]), midparent = round((m[p1] + m[p2]) / 2), F1.mean = round(fm),
-                               heterosis = round(fm - (m[p1] + m[p2]) / 2), se = round(as.numeric(se)), heterozygous = round(het, 3)))
+                               heterosis = round(fm - (m[p1] + m[p2]) / 2), se = round(as.numeric(se)),
+                               percent = round(100 * (fm - (m[p1] + m[p2]) / 2) / ((m[p1] + m[p2]) / 2)), above.better.parent = round(fm - pmax(m[p1], m[p2])),
+                               heterozygous = round(het, 3)))
 }
 sink("output/f1_heterosis.txt", split = TRUE)
 cat("Heterosis of lifespan (days) in BXD x BXD F1 types: F1 mean minus the mean of its parents' strain means (all mice)\n\n")

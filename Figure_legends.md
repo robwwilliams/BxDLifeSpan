@@ -26,18 +26,21 @@ Shading gives −log10 *P* of the genotype term (likelihood-ratio test, 1 d.f.),
 
   | Level | Chow | High fat |
   |---|---|---|
-  | Significant, genome-wide *P* = 0.05 | 4.4 (5.5) | 4.4 (5.9) |
-  | *P* = 0.10 | 4.1 (5.2) | 4.1 (5.9) |
-  | Suggestive, *P* = 0.63 | 3.0 (4.0) | 3.0 (4.1) |
+  | Significant, genome-wide *P* = 0.05 | 4.4 (5.5) | 4.4 (5.5) |
+  | *P* = 0.10 | 4.1 (5.2) | 4.1 (5.0) |
+  | Suggestive, *P* = 0.63 | 3.0 (4.0) | 3.0 (3.9) |
 
   The suggestive level is a result expected by chance about once per genome scan (Lander & Kruglyak 1995).
-- **The single-T-age thresholds are steady across T-ages:** 4.2–4.5 at 5% on chow and up to T620 on high fat, and 2.9–3.1 at the suggestive level. In the smallest late high-fat survivorships (14–30 strains), the 5% threshold runs from 3.5 to 5.9.
+- **Thresholds hold only up to a T-age set by the number of strains:** T770 on chow (46 strains) and T620 on high fat (60 strains). The table's values cover T20 to those T-ages.
+  - **In that range they are steady across T-ages:** 4.2–4.5 at 5% and 2.9–3.1 at the suggestive level.
+  - **Beyond T620 on high fat (52 to 14 strains) they become unstable.** The 5% level runs from 3.5 to 5.9, and at T770 (14 strains) 70 of the 1,000 permutations tie at one maximum.
+  - **So the high-fat rows from T650 to T770 are shown but not tested.**
 - **Loci that pass the single-T-age threshold:**
   - on chow, Chr 1 at 5.0 Mb (*D* allele, 6.3 at T770, which also passes for any T-age) and Chr 9 at 107 Mb (*B*, 4.5 at T680);
   - on high fat, Chr 1 at 23.5 Mb (*D*, 5.0 at T20, passing from T20 to T110 and at T500) and Chr 2 at 157.5 Mb (*B*, 4.9 at T260, passing from T20 to T260).
 - **Loci at the suggestive level only:**
   - on chow, Chr 2 at 157 Mb (*B*, 3.2 at T110), Chr 7 at 88 Mb (*B*, 3.2 at T740) and Chr 14 at 49 Mb (*B*, 3.4 at T380);
-  - on high fat, Chr 3 at 64 Mb (*D*, 3.1 at T380), Chr 7 at 120 Mb (*B*, 2.7 at T320), Chr 10 at 40 Mb (*D*, 3.8 at T500) and Chr 15 at 14 Mb (*B*, 3.5 at T50).
+  - on high fat, Chr 3 at 64 Mb (*D*, 3.1 at T380), Chr 10 at 40 Mb (*D*, 3.8 at T500) and Chr 15 at 14 Mb (*B*, 3.5 at T50).
 
 In **c**–**f**, kinship explains 33% of the variance in age at death at T20 on both diets (35% on chow, 38% on high fat), and 8–31% from T650 to T770. The strain means of **a**,**b** were also mapped weighted by the inverse of each mean's variance and by numbers of mice; both gave similar maps (*r* = 0.97–0.999 and 0.87–0.97 over markers at each T-age) with the same strongest loci (Methods). The shading shows −log10 *P* of each scan, not corrected for the number of markers or T-ages; neighbouring survivorships share most of their mice. Exploratory analyses.
 

@@ -106,9 +106,11 @@ f1N <- function(d){ if(!file.exists("output/qtl2_meansF1_N.txt")) return(NULL); 
 gwNote <- function(d){
   if(!file.exists("output/qtl2_permutation_maxima.txt")) return(NULL)
   r <- read.table("output/qtl2_permutation_maxima.txt", sep = "\t", header = TRUE); r <- as.matrix(r[r[, "diet"] == d, -(1:2)])
+  tmax <- if(file.exists("output/qtl2_permutation_stable.txt")){ st <- read.table("output/qtl2_permutation_stable.txt", sep = "\t", header = TRUE); st[st[, "diet"] == d, "last.T"] } else 770
+  r <- r[, as.numeric(sub("T", "", colnames(r))) <= tmax, drop = FALSE]           # the T-ages at which permutations are stable (significant_loci.R)
   one <- function(q) median(apply(r, 2, quantile, q)); any <- function(q) quantile(apply(r, 1, max), q, names = FALSE)
-  sprintf("Genome-wide thresholds, −log10 *P* at one T-age (any T-age): 5%% %.1f (%.1f); 10%% %.1f (%.1f); suggestive (*P* = 0.63) %.1f (%.1f). From %s permutations of strains",
-          one(0.95), any(0.95), one(0.90), any(0.90), one(0.37), any(0.37), format(nrow(r), big.mark = ","))
+  sprintf("Genome-wide thresholds to T%d, −log10 *P* at one T-age (any T-age): 5%% %.1f (%.1f); 10%% %.1f (%.1f); suggestive (*P* = 0.63) %.1f (%.1f). From %s permutations of strains",
+          tmax, one(0.95), any(0.95), one(0.90), any(0.90), one(0.37), any(0.37), format(nrow(r), big.mark = ","))
 }
 withSource <- function(model, lods){ c(model[1], paste(model[2], "Results:", attr(lods, "source"), "—", drawn)) }
 

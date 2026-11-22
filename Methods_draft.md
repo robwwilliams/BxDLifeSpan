@@ -27,8 +27,8 @@
 **Genome-wide thresholds.** For the strain-mean maps, thresholds came from 1,000 permutations of strains, drawn from a fixed seed.
 - **In each permutation,** every strain took the strain means of another strain at all T-ages, so the nesting of the survivorships was kept and only the link between genotype and lifespan was broken. Strains kept their genotypes and kinship.
 - **The largest −log10 *P*** over markers was recorded at each T-age, and over markers and T-ages together.
-- **The 95th percentiles** gave a 5% threshold for a single T-age: median 4.4 on both diets, 4.2–4.5 at every T-age on chow and up to T620 on high fat, and 3.5–5.9 in the smallest late high-fat survivorships of 14–30 strains.
-- **They also gave a threshold for any marker at any T-age:** 5.5 on chow and 5.9 on high fat.
-- **The 90th and 37th percentiles** gave the 10% level (4.1 for one T-age on both diets; 5.2 and 5.9 for any T-age) and the suggestive level of Lander & Kruglyak (1995), genome-wide *P* = 0.63 (3.0 for one T-age; 4.0 and 4.1 for any T-age).
+- **Stable range.** Thresholds were used only from T20 to the last T-age before the 5% single-T-age threshold first moved more than 0.3 from its median over T20–T500. That is T770 on chow (46 strains) and T620 on high fat (60 strains). Beyond T620 on high fat, with 52 to 14 strains, the thresholds were unstable, and at T770 (14 strains) 70 of 1,000 permutations tied at one maximum.
+- **The 95th percentiles** gave a 5% threshold for a single T-age (median 4.4 on both diets, 4.2–4.5 across the stable range), and for any marker at any T-age in that range (5.5 on both diets).
+- **The 90th and 37th percentiles** gave the 10% level (4.1 for one T-age; 5.2 on chow and 5.0 on high fat for any T-age) and the suggestive level of Lander & Kruglyak (1995), genome-wide *P* = 0.63 (3.0 for one T-age; 4.0 and 3.9 for any T-age).
 
 *Sources: `qtl2_cross.R`, `qtl2_strainmeans.R`, `qtl2_individuals.R`, `compare_weights.R` (outputs `compare_weights.txt` and `qtl2_means_variance.txt`), `qtl2_permutations.R` (`qtl2_permutation_thresholds.txt`) and `significant_loci.R` (`significant_loci.txt`) in robwwilliams/BxDLifeSpan.*

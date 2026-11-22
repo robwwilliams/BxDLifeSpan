@@ -29,5 +29,6 @@
 - **The largest −log10 *P*** over markers was recorded at each T-age, and over markers and T-ages together.
 - **The 95th percentiles** gave a 5% threshold for a single T-age: median 4.4 on both diets, 4.2–4.5 at every T-age on chow and up to T620 on high fat, and 3.5–5.9 in the smallest late high-fat survivorships of 14–30 strains.
 - **They also gave a threshold for any marker at any T-age:** 5.5 on chow and 5.9 on high fat.
+- **The 90th and 37th percentiles** gave the 10% level (4.1 for one T-age on both diets; 5.2 and 5.9 for any T-age) and the suggestive level of Lander & Kruglyak (1995), genome-wide *P* = 0.63 (3.0 for one T-age; 4.0 and 4.1 for any T-age).
 
 *Sources: `qtl2_cross.R`, `qtl2_strainmeans.R`, `qtl2_individuals.R`, `compare_weights.R` (outputs `compare_weights.txt` and `qtl2_means_variance.txt`), `qtl2_permutations.R` (`qtl2_permutation_thresholds.txt`) and `significant_loci.R` (`significant_loci.txt`) in robwwilliams/BxDLifeSpan.*

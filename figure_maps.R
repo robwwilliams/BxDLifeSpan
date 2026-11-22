@@ -101,12 +101,14 @@ f1Model <- function(m){
     mapping("qtl2_strainF1.R", "robwwilliams/BxDLifeSpan"))
 }
 f1N <- function(d){ if(!file.exists("output/qtl2_meansF1_N.txt")) return(NULL); n <- read.table("output/qtl2_meansF1_N.txt", sep = "\t", header = TRUE); n <- n[n[, "diet"] == d, ]; (n[, "strains"] + n[, "F1"])[match(plotTPS, n[, "T"])] }
-# Genome-wide 5% thresholds of the strain-means maps, from qtl2_permutations.R: per scan (median over T-ages) and any T-age
+# Genome-wide thresholds of the strain-means maps, from qtl2_permutations.R, for one T-age (median over T-ages) and any
+# T-age: 5%, 10% and suggestive (genome-wide P = 0.63, Lander & Kruglyak 1995)
 gwNote <- function(d){
   if(!file.exists("output/qtl2_permutation_maxima.txt")) return(NULL)
   r <- read.table("output/qtl2_permutation_maxima.txt", sep = "\t", header = TRUE); r <- as.matrix(r[r[, "diet"] == d, -(1:2)])
-  sprintf("Genome-wide 5%%: −log10 *P* %.1f at one T-age, %.1f at any T-age (%s permutations of strains)", median(apply(r, 2, quantile, 0.95)),
-          quantile(apply(r, 1, max), 0.95), format(nrow(r), big.mark = ","))
+  one <- function(q) median(apply(r, 2, quantile, q)); any <- function(q) quantile(apply(r, 1, max), q, names = FALSE)
+  sprintf("Genome-wide thresholds, −log10 *P* at one T-age (any T-age): 5%% %.1f (%.1f); 10%% %.1f (%.1f); suggestive, *P* = 0.63, %.1f (%.1f). From %s permutations of strains",
+          one(0.95), any(0.95), one(0.90), any(0.90), one(0.37), any(0.37), format(nrow(r), big.mark = ","))
 }
 withSource <- function(model, lods){ c(model[1], paste(model[2], "Results:", attr(lods, "source"), "—", drawn)) }
 

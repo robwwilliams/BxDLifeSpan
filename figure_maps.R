@@ -74,20 +74,20 @@ individualModel <- function(term){ c(paste0("Model: lmer(age at death ~ diet + v
                                      mapping("interactions.R")) }
 bwModel <- c("Model: lm(strain mean body weight ~ genotype, weights = mice per strain), F test. Each mouse's weight interpolated linearly between its weighings; BXD strains with at least 3 mice weighed at T; T-ages with more than 400 mice weighed; genotype B −1, H 0, D +1. No kinship.",
              mapping("bodyweight.R"))
-ctlModel <- c("Model: at each marker, the rank correlation of body weight at T with lifespan (both adjusted for vivarium and set-up class), in B mice and in D mice, each mouse weighted 1 / mice of its strain; χ² test (1 d.f.) of the difference on Fisher's z. BXD mice set up by T and alive at T; markers with at least 20 mice of each genotype.",
+ctlModel <- c("Model: rank correlation of body weight at T with lifespan (both adjusted for vivarium and set-up class) in B and in D mice, each mouse weighted 1 / mice of its strain; χ² test (1 d.f.) of the difference on Fisher's z. Mice set up by T and alive at T; markers with at least 20 mice of each genotype.",
               paste(mapping("CTL.R"), "Inputs from bodyweight.R and adjust.R, run by run_CTL.R."))
 qtl2Model <- function(m){
   covs <- if(m %in% c("main", "int")) "diet + vivarium + set-up class" else "vivarium + set-up class"
-  c(paste0("Model: R/qtl2 scan1, linear mixed model with LOCO kinship (REML): age at death ~ ", covs, " + genotype", if(m == "int") " + diet × genotype" else "",
+  c(paste0("Model: linear mixed model with LOCO kinship (REML): age at death ~ ", covs, " + genotype", if(m == "int") " + diet × genotype" else "",
            " + polygenic effect; likelihood-ratio test of ", if(m == "int") "diet × genotype" else "genotype", " (1 d.f.). BXD mice ",
-           c(CD = "on chow", HF = "on high fat", main = "on chow and high fat", int = "on chow and high fat")[m],
-           " alive at T; set-up class: the mouse's set-up age, in 180-day classes; kinship: allele sharing of strain genotype probabilities, so mice of one strain have kinship 1."),
+           c(CD = "on chow", HF = "on high fat", main = "on both diets", int = "on both diets")[m],
+           " alive at T; set-up class: set-up age in 180-day classes; kinship: allele sharing of strain genotype probabilities."),
     mapping("qtl2_individuals.R", "robwwilliams/BxDLifeSpan"))
 }
 qtl2N <- function(m){ if(!file.exists("output/qtl2_N_ind_Progressive.txt")) return(NULL); n <- read.table("output/qtl2_N_ind_Progressive.txt", sep = "\t"); n[match(plotTPS, as.numeric(rownames(n))), c(CD = "CD", HF = "HF", main = "main", int = "main")[m]] }
 withSource <- function(model, lods){ c(model[1], paste(model[2], "Results:", attr(lods, "source"), "—", drawn)) }
 
-lifespan.signs <- c("D allele: longer life", "B allele: longer life")
+lifespan.signs <- c("*D*: longer life", "*B*: longer life")
 panels <- list(
   lifespan_CD = list(lods = readResult("output/CD_wMeans_Y_Progressive.txt", xlsx.lifespan, "CD"), N = readN("output/CD_wMeans_Y_Progressive_N.txt", nStrains("CD")), N.title = "Strains",
                      main = "Lifespan: strain means on chow diet", model = lifespanModel, sign.labels = lifespan.signs),
@@ -97,15 +97,15 @@ panels <- list(
                        main = "Lifespan of individual mice on both diets: main genetic effect", model = individualModel("main"), sign.labels = lifespan.signs),
   lifespan_int = list(lods = readResult("output/int_ind_Progressive.txt", xlsx.lifespan, "Gene x Diet (Interaction)"), N = readN("output/N_ind_Progressive.txt", nInd), N.title = "Mice",
                       main = "Lifespan of individual mice on both diets: genotype × diet interaction", model = individualModel("interaction"),
-                      sign.labels = c("D − B larger on high fat", "D − B smaller on high fat")),
+                      sign.labels = c("*D* − *B* larger on HF", "*D* − *B* smaller on HF")),
   BW_CD = list(lods = readResult("output/BW_CD_wMeans_Progressive.txt", xlsx.bw, "CD"), N.title = "Strains", main = "Body weight: strain means on chow diet", model = bwModel,
-               sign.labels = c("D allele: heavier", "B allele: heavier")),
+               sign.labels = c("*D*: heavier", "*B*: heavier")),
   BW_HF = list(lods = readResult("output/BW_HF_wMeans_Progressive.txt", xlsx.bw, "HF"), N.title = "Strains", main = "Body weight: strain means on high-fat diet", model = bwModel,
-               sign.labels = c("D allele: heavier", "B allele: heavier")),
+               sign.labels = c("*D*: heavier", "*B*: heavier")),
   CTL_CD = list(lods = readResult("output/CTL_CD_LODmatrix.txt", "", ""), main = "Correlated trait loci (CTL), body weight with lifespan: chow diet", model = ctlModel,
-                sign.labels = c("Correlation higher in D", "Correlation higher in B"), mb.ticks = TRUE),
+                sign.labels = c("*r*(*D*) > *r*(*B*)", "*r*(*B*) > *r*(*D*)")),
   CTL_HF = list(lods = readResult("output/CTL_HF_LODmatrix.txt", "", ""), main = "Correlated trait loci (CTL), body weight with lifespan: high-fat diet", model = ctlModel,
-                sign.labels = c("Correlation higher in D", "Correlation higher in B"), mb.ticks = TRUE),
+                sign.labels = c("*r*(*D*) > *r*(*B*)", "*r*(*B*) > *r*(*D*)")),
   qtl2_CD = list(lods = readResult("output/qtl2_CD_ind_Progressive.txt", "", ""), N = qtl2N("CD"), N.title = "Mice", model = qtl2Model("CD"), sign.labels = lifespan.signs,
                  main = "Lifespan of individual mice on chow diet: R/qtl2 with LOCO kinship"),
   qtl2_HF = list(lods = readResult("output/qtl2_HF_ind_Progressive.txt", "", ""), N = qtl2N("HF"), N.title = "Mice", model = qtl2Model("HF"), sign.labels = lifespan.signs,
@@ -113,7 +113,7 @@ panels <- list(
   qtl2_main = list(lods = readResult("output/qtl2_main_ind_Progressive.txt", "", ""), N = qtl2N("main"), N.title = "Mice", model = qtl2Model("main"), sign.labels = lifespan.signs,
                    main = "Lifespan of individual mice on both diets: main genetic effect, R/qtl2 with LOCO kinship"),
   qtl2_int = list(lods = readResult("output/qtl2_int_ind_Progressive.txt", "", ""), N = qtl2N("int"), N.title = "Mice", model = qtl2Model("int"),
-                  sign.labels = c("D − B larger on high fat", "D − B smaller on high fat"),
+                  sign.labels = c("*D* − *B* larger on HF", "*D* − *B* smaller on HF"),
                   main = "Lifespan of individual mice on both diets: genotype × diet interaction, R/qtl2 with LOCO kinship")
 )
 missing <- names(panels)[sapply(panels, function(p) is.null(p$lods))]

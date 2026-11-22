@@ -24,7 +24,10 @@ Danny Arends's code, forked for the Nature Aging paper. Danny's files are unchan
 
   The numbers on the right axis are counted with Danny's rules. They match his figure: 93 to 46 strains on chow, 87 to 14 on high fat, and 1,745 to 402 mice.
 
-  Each panel prints its model, the mapping script and its commit, and the results file, in small type under the map. Titles are left-justified and in plain words. The legend sits in the right margin, clear of the maps, and says what each colour means.
+  Each panel prints its model, the mapping script and its commit, and the results file, in small type under the map. Titles are left-justified and in plain words. The legend sits in the right margin, clear of the maps, and says which allele each colour favours: warm colours (yellow to red) for *D*, cool colours (pale green to dark blue) for *B*. Ticks mark every 25 Mb, longer every 50 Mb. Type sizes follow Rob's working Illustrator file.
+- **`Figure_legends.md`** holds the Nature-style legends drafted for Figures 2 and 3.
+- **`ctl_signs.R`** reports the sign of the CTL correlations by diet and age, for the Figure 3 legend.
+- **`compare_kinship.R`** sets Danny's individual-mouse maps beside the R/qtl2 kinship maps, T-age by T-age.
 - **`run_CTL.R`** runs the first part of `bodyweight.R` (the interpolated weights), then `CTL.R`, so that the CTL panels can be drawn.
 - **`qtl2_individuals.R`** maps individual mice with R/qtl2: linear mixed models with LOCO kinship, at every T-age.
   - It uses the same mice, genotypes and cofactors as `interactions.R`, with the kinship matrix in place of the random strain intercept.

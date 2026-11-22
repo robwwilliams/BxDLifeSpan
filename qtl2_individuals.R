@@ -18,14 +18,14 @@
 #     when the D allele raises lifespan (for int: when D - B is larger on high fat), as in Danny's maps.
 # Writes output/qtl2_<CD|HF|main|int>_ind_Progressive.txt (markers x T-ages, Danny's layout), output/qtl2_N_ind_Progressive.txt
 # (mice per model and T-age) and output/qtl2_hsq.txt (the kinship heritability of each null model, chromosome 1 left out)
-#   Rscript qtl2_individuals.R        (about 30 minutes on 4 cores)
+#   Rscript qtl2_individuals.R        (about 20 minutes on 8 cores)
 #
 
 library(qtl2)
 source("shared.R")
 
 tps <- seq(20, 770, 30)
-cores <- 4
+cores <- max(1, parallel::detectCores() / 2 - 1)              # as in Danny's scripts
 ld <- ldata[which(ldata[, "Diet"] %in% c("CD", "HF") & grepl("BXD", ldata[, "StrainName"]) & ldata[, "StrainName"] %in% colnames(geno)),]
 strains <- sort(unique(ld[, "StrainName"]))
 

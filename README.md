@@ -32,6 +32,15 @@ Danny Arends's code, forked for the Nature Aging paper. Danny's files are unchan
 - **`qtl2_strainF1.R`** maps BXD strain means and BXD × BXD F1 means together (equal weights, at least 3 mice), with F1 type as a cofactor, for additive and dominance effects. F1 genotype probabilities come from both parents. It also lists where each F1 type is heterozygous on proximal Chr 1 (`output/strainF1_chr1.txt`).
 - **`f1_heterosis.R`** tabulates heterosis (F1 mean minus midparent) for each F1 type, and tests whether it differs within a class by more than sampling error (`output/f1_heterosis.txt`).
 - **`qtl2_permutations.R`** sets genome-wide thresholds for the strain-means maps by permuting strains (each strain takes another's whole actuarial series). **`significant_loci.R`** lists the loci that pass.
+- **`qtl2_individuals_perm.R`** sets genome-wide thresholds for the individual-mouse maps by permuting whole strains within two strata (BXD1–42 and BXD43 on), with each strain's mice keeping their covariates. One permutation takes about 29 minutes on one worker. It saves each permutation as it finishes and resumes where it stopped. To run it on another machine (R with qtl2 and readxl):
+
+  ```bash
+  git clone https://github.com/robwwilliams/BxDLifeSpan.git
+  git clone https://github.com/robwwilliams/bxd_mortality_rates_2026.git
+  cd BxDLifeSpan && Rscript qtl2_individuals_perm.R 200 14 ../bxd_mortality_rates_2026/data/original/BDL_10002.xlsx
+  ```
+
+  The output, `output/qtl2_individuals_perm_maxima.txt`, comes back to this folder.
 - **`run_CTL.R`** runs the first part of `bodyweight.R` (the interpolated weights), then `CTL.R`, so that the CTL panels can be drawn.
 - **`qtl2_individuals.R`** maps individual mice with R/qtl2: linear mixed models with LOCO kinship, at every T-age.
   - It uses the same mice, genotypes and cofactors as `interactions.R`, with the kinship matrix in place of the random strain intercept.

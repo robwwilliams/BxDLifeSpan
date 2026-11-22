@@ -10,7 +10,8 @@
 # strains with at least 3 mice alive at T (lifespan strain means), BXD mice on CD and HF alive at T (individuals), and BXD
 # strains with at least 3 mice weighed at T (body weight, once bodyweight.R or run_CTL.R has interpolated the weights).
 # Writes output/maps/: one SVG per panel (24 x 5.5 inches); Danny's pages of two; Figure 2 (lifespan), Figure 3 (body
-# weight and CTL) and the R/qtl2 kinship maps of Figure 2; and every panel on one page, for alignment by eye
+# weight and CTL), the R/qtl2 kinship maps of Figure 2 (four panels, and six with the strain means), the strain means under
+# three weightings (qtl2_strainmeans.R); and every panel on one page, for alignment by eye
 #
 
 library(readxl)
@@ -85,6 +86,14 @@ qtl2Model <- function(m){
     mapping("qtl2_individuals.R", "robwwilliams/BxDLifeSpan"))
 }
 qtl2N <- function(m){ if(!file.exists("output/qtl2_N_ind_Progressive.txt")) return(NULL); n <- read.table("output/qtl2_N_ind_Progressive.txt", sep = "\t"); n[match(plotTPS, as.numeric(rownames(n))), c(CD = "CD", HF = "HF", main = "main", int = "main")[m]] }
+meansModel <- function(w){
+  c(paste0("Model: linear mixed model with LOCO kinship (REML): strain mean age at death ~ genotype + polygenic effect, ",
+           c(equal = "equal weights", N = "weights = mice per strain (as in Danny's lifespan.R)",
+             var = "weights = 1 / (s2.strain + s2.within / n), variance components by REML")[w],
+           "; likelihood-ratio test (1 d.f.). BXD strains with at least 3 mice alive at T; no covariates."),
+    mapping("qtl2_strainmeans.R", "robwwilliams/BxDLifeSpan"))
+}
+meansN <- function(d){ if(!file.exists("output/qtl2_means_N.txt")) return(NULL); n <- read.table("output/qtl2_means_N.txt", sep = "\t"); n[match(plotTPS, as.numeric(rownames(n))), d] }
 withSource <- function(model, lods){ c(model[1], paste(model[2], "Results:", attr(lods, "source"), "—", drawn)) }
 
 lifespan.signs <- c("*D*: longer life", "*B*: longer life")
@@ -106,6 +115,18 @@ panels <- list(
                 sign.labels = c("*r*(*D*) > *r*(*B*)", "*r*(*B*) > *r*(*D*)")),
   CTL_HF = list(lods = readResult("output/CTL_HF_LODmatrix.txt", "", ""), main = "Correlated trait loci (CTL), body weight with lifespan: high-fat diet", model = ctlModel,
                 sign.labels = c("*r*(*D*) > *r*(*B*)", "*r*(*B*) > *r*(*D*)")),
+  means_CD_equal = list(lods = readResult("output/qtl2_CD_means_equal_Progressive.txt", "", ""), N = meansN("CD"), N.title = "Strains", model = meansModel("equal"),
+                        sign.labels = lifespan.signs, main = "Lifespan: strain means on chow diet, R/qtl2 with LOCO kinship, equal weights"),
+  means_CD_N = list(lods = readResult("output/qtl2_CD_means_N_Progressive.txt", "", ""), N = meansN("CD"), N.title = "Strains", model = meansModel("N"),
+                    sign.labels = lifespan.signs, main = "Lifespan: strain means on chow diet, R/qtl2 with LOCO kinship, weighted by number of mice"),
+  means_CD_var = list(lods = readResult("output/qtl2_CD_means_var_Progressive.txt", "", ""), N = meansN("CD"), N.title = "Strains", model = meansModel("var"),
+                      sign.labels = lifespan.signs, main = "Lifespan: strain means on chow diet, R/qtl2 with LOCO kinship, weighted by inverse variance"),
+  means_HF_equal = list(lods = readResult("output/qtl2_HF_means_equal_Progressive.txt", "", ""), N = meansN("HF"), N.title = "Strains", model = meansModel("equal"),
+                        sign.labels = lifespan.signs, main = "Lifespan: strain means on high-fat diet, R/qtl2 with LOCO kinship, equal weights"),
+  means_HF_N = list(lods = readResult("output/qtl2_HF_means_N_Progressive.txt", "", ""), N = meansN("HF"), N.title = "Strains", model = meansModel("N"),
+                    sign.labels = lifespan.signs, main = "Lifespan: strain means on high-fat diet, R/qtl2 with LOCO kinship, weighted by number of mice"),
+  means_HF_var = list(lods = readResult("output/qtl2_HF_means_var_Progressive.txt", "", ""), N = meansN("HF"), N.title = "Strains", model = meansModel("var"),
+                      sign.labels = lifespan.signs, main = "Lifespan: strain means on high-fat diet, R/qtl2 with LOCO kinship, weighted by inverse variance"),
   qtl2_CD = list(lods = readResult("output/qtl2_CD_ind_Progressive.txt", "", ""), N = qtl2N("CD"), N.title = "Mice", model = qtl2Model("CD"), sign.labels = lifespan.signs,
                  main = "Lifespan of individual mice on chow diet: R/qtl2 with LOCO kinship"),
   qtl2_HF = list(lods = readResult("output/qtl2_HF_ind_Progressive.txt", "", ""), N = qtl2N("HF"), N.title = "Mice", model = qtl2Model("HF"), sign.labels = lifespan.signs,
@@ -132,11 +153,13 @@ for(nm in names(panels)){ actuaryPage(paste0("output/maps/", nm, ".svg"), panels
 pages <- list(actuaryQTL_lifespan_wMeans = c("lifespan_CD", "lifespan_HF"), actuaryQTL_lifespan_main_interactions = c("lifespan_main", "lifespan_int"),
               actuaryQTL_BW = c("BW_CD", "BW_HF"), actuaryCTL_lifespan = c("CTL_CD", "CTL_HF"),
               Figure2_lifespan = c("lifespan_CD", "lifespan_HF", "lifespan_main", "lifespan_int"), Figure3_bodyweight_CTL = c("BW_CD", "BW_HF", "CTL_CD", "CTL_HF"),
-              Figure2_lifespan_kinship = c("qtl2_CD", "qtl2_HF", "qtl2_main", "qtl2_int"))
+              Figure2_lifespan_kinship = c("qtl2_CD", "qtl2_HF", "qtl2_main", "qtl2_int"),
+              Figure2_lifespan_six = c("means_CD_equal", "means_HF_equal", "qtl2_CD", "qtl2_HF", "qtl2_main", "qtl2_int"),
+              Strain_means_three_weightings = c("means_CD_equal", "means_CD_N", "means_CD_var", "means_HF_equal", "means_HF_N", "means_HF_var"))
 for(pg in names(pages)){
   if(all(pages[[pg]] %in% names(panels))){ actuaryPage(paste0("output/maps/", pg, ".svg"), panels[pages[[pg]]], map = map, layout = layout) }
 }
 # Everything on one page, each of Danny's lifespan maps followed by its kinship counterpart, for alignment by eye
-all.order <- c("lifespan_CD", "qtl2_CD", "lifespan_HF", "qtl2_HF", "lifespan_main", "qtl2_main", "lifespan_int", "qtl2_int", "BW_CD", "BW_HF", "CTL_CD", "CTL_HF")
+all.order <- c("lifespan_CD", "means_CD_equal", "qtl2_CD", "lifespan_HF", "means_HF_equal", "qtl2_HF", "lifespan_main", "qtl2_main", "lifespan_int", "qtl2_int", "BW_CD", "BW_HF", "CTL_CD", "CTL_HF")
 actuaryPage("output/maps/all_maps.svg", panels[intersect(all.order, names(panels))], map = map, layout = layout)
 cat("Wrote", length(panels), "panels to output/maps/\n")

@@ -21,27 +21,11 @@
 #   Rscript qtl2_individuals.R        (about 20 minutes on 8 cores)
 #
 
-library(qtl2)
 source("shared.R")
+source("qtl2_cross.R")                                                              # strains, cross, pr, K and signedP
 
 tps <- seq(20, 770, 30)
-cores <- max(1, parallel::detectCores() / 2 - 1)              # as in Danny's scripts
-ld <- ldata[which(ldata[, "Diet"] %in% c("CD", "HF") & grepl("BXD", ldata[, "StrainName"]) & ldata[, "StrainName"] %in% colnames(geno)),]
-strains <- sort(unique(ld[, "StrainName"]))
-
-### The cross, from the strains
-dir <- file.path(tempdir(), "bxd_qtl2")
-dir.create(dir, showWarnings = FALSE)
-G <- t(as.matrix(geno[, strains]))
-G[G == "H"] <- NA
-write.csv(data.frame(id = strains, G, check.names = FALSE), file.path(dir, "geno.csv"), row.names = FALSE, quote = FALSE, na = "-")
-write.csv(data.frame(marker = rownames(map), chr = map[, "Chr"], pos = map[, "cM"]), file.path(dir, "gmap.csv"), row.names = FALSE, quote = FALSE)
-write.csv(data.frame(id = strains, dummy = 1), file.path(dir, "pheno.csv"), row.names = FALSE, quote = FALSE)
-write_control_file(file.path(dir, "control.yaml"), crosstype = "risib", geno_file = "geno.csv", gmap_file = "gmap.csv", pheno_file = "pheno.csv",
-                   alleles = c("B", "D"), geno_codes = c(B = 1, D = 2), na.strings = c("-", "NA"), overwrite = TRUE)
-cross <- suppressWarnings(read_cross2(file.path(dir, "control.yaml")))             # warns that no chromosome is the X
-pr <- calc_genoprob(cross, error_prob = 0.002, cores = cores)
-K <- calc_kinship(pr, "loco", cores = cores)
+cores <- qtl2.cores
 
 ### Each mouse takes its strain's genotype probabilities and kinship
 ids <- rownames(ld)
@@ -49,9 +33,6 @@ idx <- match(ld[, "StrainName"], strains)
 prm <- pr
 for(chr in names(pr)){ a <- pr[[chr]][idx, , , drop = FALSE]; dimnames(a)[[1]] <- ids; prm[[chr]] <- a }
 Km <- lapply(K, function(k){ m <- k[idx, idx]; dimnames(m) <- list(ids, ids); m })
-
-# Signed -log10 P from a LOD on 1 d.f. and the sign of an effect
-signedP <- function(lod, effect){ sign(effect) * -pchisq(2 * log(10) * pmax(lod, 0), 1, lower.tail = FALSE, log.p = TRUE) / log(10) }
 
 # Effect of D against B at every marker (and of D against B times high fat, when int is given)
 effects <- function(Y, Kd, X, int = NULL){

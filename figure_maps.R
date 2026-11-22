@@ -94,6 +94,13 @@ meansModel <- function(w){
     mapping("qtl2_strainmeans.R", "robwwilliams/BxDLifeSpan"))
 }
 meansN <- function(d){ if(!file.exists("output/qtl2_means_N.txt")) return(NULL); n <- read.table("output/qtl2_means_N.txt", sep = "\t"); n[match(plotTPS, as.numeric(rownames(n))), d] }
+f1Model <- function(m){
+  c(paste0("Model: linear mixed model with LOCO kinship (REML): unit mean age at death ~ F1 type + ",
+           if(m == "add") "additive genotype (1 d.f.)" else "BB, BD and DD (2 d.f.), against the additive model: dominance deviation BD − (BB + DD) / 2 (1 d.f.)",
+           " + polygenic effect, equal weights. BXD strains and BXD × BXD F1 types with at least 3 mice alive at T; F1 genotype probabilities from both parents."),
+    mapping("qtl2_strainF1.R", "robwwilliams/BxDLifeSpan"))
+}
+f1N <- function(d){ if(!file.exists("output/qtl2_meansF1_N.txt")) return(NULL); n <- read.table("output/qtl2_meansF1_N.txt", sep = "\t", header = TRUE); n <- n[n[, "diet"] == d, ]; (n[, "strains"] + n[, "F1"])[match(plotTPS, n[, "T"])] }
 withSource <- function(model, lods){ c(model[1], paste(model[2], "Results:", attr(lods, "source"), "—", drawn)) }
 
 lifespan.signs <- c("*D*: longer life", "*B*: longer life")
@@ -127,6 +134,14 @@ panels <- list(
                     sign.labels = lifespan.signs, main = "Lifespan: strain means on high-fat diet, R/qtl2 with LOCO kinship, weighted by number of mice"),
   means_HF_var = list(lods = readResult("output/qtl2_HF_means_var_Progressive.txt", "", ""), N = meansN("HF"), N.title = "Strains", model = meansModel("var"),
                       sign.labels = lifespan.signs, main = "Lifespan: strain means on high-fat diet, R/qtl2 with LOCO kinship, weighted by inverse variance"),
+  means_CD_F1_add = list(lods = readResult("output/qtl2_CD_meansF1_add_Progressive.txt", "", ""), N = f1N("CD"), N.title = "Strains + F1s", model = f1Model("add"),
+                         sign.labels = lifespan.signs, main = "Lifespan: strain and F1 means on chow diet, additive effect, R/qtl2 with LOCO kinship, equal weights"),
+  means_CD_F1_dom = list(lods = readResult("output/qtl2_CD_meansF1_dom_Progressive.txt", "", ""), N = f1N("CD"), N.title = "Strains + F1s", model = f1Model("dom"),
+                         sign.labels = c("*BD* > midpoint", "*BD* < midpoint"), main = "Lifespan: strain and F1 means on chow diet, dominance deviation, R/qtl2 with LOCO kinship"),
+  means_HF_F1_add = list(lods = readResult("output/qtl2_HF_meansF1_add_Progressive.txt", "", ""), N = f1N("HF"), N.title = "Strains + F1s", model = f1Model("add"),
+                         sign.labels = lifespan.signs, main = "Lifespan: strain and F1 means on high-fat diet, additive effect, R/qtl2 with LOCO kinship, equal weights"),
+  means_HF_F1_dom = list(lods = readResult("output/qtl2_HF_meansF1_dom_Progressive.txt", "", ""), N = f1N("HF"), N.title = "Strains + F1s", model = f1Model("dom"),
+                         sign.labels = c("*BD* > midpoint", "*BD* < midpoint"), main = "Lifespan: strain and F1 means on high-fat diet, dominance deviation, R/qtl2 with LOCO kinship"),
   qtl2_CD = list(lods = readResult("output/qtl2_CD_ind_Progressive.txt", "", ""), N = qtl2N("CD"), N.title = "Mice", model = qtl2Model("CD"), sign.labels = lifespan.signs,
                  main = "Lifespan of individual mice on chow diet: R/qtl2 with LOCO kinship"),
   qtl2_HF = list(lods = readResult("output/qtl2_HF_ind_Progressive.txt", "", ""), N = qtl2N("HF"), N.title = "Mice", model = qtl2Model("HF"), sign.labels = lifespan.signs,
@@ -155,11 +170,12 @@ pages <- list(actuaryQTL_lifespan_wMeans = c("lifespan_CD", "lifespan_HF"), actu
               Figure2_lifespan = c("lifespan_CD", "lifespan_HF", "lifespan_main", "lifespan_int"), Figure3_bodyweight_CTL = c("BW_CD", "BW_HF", "CTL_CD", "CTL_HF"),
               Figure2_lifespan_kinship = c("qtl2_CD", "qtl2_HF", "qtl2_main", "qtl2_int"),
               Figure2_lifespan_six = c("means_CD_equal", "means_HF_equal", "qtl2_CD", "qtl2_HF", "qtl2_main", "qtl2_int"),
-              Strain_means_three_weightings = c("means_CD_equal", "means_CD_N", "means_CD_var", "means_HF_equal", "means_HF_N", "means_HF_var"))
+              Strain_means_three_weightings = c("means_CD_equal", "means_CD_N", "means_CD_var", "means_HF_equal", "means_HF_N", "means_HF_var"),
+              Strain_and_F1_means = c("means_CD_equal", "means_CD_F1_add", "means_CD_F1_dom", "means_HF_equal", "means_HF_F1_add", "means_HF_F1_dom"))
 for(pg in names(pages)){
   if(all(pages[[pg]] %in% names(panels))){ actuaryPage(paste0("output/maps/", pg, ".svg"), panels[pages[[pg]]], map = map, layout = layout) }
 }
 # Everything on one page, each of Danny's lifespan maps followed by its kinship counterpart, for alignment by eye
-all.order <- c("lifespan_CD", "means_CD_equal", "qtl2_CD", "lifespan_HF", "means_HF_equal", "qtl2_HF", "lifespan_main", "qtl2_main", "lifespan_int", "qtl2_int", "BW_CD", "BW_HF", "CTL_CD", "CTL_HF")
+all.order <- c("lifespan_CD", "means_CD_equal", "means_CD_F1_add", "qtl2_CD", "lifespan_HF", "means_HF_equal", "means_HF_F1_add", "qtl2_HF", "lifespan_main", "qtl2_main", "lifespan_int", "qtl2_int", "BW_CD", "BW_HF", "CTL_CD", "CTL_HF")
 actuaryPage("output/maps/all_maps.svg", panels[intersect(all.order, names(panels))], map = map, layout = layout)
 cat("Wrote", length(panels), "panels to output/maps/\n")

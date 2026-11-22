@@ -29,6 +29,7 @@ Danny Arends's code, forked for the Nature Aging paper. Danny's files are unchan
 - **`ctl_signs.R`** reports the sign of the CTL correlations by diet and age, for the Figure 3 legend.
 - **`compare_kinship.R`** sets Danny's individual-mouse maps beside the R/qtl2 kinship maps, T-age by T-age.
 - **`qtl2_strainmeans.R`** maps strain means with R/qtl2 and LOCO kinship under three weightings: equal (Rob's default), mice per strain (Danny's) and inverse variance. **`compare_weights.R`** compares them. **`qtl2_cross.R`** builds the cross and kinship for both R/qtl2 scripts.
+- **`qtl2_strainF1.R`** maps BXD strain means and BXD × BXD F1 means together (equal weights, at least 3 mice), with F1 type as a cofactor, for additive and dominance effects. F1 genotype probabilities come from both parents. It also lists where each F1 type is heterozygous on proximal Chr 1 (`output/strainF1_chr1.txt`).
 - **`run_CTL.R`** runs the first part of `bodyweight.R` (the interpolated weights), then `CTL.R`, so that the CTL panels can be drawn.
 - **`qtl2_individuals.R`** maps individual mice with R/qtl2: linear mixed models with LOCO kinship, at every T-age.
   - It uses the same mice, genotypes and cofactors as `interactions.R`, with the kinship matrix in place of the random strain intercept.

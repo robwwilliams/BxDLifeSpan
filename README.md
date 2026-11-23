@@ -2,7 +2,7 @@
 
 ## Rob Williams's fork (21 November 2026)
 
-Danny Arends's code, forked for the Nature Aging paper. Danny's files are unchanged; two files are added.
+Danny Arends's code, forked for the Nature Aging paper. Where the mapping stands, why each model was chosen, and the results so far: [BXD_mapping_status_2026-11-23.md](https://github.com/robwwilliams/bxd_mortality_rates_2026/blob/main/notes/BXD_mapping_status_2026-11-23.md) in bxd_mortality_rates_2026. Danny's files are unchanged; two files are added.
 
 - **`actuary_map.R`** draws Danny's actuarial heat maps with one fixed geometry, so that panels from every script superimpose with pixel accuracy.
   - It keeps his colours, bins, row lines and chromosome boxes.

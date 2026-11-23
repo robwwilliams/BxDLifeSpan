@@ -1,0 +1,24 @@
+Strain-means maps (equal weights, LOCO kinship): genome-wide thresholds (-log10 P) from 1000 permutations of strains
+Levels: significant (genome-wide P = 0.05), P = 0.10, and suggestive (P = 0.63; Lander & Kruglyak 1995)
+
+CD thresholds, over the stable range T20 to T770:
+  significant one T-age: median 4.43 (range 4.23 to 4.54 over T-ages); any T-age: 5.51
+  P 0.10      one T-age: median 4.05 (range 3.98 to 4.19 over T-ages); any T-age: 5.17
+  suggestive  one T-age: median 2.97 (range 2.94 to 3.05 over T-ages); any T-age: 4.03
+CD loci reaching at least the suggestive level for their T-age (strongest marker on the chromosome; allele that lives longer):
+  Chr 1     5.0 Mb D: peak 6.26 at T770; best level significant; significant at T770; any T-age significant: yes
+  Chr 2   157.3 Mb B: peak 3.15 at T110; best level suggestive; significant at none; any T-age significant: no
+  Chr 7    87.7 Mb B: peak 3.17 at T740; best level suggestive; significant at none; any T-age significant: no
+  Chr 9   106.9 Mb B: peak 4.47 at T680; best level significant; significant at T680; any T-age significant: no
+  Chr 14   49.0 Mb B: peak 3.41 at T380; best level suggestive; significant at none; any T-age significant: no
+
+HF thresholds, over the stable range T20 to T620:
+  significant one T-age: median 4.43 (range 4.34 to 4.52 over T-ages); any T-age: 5.48
+  P 0.10      one T-age: median 4.08 (range 3.94 to 4.12 over T-ages); any T-age: 5.04
+  suggestive  one T-age: median 2.98 (range 2.91 to 3.02 over T-ages); any T-age: 3.86
+HF loci reaching at least the suggestive level for their T-age (strongest marker on the chromosome; allele that lives longer):
+  Chr 1    23.5 Mb D: peak 5.01 at T20; best level significant; significant at T20 T50 T80 T110 T500; any T-age significant: no
+  Chr 2   157.5 Mb B: peak 4.85 at T260; best level significant; significant at T20 T50 T80 T110 T140 T170 T200 T230 T260; any T-age significant: no
+  Chr 3    63.7 Mb D: peak 3.05 at T380; best level suggestive; significant at none; any T-age significant: no
+  Chr 10   40.4 Mb D: peak 3.82 at T500; best level suggestive; significant at none; any T-age significant: no
+  Chr 15   14.3 Mb B: peak 3.53 at T50; best level suggestive; significant at none; any T-age significant: no

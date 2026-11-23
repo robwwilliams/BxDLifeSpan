@@ -30,6 +30,7 @@ Danny Arends's code, forked for the Nature Aging paper. Where the mapping stands
 - **`compare_kinship.R`** sets Danny's individual-mouse maps beside the R/qtl2 kinship maps, T-age by T-age.
 - **`qtl2_strainmeans.R`** maps strain means with R/qtl2 and LOCO kinship under three weightings: equal (Rob's default), mice per strain (Danny's) and inverse variance. **`compare_weights.R`** compares them. **`qtl2_cross.R`** builds the cross and kinship for both R/qtl2 scripts.
 - **`qtl2_strainF1.R`** maps BXD strain means and BXD × BXD F1 means together (equal weights, at least 3 mice), with F1 type as a cofactor, for additive and dominance effects. F1 genotype probabilities come from both parents. It also lists where each F1 type is heterozygous on proximal Chr 1 (`output/strainF1_chr1.txt`).
+- **`chr1_zoom.R`** zooms in on proximal Chr 1 (0 to 50 Mb), strain means alone against strain and F1 means together: zoomed actuarial maps (`output/maps/Chr1_zoom_maps.svg`), profiles at the peak T-ages over where each F1 type is heterozygous (`output/maps/Chr1_zoom_profiles.svg`), and the 1.5-LOD support interval at every T-age (`output/chr1_zoom_intervals.txt`). **`chr1_f1_dropone.R`** repeats the strain + F1 scan of Chr 1 with each F1 type, and each class of F1, left out (`output/chr1_f1_dropone.txt`).
 - **`f1_heterosis.R`** tabulates heterosis (F1 mean minus midparent) for each F1 type, and tests whether it differs within a class by more than sampling error (`output/f1_heterosis.txt`).
 - **`qtl2_permutations.R`** sets genome-wide thresholds for the strain-means maps by permuting strains (each strain takes another's whole actuarial series). **`significant_loci.R`** lists the loci that pass.
 - **`qtl2_individuals_perm.R`** sets genome-wide thresholds for the individual-mouse maps by permuting whole strains within two strata (BXD1–42 and BXD43 on), with each strain's mice keeping their covariates. One permutation takes about 29 minutes on one worker. It saves each permutation as it finishes and resumes where it stopped. To run it on another machine (R with qtl2 and readxl):
@@ -47,6 +48,8 @@ Danny Arends's code, forked for the Nature Aging paper. Where the mapping stands
   - Maps: chow alone, high fat alone, both diets (main effect), and genotype × diet.
   - `figure_maps.R` draws them as extra panels, with `Figure2_lifespan_kinship.svg`.
   - Rob: "even better is to simply map the individuals with a full kinship correction."
+
+**Results on GitHub.** Danny's `.gitignore` keeps `output/` out of git. The small result tables and the main figures are added to git one by one (`git add -f`), so that the status note can link to them; the large result matrices (about 11 MB each) stay local.
 
 Run order, from the fork's root:
 

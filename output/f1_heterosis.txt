@@ -1,0 +1,62 @@
+Heterosis of lifespan (days) in BXD x BXD F1 types: F1 mean minus the mean of its parents' strain means (all mice)
+
+ diet         F1         class mice parent1 parent2 midparent F1.mean heterosis
+   CD BXD102x73b   long x long   14     779     797       788     780        -7
+   CD  BXD102x77   long x long   13     779     797       788     820        32
+   CD BXD170x172 short x short   14     504     501       503     733       230
+   CD BXD172x197 short x short   11     501     604       553     710       157
+   CD BXD197x170 short x short   15     604     504       554     683       129
+   CD   BXD197x9 short x short   12     604     535       569     858       288
+   CD  BXD65x102   long x long    7     789     779       784     830        46
+   CD   BXD65x77   long x long   13     789     797       793     777       -17
+   CD  BXD73bx65   long x long   13     797     789       793     814        21
+   CD  BXD73bx77   long x long   11     797     797       797     939       142
+   CD   BXD77x65   long x long   10     797     789       793     867        74
+   CD   BXD9x170 short x short    9     535     504       519     652       132
+   CD   BXD9x172 short x short    7     535     501       518     759       241
+   HF BXD102x73b   long x long   11     760     742       751     778        27
+   HF  BXD102x77   long x long   13     760     612       686     791       104
+   HF BXD170x172 short x short   19     424     547       486     646       161
+   HF BXD172x197 short x short   14     547     527       537     785       247
+   HF BXD197x170 short x short   12     527     424       476     616       140
+   HF   BXD197x9 short x short    8     527     469       498     598        99
+   HF  BXD65x102   long x long   13     534     760       647     629       -18
+   HF   BXD65x77   long x long   12     534     612       573     611        38
+   HF  BXD73bx65   long x long   14     742     534       638     661        23
+   HF  BXD73bx77   long x long   10     742     612       677     840       163
+   HF   BXD77x65   long x long   11     612     534       573     642        69
+   HF   BXD9x170 short x short   12     469     424       447     558       111
+   HF   BXD9x172 short x short   10     469     547       508     626       117
+ se percent above.better.parent heterozygous
+ 53      -1                 -17        0.546
+ 55       4                  22        0.518
+ 48      46                 229        0.449
+ 82      28                 105        0.534
+ 76      23                  79        0.533
+ 48      51                 254        0.395
+ 60       6                  41        0.494
+ 70      -2                 -21        0.512
+ 62       3                  17        0.454
+ 56      18                 142        0.459
+ 53       9                  70        0.512
+ 79      25                 117        0.523
+ 67      47                 224        0.523
+ 62       4                  18        0.546
+ 54      15                  30        0.518
+ 49      33                  99        0.449
+ 59      46                 237        0.534
+ 69      29                  88        0.533
+ 87      20                  70        0.395
+ 36      -3                -131        0.494
+ 61       7                  -1        0.512
+ 38       4                 -81        0.454
+ 61      24                  98        0.459
+ 75      12                  30        0.512
+ 46      25                  89        0.523
+ 67      23                  78        0.523
+
+By class and diet: mean heterosis (SD over F1 types); and the correlation of heterosis with the heterozygous fraction
+  CD short x short 6 types: +196 days (SD 66 over types; median SE of one type 72), range +129 to +288; heterogeneity Q = 5.4 on 5 d.f., P = 0.37; heterozygous 0.40 to 0.53; r(heterosis, heterozygous) = -0.81
+  CD long x long   7 types: +42 days (SD 54 over types; median SE of one type 56), range -17 to +142; heterogeneity Q = 5.3 on 6 d.f., P = 0.51; heterozygous 0.45 to 0.55; r(heterosis, heterozygous) = -0.55
+  HF short x short 6 types: +146 days (SD 54 over types; median SE of one type 63), range +99 to +247; heterogeneity Q = 4.1 on 5 d.f., P = 0.54; heterozygous 0.40 to 0.53; r(heterosis, heterozygous) = 0.38
+  HF long x long   7 types: +58 days (SD 60 over types; median SE of one type 61), range -18 to +163; heterogeneity Q = 8.5 on 6 d.f., P = 0.21; heterozygous 0.45 to 0.55; r(heterosis, heterozygous) = -0.25

@@ -1,0 +1,9 @@
+Genome-wide thresholds (-log10 P) for the strain-means maps (equal weights, LOCO kinship), from 1000 permutations of strains
+
+CD per scan (one T-age): 10% 4.05, 5% 4.43, 1% 5.18 (medians over T-ages); 5% ranges 4.23 to 4.54 over T-ages
+CD actuarial (any marker at any T-age): 10% 5.17, 5% 5.51, 1% 6.17
+  5% per scan by T-age: T20 4.30, T50 4.30, T80 4.30, T110 4.48, T140 4.46, T170 4.44, T200 4.38, T230 4.40, T260 4.32, T290 4.36, T320 4.45, T350 4.43, T380 4.41, T410 4.54, T440 4.50, T470 4.49, T500 4.54, T530 4.44, T560 4.23, T590 4.29, T620 4.48, T650 4.47, T680 4.39, T710 4.46, T740 4.44, T770 4.29 
+
+HF per scan (one T-age): 10% 4.08, 5% 4.42, 1% 5.21 (medians over T-ages); 5% ranges 3.54 to 5.87 over T-ages
+HF actuarial (any marker at any T-age): 10% 5.86, 5% 5.91, 1% 6.54
+  5% per scan by T-age: T20 4.43, T50 4.47, T80 4.47, T110 4.48, T140 4.52, T170 4.52, T200 4.44, T230 4.46, T260 4.48, T290 4.42, T320 4.37, T350 4.42, T380 4.45, T410 4.42, T440 4.49, T470 4.36, T500 4.34, T530 4.36, T560 4.41, T590 4.37, T620 4.39, T650 3.90, T680 3.83, T710 3.54, T740 4.03, T770 5.87 

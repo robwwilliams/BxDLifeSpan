@@ -1,0 +1,160 @@
+Strain-means maps with LOCO kinship (qtl2_strainmeans.R): equal weights against N weights (Danny's) and variance weights.
+r: correlation over markers of signed -log10 P. Peaks: strongest marker, with the allele that raises lifespan.
+
+===== CD 
+   T r.equal.N r.equal.var             peak.equal                peak.N
+  20     0.873       0.982  Chr 10 66.6 Mb D 2.70 Chr 2 157.3 Mb B 2.72
+  50     0.873       0.982  Chr 10 66.6 Mb D 2.70 Chr 2 157.3 Mb B 2.72
+  80     0.869       0.981   Chr 5 53.7 Mb D 2.76  Chr 6 21.8 Mb B 2.68
+ 110     0.905       0.986  Chr 2 157.3 Mb B 3.15  Chr 1 25.2 Mb D 2.92
+ 140     0.916       0.988  Chr 2 157.3 Mb B 2.78  Chr 1 25.2 Mb D 2.85
+ 170     0.912       0.987  Chr 2 157.3 Mb B 2.86  Chr 6 21.8 Mb B 2.75
+ 200     0.912       0.986  Chr 2 157.3 Mb B 2.61  Chr 6 21.0 Mb B 2.85
+ 230     0.919       0.987  Chr 14 48.9 Mb B 2.95 Chr 14 49.0 Mb B 3.13
+ 260     0.922       0.988  Chr 14 48.9 Mb B 3.19 Chr 14 48.9 Mb B 3.39
+ 290     0.921       0.987  Chr 14 48.9 Mb B 3.14 Chr 14 48.9 Mb B 3.42
+ 320     0.919       0.986  Chr 14 48.9 Mb B 3.39 Chr 14 48.9 Mb B 3.70
+ 350     0.914       0.984  Chr 14 48.9 Mb B 3.02 Chr 14 48.9 Mb B 3.43
+ 380     0.914       0.987  Chr 14 49.0 Mb B 3.41 Chr 14 49.0 Mb B 3.67
+ 410     0.930       0.986  Chr 14 48.9 Mb B 3.37  Chr 6 21.0 Mb B 3.65
+ 440     0.921       0.983  Chr 14 58.5 Mb B 2.68  Chr 6 21.0 Mb B 3.65
+ 470     0.937       0.985 Chr 10 121.6 Mb B 2.64 Chr 2 169.0 Mb D 3.20
+ 500     0.941       0.982 Chr 10 121.6 Mb B 2.83  Chr 6 21.8 Mb B 3.49
+ 530     0.935       0.979  Chr 2 169.0 Mb D 2.80  Chr 6 18.0 Mb B 3.16
+ 560     0.966       0.986  Chr 9 103.9 Mb B 3.30 Chr 9 103.9 Mb B 3.68
+ 590     0.964       0.983  Chr 14 52.3 Mb B 3.32 Chr 9 103.9 Mb B 3.69
+ 620     0.962       0.980  Chr 9 106.9 Mb B 4.17 Chr 9 105.6 Mb B 4.28
+ 650     0.962       0.982  Chr 9 106.6 Mb B 3.98 Chr 9 105.6 Mb B 4.42
+ 680     0.960       0.982  Chr 9 106.9 Mb B 4.47 Chr 9 106.9 Mb B 4.39
+ 710     0.951       0.979  Chr 9 106.6 Mb B 3.95 Chr 9 106.6 Mb B 4.22
+ 740     0.950       0.980   Chr 7 87.7 Mb B 3.17   Chr 1 5.0 Mb D 3.30
+ 770     0.966       0.977    Chr 1 5.0 Mb D 6.26   Chr 1 5.0 Mb D 6.26
+              peak.var
+ Chr 2 157.3 Mb B 2.72
+ Chr 2 157.3 Mb B 2.72
+ Chr 2 157.3 Mb B 2.64
+ Chr 2 157.3 Mb B 3.07
+ Chr 2 157.3 Mb B 2.78
+ Chr 2 157.3 Mb B 2.86
+ Chr 2 157.3 Mb B 2.59
+ Chr 14 48.9 Mb B 2.95
+ Chr 14 48.9 Mb B 3.21
+ Chr 14 48.9 Mb B 3.14
+ Chr 14 48.9 Mb B 3.42
+ Chr 14 48.9 Mb B 3.10
+ Chr 14 49.0 Mb B 3.49
+ Chr 14 48.9 Mb B 3.52
+ Chr 14 48.9 Mb B 2.88
+ Chr 2 169.0 Mb D 2.97
+ Chr 14 49.0 Mb B 2.79
+ Chr 2 169.0 Mb D 3.10
+ Chr 9 103.9 Mb B 3.48
+ Chr 9 103.9 Mb B 3.43
+ Chr 9 106.9 Mb B 4.20
+ Chr 9 106.9 Mb B 4.22
+ Chr 9 106.9 Mb B 4.40
+ Chr 9 106.6 Mb B 4.11
+  Chr 7 87.7 Mb B 3.02
+   Chr 1 5.0 Mb D 6.24
+
+Strongest -log10 P on each chromosome over all T-ages:
+ chr                  equal                      N                    var
+   1   6.26 (5 Mb, T770, D)   6.26 (5 Mb, T770, D)   6.24 (5 Mb, T770, D)
+   2 3.15 (157 Mb, T110, B) 3.20 (169 Mb, T470, D) 3.10 (169 Mb, T530, D)
+   3  2.60 (39 Mb, T680, D)  2.79 (39 Mb, T680, D)  2.74 (39 Mb, T680, D)
+   4  2.23 (94 Mb, T710, D)  2.19 (94 Mb, T650, D)  2.11 (94 Mb, T650, D)
+   5   2.76 (54 Mb, T80, D)   2.34 (75 Mb, T20, D)   2.49 (75 Mb, T20, D)
+   6 2.91 (115 Mb, T290, D)  3.65 (21 Mb, T440, B) 2.98 (115 Mb, T290, D)
+   7  3.17 (88 Mb, T740, B)  2.99 (88 Mb, T740, B)  3.02 (88 Mb, T740, B)
+   8 2.15 (126 Mb, T650, B) 1.77 (126 Mb, T620, B) 1.84 (126 Mb, T620, B)
+   9 4.47 (107 Mb, T680, B) 4.42 (106 Mb, T650, B) 4.40 (107 Mb, T680, B)
+  10  2.91 (67 Mb, T680, D) 2.75 (122 Mb, T500, B)  2.82 (67 Mb, T680, D)
+  11  2.53 (12 Mb, T560, D)   2.12 (9 Mb, T560, D)  2.20 (12 Mb, T560, D)
+  12  2.75 (76 Mb, T170, D)  2.63 (76 Mb, T170, D)  2.66 (76 Mb, T170, D)
+  13  2.98 (38 Mb, T560, D)  2.92 (24 Mb, T290, D)  2.69 (29 Mb, T590, D)
+  14  3.41 (49 Mb, T380, B)  3.70 (49 Mb, T320, B)  3.52 (49 Mb, T410, B)
+  15  2.72 (28 Mb, T740, D)  2.23 (28 Mb, T740, D)  2.47 (28 Mb, T740, D)
+  16  2.33 (24 Mb, T740, D)  2.47 (24 Mb, T740, D)  2.41 (24 Mb, T740, D)
+  17  1.97 (61 Mb, T620, D)  1.91 (76 Mb, T770, B)  1.90 (76 Mb, T770, B)
+  18  1.58 (60 Mb, T770, D)  1.63 (73 Mb, T320, B)  1.52 (60 Mb, T770, D)
+  19   2.84 (9 Mb, T620, B)   2.10 (9 Mb, T620, B)   2.31 (9 Mb, T620, B)
+   X   2.60 (3 Mb, T650, B)   2.31 (3 Mb, T650, B)   2.37 (3 Mb, T650, B)
+
+===== HF 
+   T r.equal.N r.equal.var             peak.equal                peak.N
+  20     0.955       0.985   Chr 1 23.5 Mb D 5.01 Chr 2 157.5 Mb B 5.06
+  50     0.956       0.987   Chr 1 23.5 Mb D 4.83 Chr 2 157.5 Mb B 5.18
+  80     0.956       0.987   Chr 1 23.5 Mb D 4.83 Chr 2 157.5 Mb B 5.18
+ 110     0.951       0.987  Chr 2 157.5 Mb B 4.82 Chr 2 156.7 Mb B 5.42
+ 140     0.953       0.985  Chr 2 157.3 Mb B 4.76 Chr 2 156.7 Mb B 5.40
+ 170     0.948       0.981  Chr 2 157.3 Mb B 4.72 Chr 2 156.7 Mb B 5.33
+ 200     0.944       0.982  Chr 2 157.5 Mb B 4.85 Chr 2 157.5 Mb B 5.46
+ 230     0.941       0.979  Chr 2 157.5 Mb B 4.78 Chr 2 156.7 Mb B 5.41
+ 260     0.935       0.976  Chr 2 157.5 Mb B 4.85 Chr 2 156.7 Mb B 5.47
+ 290     0.927       0.979  Chr 2 157.5 Mb B 3.97 Chr 2 157.5 Mb B 4.68
+ 320     0.933       0.975   Chr 1 23.5 Mb D 3.85 Chr 2 156.7 Mb B 3.95
+ 350     0.932       0.969   Chr 1 23.5 Mb D 3.57  Chr 1 37.6 Mb D 3.74
+ 380     0.938       0.970  Chr 15 12.9 Mb B 3.17 Chr 15 12.1 Mb B 3.23
+ 410     0.951       0.973  Chr 10 40.4 Mb D 3.46  Chr 1 35.7 Mb D 3.37
+ 440     0.943       0.970   Chr 1 23.5 Mb D 2.88 Chr 2 136.4 Mb B 3.40
+ 470     0.935       0.968   Chr 1 22.9 Mb D 3.17 Chr 2 154.6 Mb B 3.66
+ 500     0.949       0.974   Chr 1 37.6 Mb D 4.74  Chr 1 35.7 Mb D 4.34
+ 530     0.910       0.973   Chr 1 22.9 Mb D 3.61  Chr 1 23.5 Mb D 3.63
+ 560     0.915       0.979   Chr 1 22.9 Mb D 3.25  Chr 1 22.9 Mb D 3.66
+ 590     0.912       0.978 Chr 10 123.0 Mb B 3.02  Chr 1 37.6 Mb D 3.04
+ 620     0.934       0.979 Chr 10 123.0 Mb B 3.26 Chr 13 19.7 Mb D 3.62
+ 650     0.913       0.985   Chr 1 22.9 Mb D 2.60  Chr 4 94.5 Mb D 2.91
+ 680     0.959       0.994   Chr 3 68.1 Mb D 2.50   Chr 1 5.5 Mb D 2.75
+ 710     0.962       0.999 Chr 10 100.2 Mb B 1.91 Chr 12 54.6 Mb B 1.96
+ 740     0.964       0.994  Chr 7 131.9 Mb D 2.51  Chr 2 14.4 Mb D 2.38
+ 770     1.000       1.000   Chr 2 14.4 Mb D 3.03  Chr 2 14.4 Mb D 3.03
+               peak.var
+   Chr 1 23.5 Mb D 5.07
+  Chr 2 157.5 Mb B 5.11
+  Chr 2 157.5 Mb B 5.11
+  Chr 2 157.5 Mb B 5.33
+  Chr 2 157.3 Mb B 5.33
+  Chr 2 157.3 Mb B 5.33
+  Chr 2 157.5 Mb B 5.44
+  Chr 2 157.5 Mb B 5.41
+  Chr 2 157.5 Mb B 5.51
+  Chr 2 157.5 Mb B 4.60
+   Chr 1 23.5 Mb D 3.94
+   Chr 1 23.5 Mb D 3.68
+   Chr 3 64.2 Mb D 3.15
+  Chr 10 40.4 Mb D 3.31
+  Chr 2 157.5 Mb B 3.33
+  Chr 2 154.6 Mb B 3.70
+   Chr 1 37.6 Mb D 4.67
+   Chr 1 23.1 Mb D 3.81
+   Chr 1 22.9 Mb D 3.56
+ Chr 10 123.0 Mb B 3.00
+ Chr 10 122.9 Mb B 3.09
+   Chr 4 92.3 Mb D 2.51
+   Chr 3 68.1 Mb D 2.46
+ Chr 10 100.2 Mb B 1.90
+  Chr 7 131.9 Mb D 2.51
+   Chr 2 14.4 Mb D 3.03
+
+Strongest -log10 P on each chromosome over all T-ages:
+ chr                  equal                      N                    var
+   1   5.01 (24 Mb, T20, D)   4.95 (24 Mb, T20, D)   5.07 (24 Mb, T20, D)
+   2 4.85 (157 Mb, T260, B) 5.47 (157 Mb, T260, B) 5.51 (157 Mb, T260, B)
+   3  3.05 (64 Mb, T380, D)  3.25 (73 Mb, T500, D)  3.31 (73 Mb, T500, D)
+   4  2.34 (92 Mb, T650, D)  2.91 (94 Mb, T650, D)  2.51 (92 Mb, T650, D)
+   5  2.74 (58 Mb, T140, D)  2.64 (14 Mb, T560, B)  2.59 (56 Mb, T140, D)
+   6  2.81 (16 Mb, T380, B)  3.04 (17 Mb, T500, B)  2.82 (17 Mb, T500, B)
+   7 2.69 (120 Mb, T320, B)  2.82 (119 Mb, T20, B) 2.65 (118 Mb, T320, B)
+   8 2.36 (103 Mb, T590, B) 2.39 (108 Mb, T590, B) 2.55 (103 Mb, T590, B)
+   9 2.38 (102 Mb, T440, B) 2.19 (106 Mb, T650, B) 2.35 (102 Mb, T440, B)
+  10  3.82 (40 Mb, T500, D)  3.39 (40 Mb, T500, D)  3.61 (40 Mb, T500, D)
+  11  2.72 (91 Mb, T440, D)   2.15 (4 Mb, T770, B)  2.25 (91 Mb, T440, D)
+  12  2.40 (55 Mb, T740, B)  2.28 (55 Mb, T740, B)  2.40 (55 Mb, T740, B)
+  13  2.18 (20 Mb, T620, D)  3.62 (20 Mb, T620, D)  2.60 (20 Mb, T620, D)
+  14  2.32 (22 Mb, T440, B)  2.04 (41 Mb, T560, B)  2.10 (22 Mb, T440, B)
+  15   3.53 (14 Mb, T50, B)  3.23 (12 Mb, T380, B)   3.12 (14 Mb, T50, B)
+  16   2.06 (8 Mb, T530, D)  1.55 (51 Mb, T530, D)  1.91 (51 Mb, T530, D)
+  17  1.45 (68 Mb, T440, B)  1.58 (85 Mb, T620, B)  1.52 (68 Mb, T440, B)
+  18  2.28 (73 Mb, T740, D)   2.07 (3 Mb, T770, B)  2.27 (73 Mb, T740, D)
+  19  2.40 (35 Mb, T290, D)  1.94 (33 Mb, T740, B)  2.03 (35 Mb, T290, D)
+   X  2.19 (63 Mb, T380, D) 2.58 (164 Mb, T620, B) 2.13 (166 Mb, T620, B)

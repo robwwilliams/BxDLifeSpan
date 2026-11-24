@@ -1,0 +1,39 @@
+BXD strains with a B/D switch near the two proximal Chr 1 intervals (mm10). from-to: the flanking markers of the switch (Mb).
+CD, HF: mice with lifespans on chow and on high fat (all ages). F1 parent: a parent of the 13 F1 types. Extinct: on the
+genotype file's list of extinct strains (December 2016; may be out of date).
+
+chow interval 4.85-5.53 Mb: 8 switches in 8 strains
+ strain  from    to change CD HF F1.parent extinct splits.block
+  BXD43 4.847 4.859    B>D 10  9                            yes
+ BXD65b 4.847 4.858    D>B 12 12                               
+ BXD102 4.858 4.861    B>D 15 13       yes                  yes
+  BXD65 4.858 4.859    D>B 16 15       yes                  yes
+  BXD52 4.878 5.018    D>B  0  0               yes          yes
+  BXD79 5.019 5.019    D>B 17 15                            yes
+  BXD11 5.315 5.316    B>D 10  5                            yes
+  BXD77 5.522 5.527    D>B 14 10       yes                     
+
+highfat interval 34.40-38.70 Mb: 22 switches in 19 strains
+ strain   from     to change CD HF F1.parent extinct
+ BXD197 33.765 40.960    D>B  6  4       yes     yes
+ BXD200 34.952 35.190    B>D  1  2                  
+  BXD88 35.181 35.182    D>B  3  6                  
+ BXD165 35.190 38.477    B>D  0  0               yes
+  BXD99 35.227 35.246    D>B  4  7                  
+  BXD56 35.723 35.724    D>B  8 10                  
+  BXD28 35.729 35.935    B>D 11 12                  
+ BXD172 37.575 37.632    D>B 13 11       yes        
+ BXD177 37.575 37.632    B>D  0  1                  
+ BXD184 37.575 38.225    D>B  2  0                  
+ BXD194 37.575 37.632    B>D  8  6                  
+  BXD83 37.575 37.632    B>D  4  0                  
+  BXD85 37.575 37.632    D>B 12  6                  
+  BXD87 37.575 37.632    B>D  6  7                  
+  BXD99 37.575 37.632    B>D  4  7                  
+ BXD112 37.632 37.639    B>D  0  0                  
+  BXD16 37.672 37.675    B>D 15 17                  
+  BXD37 37.894 38.128    B>D  0  0               yes
+ BXD216 38.223 38.225    B>D  2  0                  
+  BXD56 38.223 38.225    B>D  8 10                  
+  BXD54 38.477 39.522    B>D  0  0               yes
+  BXD85 38.680 38.683    B>D 12  6                  

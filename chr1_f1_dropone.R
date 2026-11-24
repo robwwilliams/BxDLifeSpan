@@ -18,29 +18,8 @@ args <- commandArgs(trailingOnly = TRUE)
 f1file <- if(length(args) >= 1) args[1] else "../bxd_mortality_rates_2026/data/corrected/AgingBXD_F1_BodyWeight_NaturalDeath_corrected.txt"
 zoomMb <- 50
 views <- list(c("CD", 770), c("HF", 20), c("HF", 260), c("HF", 500))
-short <- c("BXD9", "BXD170", "BXD172", "BXD197"); long <- c("BXD65", "BXD73b", "BXD77", "BXD102")
-
-f1 <- read.delim(f1file, check.names = FALSE)
-f1 <- f1[f1[, "CauseOfDeath"] == "Natural" & f1[, "DietCode"] %in% c("CD", "HF"), ]
-types <- sort(unique(f1[, "StrainName"]))
-parents <- t(sapply(types, function(x) c(sub("x.*", "", x), paste0("BXD", sub(".*x", "", x)))))
-f1class <- ifelse(parents[, 1] %in% short, "short", "long"); names(f1class) <- types
-
-### Allele probabilities of strains and F1 types, and LOCO kinship for Chr 1 (as in qtl2_strainF1.R)
-units <- c(strains, types)
-AP <- pr
-for(chr in names(pr)){
-  p <- pr[[chr]]; pD <- p[, "DD", ]; pB <- p[, "BB", ]; p1 <- parents[, 1]; p2 <- parents[, 2]
-  a <- array(0, c(length(units), 2, dim(p)[3]), list(units, c("B", "D"), dimnames(p)[[3]]))
-  a[strains, "B", ] <- pB[strains, ]; a[strains, "D", ] <- pD[strains, ]
-  a[types, "B", ] <- pB[p1, ] * pB[p2, ] + (pB[p1, ] * pD[p2, ] + pD[p1, ] * pB[p2, ]) / 2
-  a[types, "D", ] <- pD[p1, ] * pD[p2, ] + (pB[p1, ] * pD[p2, ] + pD[p1, ] * pB[p2, ]) / 2
-  AP[[chr]] <- a
-}
-attr(AP, "alleleprobs") <- TRUE
-S <- lapply(AP, function(a){ m <- matrix(a, nrow = dim(a)[1]); tcrossprod(m) })
-nm <- sapply(AP, function(a) dim(a)[3])
-K1 <- (Reduce(`+`, S) - S[["1"]]) / (sum(nm) - nm["1"]); dimnames(K1) <- list(units, units)
+source("strainF1_setup.R")                                                         # types, f1class, AP and Kloco, as in qtl2_strainF1.R
+K1 <- Kloco[["1"]]
 
 k <- dimnames(AP[["1"]])[[3]]; k <- k[map[k, "Mb"] <= zoomMb]
 mb <- as.numeric(map[k, "Mb"])

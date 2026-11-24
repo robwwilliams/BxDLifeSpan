@@ -1,0 +1,31 @@
+Genome-wide thresholds (-log10 P) for the maps of strain and F1 means together (qtl2_strainF1.R), from 1000 permutations
+(strains among strains, F1 types within class). Per scan: one T-age, the median over the stable range. Any T-age: any
+marker at any T-age in the stable range.
+
+CD, additive: stable range T20 to T740
+  5%                     one T-age 4.66 (range 4.48 to 4.78 over T-ages); any T-age 5.83
+  10%                    one T-age 4.30 (range 4.22 to 4.42 over T-ages); any T-age 5.41
+  suggestive (P = 0.63)  one T-age 3.16 (range 3.09 to 3.22 over T-ages); any T-age 4.25
+  5% per scan by T-age: T20 4.60, T50 4.60, T80 4.59, T110 4.68, T140 4.72, T170 4.69, T200 4.73, T230 4.65, T260 4.70, T290 4.67, T320 4.71, T350 4.70, T380 4.68, T410 4.66, T440 4.65, T470 4.67, T500 4.55, T530 4.48, T560 4.64, T590 4.64, T620 4.61, T650 4.55, T680 4.65, T710 4.78, T740 4.74, T770 4.31 
+  Real data, largest -log10 P by T-age: T20 2.89, T50 2.89, T80 2.90, T110 3.02, T140 3.10, T170 3.17, T200 2.82, T230 3.07, T260 3.31, T290 3.27, T320 3.49, T350 3.30, T380 3.53, T410 3.39, T440 2.76, T470 2.73, T500 2.93, T530 3.07, T560 3.71, T590 3.44, T620 4.45, T650 4.29, T680 4.91, T710 4.37, T740 3.24, T770 6.29 
+
+CD, dominance: stable range T20 to T500
+  5%                     one T-age 1.15 (range 1.06 to 1.32 over T-ages); any T-age 1.46
+  10%                    one T-age 1.05 (range 0.97 to 1.21 over T-ages); any T-age 1.31
+  suggestive (P = 0.63)  one T-age 0.77 (range 0.70 to 0.92 over T-ages); any T-age 0.97
+  5% per scan by T-age: T20 1.13, T50 1.13, T80 1.10, T110 1.06, T140 1.11, T170 1.13, T200 1.17, T230 1.13, T260 1.13, T290 1.15, T320 1.16, T350 1.20, T380 1.20, T410 1.23, T440 1.23, T470 1.31, T500 1.32, T530 1.47, T560 1.64, T590 1.83, T620 2.03, T650 1.75, T680 1.75, T710 1.74, T740 2.22, T770 2.72 
+  Real data, largest -log10 P by T-age: T20 0.89, T50 0.89, T80 0.65, T110 0.76, T140 0.75, T170 0.76, T200 0.75, T230 0.70, T260 0.71, T290 0.74, T320 0.89, T350 0.80, T380 0.82, T410 0.95, T440 0.88, T470 0.87, T500 0.89, T530 1.02, T560 1.37, T590 1.61, T620 2.02, T650 1.80, T680 1.67, T710 1.42, T740 2.02, T770 2.31 
+
+HF, additive: stable range T20 to T590
+  5%                     one T-age 4.59 (range 4.32 to 4.63 over T-ages); any T-age 5.46
+  10%                    one T-age 4.21 (range 4.01 to 4.28 over T-ages); any T-age 5.08
+  suggestive (P = 0.63)  one T-age 3.07 (range 2.97 to 3.11 over T-ages); any T-age 3.91
+  5% per scan by T-age: T20 4.62, T50 4.62, T80 4.62, T110 4.59, T140 4.57, T170 4.61, T200 4.59, T230 4.60, T260 4.63, T290 4.63, T320 4.59, T350 4.63, T380 4.55, T410 4.59, T440 4.56, T470 4.50, T500 4.47, T530 4.38, T560 4.32, T590 4.42, T620 4.26, T650 3.98, T680 3.95, T710 3.95, T740 4.18, T770 5.84 
+  Real data, largest -log10 P by T-age: T20 4.84, T50 4.61, T80 4.61, T110 4.37, T140 4.31, T170 4.33, T200 4.40, T230 4.31, T260 4.18, T290 3.74, T320 3.35, T350 3.40, T380 4.07, T410 3.55, T440 3.05, T470 3.02, T500 5.43, T530 3.89, T560 3.48, T590 3.36, T620 3.53, T650 2.89, T680 3.12, T710 2.73, T740 3.43, T770 3.73 
+
+HF, dominance: stable range T20 to T500
+  5%                     one T-age 1.91 (range 1.79 to 2.54 over T-ages); any T-age 2.58
+  10%                    one T-age 1.79 (range 1.68 to 2.42 over T-ages); any T-age 2.48
+  suggestive (P = 0.63)  one T-age 1.27 (range 1.18 to 1.70 over T-ages); any T-age 1.75
+  5% per scan by T-age: T20 1.82, T50 1.81, T80 1.81, T110 1.84, T140 1.87, T170 1.92, T200 1.95, T230 1.88, T260 1.79, T290 1.79, T320 1.91, T350 2.01, T380 2.14, T410 2.32, T440 2.44, T470 2.45, T500 2.54, T530 2.76, T560 3.25, T590 3.17, T620 3.16, T650 2.58, T680 2.89, T710 2.48, T740 3.09, T770 4.11 
+  Real data, largest -log10 P by T-age: T20 1.91, T50 1.94, T80 1.94, T110 2.08, T140 2.21, T170 2.25, T200 2.17, T230 1.74, T260 1.70, T290 1.65, T320 1.77, T350 2.13, T380 1.85, T410 1.97, T440 2.47, T470 2.12, T500 2.36, T530 2.10, T560 2.73, T590 2.51, T620 2.70, T650 1.58, T680 2.66, T710 1.80, T740 1.74, T770 2.84 

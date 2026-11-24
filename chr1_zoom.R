@@ -13,6 +13,8 @@
 #     1.5 LOD is flagged, since the interval then assumes one locus where there may be two.
 #   - Intervals are drawn on the maps where the peak reaches -log10 P 3 (about the suggestive level of the strain-means
 #     maps); the table lists every T-age.
+# The profiles carry each map's genome-wide 5% threshold for one T-age, at that T-age (qtl2_permutations.R and
+# qtl2_strainF1_perm.R).
 # Writes output/maps/Chr1_zoom_maps.svg (six zoomed maps), output/maps/Chr1_zoom_profiles.svg (profiles at the peak
 # T-ages, with the F1 types' heterozygous segments) and output/chr1_zoom_intervals.txt
 #   Rscript chr1_zoom.R
@@ -38,6 +40,15 @@ nF <- read.table("output/qtl2_meansF1_N.txt", sep = "\t", header = TRUE)
 nUnits <- function(d, m){ if(m == "strains") nS[as.character(tps), d] else { n <- nF[nF[, "diet"] == d, ]; (n[, "strains"] + n[, "F1"])[match(tps, n[, "T"])] } }
 nF1 <- function(d){ n <- nF[nF[, "diet"] == d, ]; n[match(tps, n[, "T"]), "F1"] }
 lod <- function(p) qchisq(pmin(10^-abs(p), 1), 1, lower.tail = FALSE) / (2 * log(10))
+# Genome-wide 5% threshold for one T-age, at that T-age: from qtl2_permutations.R (strains alone) or qtl2_strainF1_perm.R
+# (strains + F1s, additive), NA if not yet run
+thr5 <- function(d, m, T){
+  f <- if(m == "strains") "output/qtl2_permutation_maxima.txt" else "output/qtl2_strainF1_perm_maxima.txt"
+  if(!file.exists(f)) return(NA)
+  x <- read.delim(f, check.names = FALSE); x <- x[x$diet == d & x$perm > 0, ]
+  if(m != "strains") x <- x[x$map == "add", ]
+  quantile(x[, paste0("T", T)], 0.95, names = FALSE)
+}
 
 ### The support interval at each T-age
 supportInterval <- function(p){                                                    # p: signed -log10 P over the markers k
@@ -121,8 +132,8 @@ for(i in seq_along(views)){
   axis(1, at = seq(0, zoomMb, 5), labels = FALSE); axis(2, at = 0:ymax, las = 1)
   mtext(sprintf("%s, T%d", c(CD = "Chow", HF = "High fat")[v$d], v$T), side = 3, line = 0.1, adj = 0, font = 2, cex = 0.8)
   mtext(letters[i], side = 3, line = 0.1, at = grconvertX(0.05, "inches", "user"), adj = 0, font = 2, cex = 1, xpd = NA)
-  abline(h = 4.4, lty = 2, col = "grey55")
-  text(zoomMb, 4.4, "strain means, genome-wide 5%", adj = c(1, 1.4), cex = 0.8, col = "grey40")
+  th <- c(thr5(v$d, "strains", v$T), thr5(v$d, "add", v$T))
+  abline(h = th, lty = 2, lwd = 0.8, col = c(col.strains, col.F1))
   for(m in c("strains", "add")){
     y <- abs(res[[v$d]][[m]][, cl]); co <- if(m == "strains") col.strains else col.F1
     lines(mb, y, col = co, lwd = 1.3)
@@ -135,6 +146,8 @@ for(i in seq_along(views)){
   n <- nF[nF$diet == v$d & nF$T == v$T, ]
   legend("topleft", bty = "n", cex = 0.8, lwd = 1.3, col = c(col.strains, col.F1), inset = c(0.01, 0),
          legend = c(sprintf("Strains alone (%d)", n$strains), sprintf("Strains + F1 types (%d + %d)", n$strains, n$F1)))
+  legend("topright", bty = "n", cex = 0.75, lwd = 0.8, lty = 2, col = c(col.strains, col.F1), title = "Genome-wide 5%, this T-age",
+         legend = sprintf(c("strains alone %.2f", "strains + F1s %.2f"), th))
 }
 par(mai = c(0.55, 0.75, 0.25, 0.45))
 plot(NA, xlim = c(0, zoomMb), ylim = c(length(f1types) + 0.5, 0.5), xaxs = "i", yaxt = "n", bty = "l", xlab = "Chr 1 position (Mb)", ylab = "")

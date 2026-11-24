@@ -11,7 +11,9 @@
 # strains with at least 3 mice weighed at T (body weight, once bodyweight.R or run_CTL.R has interpolated the weights).
 # Writes output/maps/: one SVG per panel (24 x 5.5 inches); Danny's pages of two; Figure 2 (lifespan), Figure 3 (body
 # weight and CTL), the R/qtl2 kinship maps of Figure 2 (four panels, and six with the strain means), the strain means under
-# three weightings (qtl2_strainmeans.R); and every panel on one page, for alignment by eye
+# three weightings (qtl2_strainmeans.R); Rob's Fig. 2 of 23 November 2026 with the F1s (Figure2_lifespan_F1: strain and F1
+# means on each diet; individual BXD and F1 mice on each diet, both diets, and genotype x diet), with the interaction map
+# beside its version without F1s; and every panel on one page, for alignment by eye
 #
 
 library(readxl)
@@ -112,6 +114,34 @@ gwNote <- function(d){
   sprintf("Genome-wide thresholds to T%d, −log10 *P* at one T-age (any T-age): 5%% %.1f (%.1f); 10%% %.1f (%.1f); suggestive (*P* = 0.63) %.1f (%.1f). From %s permutations of strains",
           tmax, one(0.95), any(0.95), one(0.90), any(0.90), one(0.37), any(0.37), format(nrow(r), big.mark = ","))
 }
+# Genome-wide thresholds of the strain + F1 maps (additive), from qtl2_strainF1_perm.R, over their stable range (the rule of
+# significant_loci.R)
+gwNoteF1 <- function(d){
+  f <- "output/qtl2_strainF1_perm_maxima.txt"; if(!file.exists(f)) return(NULL)
+  r <- read.delim(f, check.names = FALSE); r <- as.matrix(r[r$diet == d & r$map == "add" & r$perm > 0, grep("^T", colnames(r))])
+  T <- as.numeric(sub("T", "", colnames(r))); q5 <- apply(r, 2, quantile, 0.95); off <- which(abs(q5 - median(q5[T <= 500])) > 0.3 & T > 500)
+  tmax <- if(length(off) == 0) max(T) else T[min(off) - 1]; r <- r[, T <= tmax, drop = FALSE]
+  one <- function(q) median(apply(r, 2, quantile, q)); any <- function(q) quantile(apply(r, 1, max), q, names = FALSE)
+  sprintf("Genome-wide thresholds to T%d, −log10 *P* at one T-age (any T-age): 5%% %.1f (%.1f); 10%% %.1f (%.1f); suggestive (*P* = 0.63) %.1f (%.1f). From %s permutations of strains and F1 types",
+          tmax, one(0.95), any(0.95), one(0.90), any(0.90), one(0.37), any(0.37), format(nrow(r), big.mark = ","))
+}
+# Genome-wide thresholds of the individual-mouse maps, from the permutations run on ATHENA (significant_loci_ind.R)
+gwNoteInd <- function(m, f){
+  if(!file.exists(f)) return(NULL)
+  r <- read.delim(f, check.names = FALSE); r <- as.matrix(r[r$map == m, grep("^T", colnames(r))])
+  q <- apply(r, 2, quantile, 0.95); any <- quantile(apply(r, 1, max), 0.95, names = FALSE)
+  sprintf("Genome-wide 5%% threshold, −log10 *P* at one T-age: %.1f at T20 to %.1f at T770 (any T-age %.1f). From %d permutations of strains within epochs%s, run on ATHENA",
+          q[1], q[length(q)], any, nrow(r), if(grepl("F1", f)) " and F1 types within class" else "")
+}
+indF1Model <- function(m){
+  covs <- if(m %in% c("main", "int")) "diet + vivarium + set-up class + F1 class + F1 class × diet" else "vivarium + set-up class + F1 class"
+  c(paste0("Model: linear mixed model with LOCO kinship (REML): age at death ~ ", covs, " + additive genotype", if(m == "int") " + diet × genotype" else "",
+           " + polygenic effect; likelihood-ratio test of ", if(m == "int") "diet × genotype" else "genotype", " (1 d.f.). BXD and BXD × BXD F1 mice ",
+           c(CD = "on chow", HF = "on high fat", main = "on both diets", int = "on both diets")[m],
+           " alive at T; F1 genotype probabilities from both parents; kinship: allele sharing over strains and F1 types."),
+    mapping("qtl2_individualsF1.R", "robwwilliams/BxDLifeSpan"))
+}
+indF1N <- function(m){ f <- "output/qtl2_N_indF1_Progressive.txt"; if(!file.exists(f)) return(NULL); n <- read.table(f, sep = "\t"); n[match(plotTPS, as.numeric(rownames(n))), c(CD = "CD", HF = "HF", main = "main", int = "main")[m]] }
 withSource <- function(model, lods){ c(model[1], paste(model[2], "Results:", attr(lods, "source"), "—", drawn)) }
 
 lifespan.signs <- c("*D*: longer life", "*B*: longer life")
@@ -145,11 +175,11 @@ panels <- list(
                     sign.labels = lifespan.signs, main = "Lifespan: strain means on high-fat diet, R/qtl2 with LOCO kinship, weighted by number of mice"),
   means_HF_var = list(lods = readResult("output/qtl2_HF_means_var_Progressive.txt", "", ""), N = meansN("HF"), N.title = "Strains", model = meansModel("var"),
                       sign.labels = lifespan.signs, main = "Lifespan: strain means on high-fat diet, R/qtl2 with LOCO kinship, weighted by inverse variance"),
-  means_CD_F1_add = list(lods = readResult("output/qtl2_CD_meansF1_add_Progressive.txt", "", ""), N = f1N("CD"), N.title = "Strains + F1s", model = f1Model("add"),
+  means_CD_F1_add = list(lods = readResult("output/qtl2_CD_meansF1_add_Progressive.txt", "", ""), N = f1N("CD"), N.title = "Strains + F1s", model = f1Model("add"), gw.note = gwNoteF1("CD"),
                          sign.labels = lifespan.signs, main = "Lifespan: strain and F1 means on chow diet, additive effect, R/qtl2 with LOCO kinship, equal weights"),
   means_CD_F1_dom = list(lods = readResult("output/qtl2_CD_meansF1_dom_Progressive.txt", "", ""), N = f1N("CD"), N.title = "Strains + F1s", model = f1Model("dom"),
                          sign.labels = c("*BD* > midpoint", "*BD* < midpoint"), main = "Lifespan: strain and F1 means on chow diet, dominance deviation, R/qtl2 with LOCO kinship"),
-  means_HF_F1_add = list(lods = readResult("output/qtl2_HF_meansF1_add_Progressive.txt", "", ""), N = f1N("HF"), N.title = "Strains + F1s", model = f1Model("add"),
+  means_HF_F1_add = list(lods = readResult("output/qtl2_HF_meansF1_add_Progressive.txt", "", ""), N = f1N("HF"), N.title = "Strains + F1s", model = f1Model("add"), gw.note = gwNoteF1("HF"),
                          sign.labels = lifespan.signs, main = "Lifespan: strain and F1 means on high-fat diet, additive effect, R/qtl2 with LOCO kinship, equal weights"),
   means_HF_F1_dom = list(lods = readResult("output/qtl2_HF_meansF1_dom_Progressive.txt", "", ""), N = f1N("HF"), N.title = "Strains + F1s", model = f1Model("dom"),
                          sign.labels = c("*BD* > midpoint", "*BD* < midpoint"), main = "Lifespan: strain and F1 means on high-fat diet, dominance deviation, R/qtl2 with LOCO kinship"),
@@ -163,6 +193,20 @@ panels <- list(
                   sign.labels = c("*D* − *B* larger on HF", "*D* − *B* smaller on HF"),
                   main = "Lifespan of individual mice on both diets: genotype × diet interaction, R/qtl2 with LOCO kinship")
 )
+panels <- c(panels, list(
+  qtl2F1_CD = list(lods = readResult("output/qtl2_CD_indF1_Progressive.txt", "", ""), N = indF1N("CD"), N.title = "Mice", model = indF1Model("CD"), sign.labels = lifespan.signs,
+                   main = "Lifespan of individual BXD and F1 mice on chow diet, R/qtl2 with LOCO kinship"),
+  qtl2F1_HF = list(lods = readResult("output/qtl2_HF_indF1_Progressive.txt", "", ""), N = indF1N("HF"), N.title = "Mice", model = indF1Model("HF"), sign.labels = lifespan.signs,
+                   main = "Lifespan of individual BXD and F1 mice on high-fat diet, R/qtl2 with LOCO kinship"),
+  qtl2F1_main = list(lods = readResult("output/qtl2_main_indF1_Progressive.txt", "", ""), N = indF1N("main"), N.title = "Mice", model = indF1Model("main"), sign.labels = lifespan.signs,
+                     main = "Lifespan of individual BXD and F1 mice on both diets: main genetic effect, R/qtl2 with LOCO kinship"),
+  qtl2F1_int = list(lods = readResult("output/qtl2_int_indF1_Progressive.txt", "", ""), N = indF1N("int"), N.title = "Mice", model = indF1Model("int"),
+                    sign.labels = c("*D* − *B* larger on HF", "*D* − *B* smaller on HF"),
+                    main = "Lifespan of individual BXD and F1 mice on both diets: genotype × diet interaction, R/qtl2 with LOCO kinship")))
+for(m in c("CD", "HF", "main", "int")){                                           # thresholds of the individual-mouse maps, where permutations exist
+  panels[[paste0("qtl2_", m)]]$gw.note <- gwNoteInd(m, "output/qtl2_individuals_perm_maxima_ATHENA.txt")
+  panels[[paste0("qtl2F1_", m)]]$gw.note <- gwNoteInd(m, "output/qtl2_individualsF1_perm_maxima_ATHENA.txt")
+}
 missing <- names(panels)[sapply(panels, function(p) is.null(p$lods))]
 if(length(missing) > 0) cat("No results for", paste(missing, collapse = ", "), "\n")
 panels <- panels[!names(panels) %in% missing]
@@ -182,7 +226,9 @@ pages <- list(actuaryQTL_lifespan_wMeans = c("lifespan_CD", "lifespan_HF"), actu
               Figure2_lifespan_kinship = c("qtl2_CD", "qtl2_HF", "qtl2_main", "qtl2_int"),
               Figure2_lifespan_six = c("means_CD_equal", "means_HF_equal", "qtl2_CD", "qtl2_HF", "qtl2_main", "qtl2_int"),
               Strain_means_three_weightings = c("means_CD_equal", "means_CD_N", "means_CD_var", "means_HF_equal", "means_HF_N", "means_HF_var"),
-              Strain_and_F1_means = c("means_CD_equal", "means_CD_F1_add", "means_CD_F1_dom", "means_HF_equal", "means_HF_F1_add", "means_HF_F1_dom"))
+              Strain_and_F1_means = c("means_CD_equal", "means_CD_F1_add", "means_CD_F1_dom", "means_HF_equal", "means_HF_F1_add", "means_HF_F1_dom"),
+              Figure2_lifespan_F1 = c("means_CD_F1_add", "means_HF_F1_add", "qtl2F1_CD", "qtl2F1_HF", "qtl2F1_main", "qtl2F1_int"),     # Rob's Fig. 2, 23 November 2026
+              Figure2_lifespan_F1_int_without_F1s = c("qtl2F1_int", "qtl2_int"))
 for(pg in names(pages)){
   if(all(pages[[pg]] %in% names(panels))){ actuaryPage(paste0("output/maps/", pg, ".svg"), panels[pages[[pg]]], map = map, layout = layout) }
 }

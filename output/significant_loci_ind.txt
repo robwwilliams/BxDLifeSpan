@@ -1,0 +1,29 @@
+
+Individual-mouse maps, BXD mice: thresholds from 200 permutations
+  CD: 5% one T-age 5.77 (T20) to 4.62 (T770); any T-age 6.62. 10%: 5.41 to 4.20; any 6.16
+    Chr 1     5.0 Mb D: peak 4.74 at T770; best level significant (T770, 4.74 at T770 against 4.62); any T-age significant: no
+    Chr 9   104.0 Mb B: peak 4.44 at T620; best level suggestive (T590 T620 T650 T680 T710, 4.44 at T620 against 3.60); any T-age significant: no
+    Chr 13   26.1 Mb D: peak 3.87 at T590; best level suggestive (T590, 3.87 at T590 against 3.70); any T-age significant: no
+    Chr 14   49.0 Mb B: peak 5.06 at T410; best level suggestive (T230 T260 T290 T320 T380 T410 T500 T590 T680 T770, 5.06 at T410 against 3.93); any T-age significant: no
+  HF: 5% one T-age 5.82 (T20) to 4.37 (T770); any T-age 6.72. 10%: 5.48 to 4.15; any 6.31
+    Chr 1    23.5 Mb D: peak 4.30 at T20; best level suggestive (T20, 4.30 at T20 against 4.12); any T-age significant: no
+    Chr 2   156.7 Mb B: peak 4.30 at T140; best level suggestive (T110 T140 T170 T200 T230 T530 T560 T590 T620, 4.30 at T140 against 4.16); any T-age significant: no
+    Chr 4    94.4 Mb D: peak 3.47 at T680; best level suggestive (T680, 3.47 at T680 against 3.32); any T-age significant: no
+    Chr 9   106.9 Mb B: peak 3.68 at T680; best level suggestive (T680, 3.68 at T680 against 3.32); any T-age significant: no
+    Chr 10   60.4 Mb D: peak 4.24 at T680; best level suggestive (T560 T620 T680, 4.24 at T680 against 3.32); any T-age significant: no
+    Chr 15   12.9 Mb B: peak 5.10 at T380; best level suggestive (T20 T50 T80 T110 T140 T170 T200 T230 T260 T320 T350 T380 T410 T440, 5.10 at T380 against 4.00); any T-age significant: no
+  main: 5% one T-age 6.02 (T20) to 4.62 (T770); any T-age 7.11. 10%: 5.64 to 4.45; any 6.64
+    Chr 4    94.4 Mb D: peak 3.66 at T680; best level suggestive (T770, 3.42 at T770 against 3.38); any T-age significant: no
+    Chr 9   106.9 Mb B: peak 4.15 at T620; best level suggestive (T620 T650 T680 T770, 4.15 at T620 against 3.78); any T-age significant: no
+    Chr 13   22.1 Mb D: peak 4.51 at T590; best level suggestive (T590 T620 T740, 4.51 at T590 against 3.94); any T-age significant: no
+    Chr 14   59.8 Mb B: peak 3.49 at T770; best level suggestive (T770, 3.49 at T770 against 3.38); any T-age significant: no
+    Chr 15   13.7 Mb B: peak 4.35 at T380; best level suggestive (T50 T80 T380, 4.35 at T380 against 4.29); any T-age significant: no
+  int: 5% one T-age 6.33 (T20) to 5.25 (T770); any T-age 7.55. 10%: 5.94 to 4.84; any 7.12
+    Chr 1    35.0 Mb D - B larger on HF: peak 4.43 at T20; best level suggestive (T20, 4.43 at T20 against 4.41); any T-age significant: no
+    Chr 4   156.0 Mb D - B larger on HF: peak 4.41 at T770; best level suggestive (T770, 4.41 at T770 against 3.65); any T-age significant: no
+    Chr 9    81.3 Mb D - B larger on HF: peak 4.19 at T560; best level suggestive (T530 T560, 4.19 at T560 against 3.61); any T-age significant: no
+    Chr 11  107.7 Mb D - B smaller on HF: peak 4.21 at T50; best level suggestive (T740, 3.91 at T740 against 3.22); any T-age significant: no
+    Chr 17   83.7 Mb D - B smaller on HF: peak 4.44 at T440; best level suggestive (T380, 4.31 at T380 against 4.21); any T-age significant: no
+    Chr 18   71.2 Mb D - B larger on HF: peak 3.75 at T770; best level suggestive (T740 T770, 3.75 at T770 against 3.65); any T-age significant: no
+
+BXD and F1 mice: no permutations yet (output/qtl2_individualsF1_perm_maxima_ATHENA.txt)

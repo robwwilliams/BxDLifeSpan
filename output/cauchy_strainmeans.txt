@@ -1,0 +1,27 @@
+Cauchy combination over T-ages (one -log10 P per marker) for the strain-mean maps, with genome-wide thresholds from 1000 permutations
+Check: the real data reproduce the published single-T-age maps to 7.1e-07 (largest difference in -log10 P)
+
+Strain means alone, CD (T20 to T770): thresholds 5% 4.44; 10% 4.14; suggestive (P = 0.63) 3.09
+  Strongest marker on each chromosome reaching the suggestive level:
+    Chr 1     5.1 Mb: Cauchy -log10 P 4.85 (significant)
+    Chr 9   106.9 Mb: Cauchy -log10 P 3.42 (suggestive)
+
+Strain means alone, HF (T20 to T620): thresholds 5% 4.41; 10% 4.08; suggestive (P = 0.63) 3.03
+  Strongest marker on each chromosome reaching the suggestive level:
+    Chr 1    23.5 Mb: Cauchy -log10 P 4.29 (P < 0.10)
+    Chr 2   157.5 Mb: Cauchy -log10 P 4.39 (P < 0.10)
+
+Strain and F1 means, additive, CD (T20 to T740): thresholds 5% 4.82; 10% 4.38; suggestive (P = 0.63) 3.29
+  Strongest marker on each chromosome reaching the suggestive level:
+    Chr 9   106.9 Mb: Cauchy -log10 P 3.76 (suggestive)
+
+Strain and F1 means, additive, HF (T20 to T590): thresholds 5% 4.73; 10% 4.36; suggestive (P = 0.63) 3.16
+  Strongest marker on each chromosome reaching the suggestive level:
+    Chr 1    37.6 Mb: Cauchy -log10 P 4.24 (suggestive)
+    Chr 2   156.7 Mb: Cauchy -log10 P 3.89 (suggestive)
+    Chr 15   14.3 Mb: Cauchy -log10 P 3.69 (suggestive)
+
+Strain and F1 means, additive, past the stable range, CD (T20 to T770): thresholds 5% 4.72; 10% 4.38; suggestive (P = 0.63) 3.25
+  Strongest marker on each chromosome reaching the suggestive level:
+    Chr 1     5.1 Mb: Cauchy -log10 P 4.88 (significant)
+    Chr 9   106.9 Mb: Cauchy -log10 P 3.78 (suggestive)

@@ -1,12 +1,29 @@
 # Figure legends: draft for the Nature Aging paper
 
-*Draft by Claude (Opus 5.5) for Rob Williams, 21 November 2026. Not yet reviewed. The style follows Arends et al. 2026 (*Nature* 654:437): British (Oxford) spelling, "Fig. N |", and bold panel letters. Each number comes from the files named under its figure.*
+*Draft by Claude (Opus 5.5) for Rob Williams, 21 November 2026; Fig. 2 with the F1s added 23 November 2026. Not yet reviewed. The style follows Arends et al. 2026 (*Nature* 654:437): British (Oxford) spelling, "Fig. N |", and bold panel letters. Each number comes from the files named under its figure.*
 
 *Before submission:*
-- *A Nature legend title states the finding. These titles describe instead. Genome-wide thresholds exist so far only for the strain-mean maps of Fig. 2a,b (1,000 permutations of strains); the individual-mouse maps, the body-weight maps and the CTL maps still need theirs.*
+- *A Nature legend title states the finding. These titles describe instead. Genome-wide thresholds now exist for the strain-mean maps with and without F1s (1,000 permutations each) and for the individual-mouse maps without F1s (200 permutations, ATHENA); those with F1 mice are queued on ATHENA, and the body-weight and CTL maps still need theirs.*
 - *The small model notes under each panel belong in these legends and in Methods; drop them from the final panels.*
 
-## Fig. 2: lifespan
+## Fig. 2: lifespan, with the F1 hybrids (Rob's layout of 23 November 2026)
+
+*Panels: `output/maps/Figure2_lifespan_F1.svg`. Rob: "a. strain means with F1s separately for both diets (first dyad); b. individuals with F1s stratified by CD and HFD (second dyad); c. individuals with F1s, all combined, all cofactors, main effect only; d. individuals all combined, diet x locus interaction effect only". His dyads a and b are panels **a**,**b** and **c**,**d** here; his c and d are **e** and **f**. Thresholds for **c**–**f** wait for the permutations with F1 mice now queued on ATHENA. The version below without F1s becomes Extended Data.*
+
+**Fig. 2 | Actuarial genetic maps of lifespan in female BXD mice and BXD × BXD F1 hybrids on chow and high-fat diets.** Each map is a stack of genome scans, one per survivorship: the mice alive at a minimum age (T-age, left *y* axis), from T50 to T770 in 30-day steps (computed from T20), labelled every 60 days. Columns are the 21,056 markers of the BXD.8 genotypes on chromosomes 1–19 and X, by physical position. Each scan is a linear mixed model (R/qtl2) with a polygenic effect whose kinship matrix, computed over strains and F1 types together, leaves out the chromosome scanned (LOCO). Each of the 13 F1 types (6 short × short and 7 long × long crosses) takes its genotype probabilities from both parents, and genotype enters as the additive dosage of the *D* allele. F1 class (inbred, short × short, long × long) is a covariate throughout, so that the average hybrid vigour of a class is not read as a genotype effect.
+
+Shading gives −log10 *P* of the genotype term (likelihood-ratio test, 1 d.f.), in bins of 1–2, 2–3, 3–4, 4–5 and >5; white is below 1. Warm colours mark markers at which the *D* allele is associated with longer life, and cool colours the *B* allele. Ticks under each chromosome mark every 25 Mb, longer every 50 Mb. Numbers of units (**a**,**b**) or mice (**c**–**f**) in each survivorship are on the right *y* axis.
+
+**a**,**b**, Mean age at death of each BXD strain and F1 type with at least 3 mice alive at the T-age, on chow (**a**; 93 strains and 13 F1 types at T50, 46 and 13 at T770) and high fat (**b**; 87 and 13 at T50, 14 and 6 at T770), every unit weighted equally.
+**c**,**d**, Age at death of individual mice on chow (**c**; 1,077 mice, 149 of them F1, at T50; 382 and 90 at T770) and high fat (**d**; 976 and 159 at T50; 154 and 44 at T770), with vivarium and set-up age (180-day classes) as further covariates.
+**e**, Both diets, main effect of genotype, with diet and F1 class × diet as further covariates (2,053 mice, 308 F1, at T50; 536 and 134 at T770).
+**f**, Genotype × diet interaction in the mice of **e**: warm colours where the *D* − *B* difference in lifespan is larger on high fat. F1 class × diet is a covariate so that the difference in hybrid vigour between the diets is not read as genotype × diet.
+
+**Genome-wide significance.** In **a**,**b**, thresholds come from 1,000 permutations in which each strain took the whole actuarial series of another strain and each F1 type that of another F1 type of its class. At 5%, −log10 *P* for a single T-age is 4.7 on chow (T20–T740) and 4.6 on high fat (T20–T590); for any T-age, 5.8 and 5.5. Passing at a single T-age: on chow, Chr 1 near 5 Mb (*D* allele, 6.29 at T770; T770 lies one T-age past the stable range of the permutations, but 6.29 exceeds the any-T-age threshold) and Chr 9 at 107 Mb (*B*, 4.91 at T680); on high fat, proximal Chr 1 at 23.5 Mb (*D*, 4.84 at T20) and 37.6 Mb (*D*, 5.43 at T500). Combining each marker's T-ages (Cauchy combination; Methods), chow Chr 1 near 5 Mb passes over T20–T770 (−log10 *P* 4.88 against 4.72). In **c**–**f**, thresholds come from 200 permutations of strains within epochs and of F1 types within class (pending). Without the F1 mice (Extended Data), only chow Chr 1 near 5 Mb passes, at T770 (4.74 against 4.62). The shading is not corrected for the number of markers or T-ages; neighbouring survivorships share most of their mice. The F1 mice were born in 2020–2022 and housed at TSRB; the F1 class covariates absorb any difference they share. Exploratory analyses.
+
+*Source: `qtl2_strainF1.R`, `qtl2_strainF1_perm.R` and `significant_loci_F1.R` (**a**,**b**); `qtl2_individualsF1.R` (**c**–**f**; thresholds from `QTL/qtl2_individualsF1_perm.R` in bxd_mortality_rates_2026); `cauchy_strainmeans.R`; panels by `figure_maps.R`.*
+
+## Fig. 2 (earlier version, without the F1s; for Extended Data)
 
 **Fig. 2 | Actuarial genetic maps of lifespan in female BXD mice on chow and high-fat diets.** Each map is a stack of genome scans, one per survivorship. A survivorship is the set of mice alive at a minimum age (T-age, left *y* axis). The maps run from T50 to T770 in 30-day steps (computed from T20), labelled every 60 days. Columns are the 21,056 markers of the BXD.8 genotypes on chromosomes 1–19 and X, placed by physical position.
 

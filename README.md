@@ -5,11 +5,11 @@
 Danny Arends's code, forked for the Nature Aging paper. Where the mapping stands, why each model was chosen, and the results so far: [BXD_mapping_status_2026-11-23.md](https://github.com/robwwilliams/bxd_mortality_rates_2026/blob/main/notes/BXD_mapping_status_2026-11-23.md) in bxd_mortality_rates_2026. Danny's files are unchanged; two files are added.
 
 - **`actuary_map.R`** draws Danny's actuarial heat maps with one fixed geometry, so that panels from every script superimpose with pixel accuracy.
-  - It keeps his colours, bins, row lines and chromosome boxes.
+  - It keeps his colors, bins, row lines and chromosome boxes.
   - **Margins are set in inches**, the same for every panel. The right margin always has room for 4-digit Ns. Before, `QTL_plots.R` used R's default right margin (2.1 lines) and `interaction_plot.R` used 4.1 lines, so the chromosome area of the strain-means maps was 0.4 inch wider than that of the individual maps.
   - **The rows are always `plotTPS`** (50 to 770 days), and the chromosome layout always comes from the full map, with 15 Mb gaps.
   - **Every page has a white background** covering it, so the bounding box Illustrator sees is the page itself.
-  - **Runs of neighbouring markers with the same colour** are drawn as one rectangle: the same image, without hairline seams.
+  - **Runs of neighboring markers with the same color** are drawn as one rectangle: the same image, without hairline seams.
   - **Output is SVG** (svglite, Arial, each label one text element), or PDF if the file name ends in `.pdf`.
 - **`figure_maps.R`** draws every map of Fig. 2 with it, in `output/maps/`:
   - one SVG per panel, 24 × 5.5 inches;
@@ -24,7 +24,7 @@ Danny Arends's code, forked for the Nature Aging paper. Where the mapping stands
 
   The numbers on the right axis are counted with Danny's rules. They match his figure: 93 to 46 strains on chow, 87 to 14 on high fat, and 1,745 to 402 mice.
 
-  Each panel prints its model, the mapping script and its commit, and the results file, in small type under the map. Titles are left-justified and in plain words. The legend sits in the right margin, clear of the maps, and says which allele each colour favours: warm colours (yellow to red) for *D*, cool colours (pale green to dark blue) for *B*. Ticks mark every 25 Mb, longer every 50 Mb. Type sizes follow Rob's working Illustrator file.
+  Each panel prints its model, the mapping script and its commit, and the results file, in small type under the map. Titles are left-justified and in plain words. The legend sits in the right margin, clear of the maps, and says which allele each color favors: warm colors (yellow to red) for *D*, cool colors (pale green to dark blue) for *B*. Ticks mark every 25 Mb, longer every 50 Mb. Type sizes follow Rob's working Illustrator file.
 - **`Figure_legends.md`** holds the Nature-style legends drafted for Figures 2 and 3, and **`Methods_draft.md`** the matching Methods paragraphs.
 - **`ctl_signs.R`** reports the sign of the CTL correlations by diet and age, for the Figure 3 legend.
 - **`compare_kinship.R`** sets Danny's individual-mouse maps beside the R/qtl2 kinship maps, T-age by T-age.

@@ -6,7 +6,7 @@
 # ("Using it in the BXD paper"), and asked for by Rob on 23 November 2026 ("Go ahead and do as many of the open tasks").
 #   - The Cauchy combination (Liu & Xie 2020, J Am Stat Assoc 115:393), as in Danny's Cauchy.R for Arends et al. 2026:
 #     at each marker the P values of its T-ages are turned into Cauchy variables, tan((0.5 - P) pi), averaged, and turned
-#     back into one P. It allows for the strong correlation between neighbouring survivorships without our having to
+#     back into one P. It allows for the strong correlation between neighboring survivorships without our having to
 #     know it. Here P is exact, on 1 d.f. (the maps' -log10 P, unrounded), and kept below 1 - 1e-10 so that none is
 #     infinite. Over the stable range of T-ages of each map (significant_loci.R, significant_loci_F1.R).
 #   - Genome-wide thresholds: the same permutations as the maps' own (strains among strains, as in qtl2_permutations.R;

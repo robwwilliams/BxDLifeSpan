@@ -3,19 +3,19 @@
 # superimpose with pixel accuracy
 #
 # Rob Williams's fork, 21 November 2026. Danny's drawing code from QTL_plots.R, interaction_plot.R, bodyweight.R and
-# CTL_plots.R, in one function. His warm colours, bins, row lines and chromosome boxes are kept. What is fixed:
+# CTL_plots.R, in one function. His warm colors, bins, row lines and chromosome boxes are kept. What is fixed:
 #   - Margins in inches (par(mai)), the same for every panel, so that every panel has exactly the same chromosome area.
 #     (QTL_plots.R used R's default right margin of 2.1 lines, interaction_plot.R 4.1 lines.)
 #   - The x layout (chromosome lengths from the full map, 15 Mb gaps) and the rows (plotTPS, whatever T-ages a result
 #     holds; CTL_plots.R drew its matrices without byTPS).
 #   - Text size: cex = 1 on every page, however many panels it has.
 #   - A white background over the whole page, so that the bounding box Illustrator sees is the page itself.
-#   - Runs of neighbouring markers with the same colour are drawn as one rectangle: the same picture, a smaller file, and
+#   - Runs of neighboring markers with the same color are drawn as one rectangle: the same picture, a smaller file, and
 #     no hairline seams between rectangles.
 # Rob's changes of 21 November 2026:
 #   - Titles left-justified and in plain words; each panel's model, mapping code and results file printed small under it
 #     (10 pt, for working copies; in the paper it belongs in the legend).
-#   - The legend in the right margin, clear of the maps, saying which allele each colour favours, with B, D, P and r in
+#   - The legend in the right margin, clear of the maps, saying which allele each color favors, with B, D, P and r in
 #     italic (written *B* in labels).
 #   - Type sizes from Rob's working Illustrator file: titles 24 pt bold, chromosome numbers 30 pt. Axis numbers and the
 #     legend are 17 pt and the axis titles 23 pt, so that all are at least 5 pt when a 24-inch panel is scaled to
@@ -118,7 +118,7 @@ actuaryMap <- function(lods, map, layout, N = NULL, N.title = NULL, main = "", m
     rr <- rownames(map)[which(map[, "Chr"] == chr)]
     rr <- rr[order(map[rr, "Mb"])]
     rr.pos <- map[rr, "Mb"] + chr.s
-    x.s <- c(chr.s, (rr.pos[-1] + rr.pos[-length(rr)]) / 2)                  # each marker reaches halfway to its neighbours
+    x.s <- c(chr.s, (rr.pos[-1] + rr.pos[-length(rr)]) / 2)                  # each marker reaches halfway to its neighbors
     x.e <- c((rr.pos[-1] + rr.pos[-length(rr)]) / 2, chr.s + chr.l)
     for(tp in 1:nr){
       lod <- as.numeric(lods[rr, tp])

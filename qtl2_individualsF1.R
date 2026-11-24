@@ -15,10 +15,10 @@
 #       main    age at death ~ diet + vivarium + set-up class + F1 class + F1 class x diet + genotype
 #       int     main + genotype x diet; -log10 P from the difference of the two LODs (1 d.f.)
 #     F1 class is two indicators, short x short and long x long, so the F1s' mean departure from the strains (hybrid
-#     vigour, and anything else they share) is not read as a genotype effect. The F1 workbook has no vivarium column;
+#     vigor, and anything else they share) is not read as a genotype effect. The F1 workbook has no vivarium column;
 #     the F1s (born 2020-2022) were all housed at TSRB (Rob, 23 November 2026: "I believe all F1s were born in TSRB"),
 #     vivarium 3. With the F1 class indicators in the model, any vivarium coding of the F1s gives the same fit. In
-#     main and int, F1 class x diet does the same for the difference in hybrid vigour between diets (on chow short x short
+#     main and int, F1 class x diet does the same for the difference in hybrid vigor between diets (on chow short x short
 #     F1s gain about 196 days over their parents, on high fat about 146), which would otherwise leak into genotype x diet
 #     wherever the F1s are heterozygous.
 #   - Set-up class: set-up age in 180-day classes, as in Danny's code. F1s were set up at 20-44 days.

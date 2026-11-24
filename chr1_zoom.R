@@ -8,7 +8,7 @@
 # proximal 50 Mb of Chr 1."
 # No new scans: reads the maps of qtl2_strainmeans.R (strains only, equal weights) and qtl2_strainF1.R (strains and F1
 # types, additive and dominance), on chow (CD) and high fat (HF).
-#   - Support interval: at each T-age, the run of neighbouring markers around the strongest marker in 0-50 Mb whose LOD is
+#   - Support interval: at each T-age, the run of neighboring markers around the strongest marker in 0-50 Mb whose LOD is
 #     within 1.5 of the peak's. LOD comes back from -log10 P on 1 d.f. A marker outside that run that also comes within
 #     1.5 LOD is flagged, since the interval then assumes one locus where there may be two.
 #   - Intervals are drawn on the maps where the peak reaches -log10 P 3 (about the suggestive level of the strain-means

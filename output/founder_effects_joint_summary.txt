@@ -1,0 +1,26 @@
+Per-allele founder effects on lifespan (days, relative to B = C57BL/6), from BXD D - B and UM-HET3 paternal D - H and maternal
+B - C (females; BXD on chow). Mean over the UM-HET3 markers in each interval; +/- 1 s.e. of that mean's components.
+
+early life (BXD T110, UM-HET3 T125)
+  Vita1a (3-8 Mb)                  D   +24 (13), H   +43 (15), C    +1 (7); ranking H > D > C > B  [5 markers]
+  Vita1b (22-26 Mb)                D   +34 (13), H   +42 (15), C    -2 (6); ranking H > D > B > C  [1 markers]
+  Vita1y (34-38 Mb)                D   +14 (13), H    +4 (14), C    -6 (7); ranking D > H > B > C  [4 markers]
+  Mrps5 locus (124-129 Mb)         D    -2 (13), H   +36 (15), C    -4 (7); ranking H > B > D > C  [1 markers]
+  UM-HET3 Chr 2 peak (140-153 Mb)  D   -17 (13), H   +18 (14), C    -2 (7); ranking H > B > C > D  [5 markers]
+  Vita2b (153-159 Mb)              D   -38 (12), H    -5 (14), C    -0 (7); ranking B > C > H > D  [8 markers]
+
+middle life (BXD T410, UM-HET3 T525)
+  Vita1a (3-8 Mb)                  D   +11 (10), H   +33 (12), C    -5 (6); ranking H > D > B > C  [5 markers]
+  Vita1b (22-26 Mb)                D   +13 (10), H   +22 (12), C    -6 (6); ranking H > D > B > C  [1 markers]
+  Vita1y (34-38 Mb)                D    +7 (10), H    -4 (11), C   -11 (6); ranking D > B > H > C  [4 markers]
+  Mrps5 locus (124-129 Mb)         D    -7 (10), H   +26 (12), C    +2 (6); ranking H > C > B > D  [1 markers]
+  UM-HET3 Chr 2 peak (140-153 Mb)  D   -15 (10), H   +17 (11), C    +2 (7); ranking H > C > B > D  [5 markers]
+  Vita2b (153-159 Mb)              D   -25 (10), H    +6 (11), C    +1 (6); ranking H > C > B > D  [8 markers]
+
+late life (BXD T740, UM-HET3 T965)
+  Vita1a (3-8 Mb)                  D   +12 (6), H   +19 (9), C    -5 (5); ranking H > D > B > C  [5 markers]
+  Vita1b (22-26 Mb)                D    +2 (7), H    +8 (9), C    -5 (5); ranking H > D > B > C  [1 markers]
+  Vita1y (34-38 Mb)                D    +8 (7), H    +4 (8), C    -6 (5); ranking D > H > B > C  [4 markers]
+  Mrps5 locus (124-129 Mb)         D    -8 (7), H    +1 (8), C    +6 (5); ranking C > H > B > D  [1 markers]
+  UM-HET3 Chr 2 peak (140-153 Mb)  D   -12 (6), H    -3 (8), C    +7 (5); ranking C > B > H > D  [5 markers]
+  Vita2b (153-159 Mb)              D   -13 (6), H    -2 (8), C    +7 (5); ranking C > B > H > D  [8 markers]

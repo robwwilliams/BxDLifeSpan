@@ -178,14 +178,16 @@ page(paste0("output/maps/UMHET3_", sex, "_T50-T1100.svg"), seq(50, 1100, 30), se
 ### Rows matched one to one with the BXD maps' rows (T50 to T770 in 30-day steps), so that each panel can be laid over a
 ### BXD panel. Rob, 24 November 2026: "perhaps some kind of percentage normalization would be best so that the plots can be
 ### laid over each other". Two matchings, against BXD females on chow (UM-HET3 mice eat chow):
-###   median: each BXD T-age times the ratio of median ages at death, UM-HET3 over BXD (a linear stretch);
+###   grid40: T45 to T1005 in 40-day steps, one row per BXD row (T50 to T770 in 30-day steps). 40/30 = 1.33 is close to
+###           the ratio of median ages at death (UM-HET3 females 900 days, BXD females on chow 680, 1.32), and the grid
+###           lands on T365 and T725, as Arends et al.'s 15-day grid does (Rob: "I like your 40-day step size idea");
 ###   alive:  the UM-HET3 T-age at which the same fraction of mice is still alive as in BXD at that T-age.
 ### The left axis gives the UM-HET3 T-ages; the rows sit where the BXD maps' rows sit.
 bxdT <- seq(50, 770, 30)
 bxdAges <- ldata[ldata$Diet == "CD" & grepl("BXD", ldata$StrainName), "AgeAtDeath..days."]; bxdAges <- bxdAges[!is.na(bxdAges)]
-matched <- list(median = round(bxdT * median(cdata$age) / median(bxdAges)),
+matched <- list(grid40 = seq(45, 1005, 40),
                 alive = round(sapply(bxdT, function(T) quantile(cdata$age, 1 - mean(bxdAges >= T), names = FALSE))))
-how <- c(median = sprintf(" (rows: BXD T-ages × %.2f, the ratio of median ages at death)", median(cdata$age) / median(bxdAges)),
+how <- c(grid40 = " (rows: 40-day steps, one per BXD row)",
          alive = " (rows: the same fraction alive as BXD females on chow at each BXD row)")
 for(k in names(matched)){
   Tm <- matched[[k]]; s <- lapply(Tm, function(T) scanT(cdata$age, T))

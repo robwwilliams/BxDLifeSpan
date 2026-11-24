@@ -10,8 +10,8 @@
 #          threshold; the block of identical genotypes (4.858-5.316 Mb) shaded;
 #       b  the same map with the F1s at every T-age (signed: warm D, cool B);
 #       c  the BXD strains whose genotypes change in the window, and the F1 parents, as B and D segments;
-#       d  RefSeq genes, and the 11 kb LTR in Atp6v1h (only the D haplotype carries it, to Rob's knowledge; its position is
-#          a placeholder until David Ashbrook and Flavia Villani's long reads place it);
+#       d  RefSeq genes, and the 11 kb LTR insertion in intron 1 of Atp6v1h (only the D haplotype carries it, to Rob's
+#          knowledge; its exact breakpoint will come from David Ashbrook and Flavia Villani's long reads);
 #       e  founder-specific variants (Supplementary Table 17 of Arends et al. 2026) in 5-kb bins, by pattern, with the
 #          coding sites marked.
 #     UM-HET3 has no markers inside the window (its nearest are at 4.3 and 6.2 Mb); its paternal and maternal values there
@@ -38,7 +38,7 @@ lp1 <- function(x, cols) apply(as.matrix(x[, cols]), 1, function(v){ v[is.na(v)]
 vita <- data.frame(name = c("Vita1a", "Vita1b", "Vita1x", "Vita1y", "Vita2b"), chr = c("1", "1", "1", "1", "2"),
                    from = c(4.858, 22.361, 25.535, 32.325, 153.171), to = c(10.499, 25.257, 31.408, 43.007, 158.948),
                    core.from = c(5.019, 22.852, NA, NA, 154.141), core.to = c(5.522, 23.515, NA, NA, 157.312))   # Rob's spreadsheet
-ltr <- c(from = 5.110, to = 5.121)                                                    # PLACEHOLDER: 11 kb inside Atp6v1h, position not yet known
+ltr <- c(from = 5.083279, to = 5.084416)                                              # intron 1 of Atp6v1h (NM_133826, mm10), where the D-only 11 kb LTR inserts (Rob, 24 November 2026); exact breakpoint from long reads
 bxdT <- as.character(seq(20, 770, 30))
 
 ### Vita1a zoom
@@ -108,8 +108,8 @@ for(j in seq_len(nrow(tx))){ r <- tx[j, ]; segments(r$tx_from / 1e6, j, r$tx_to 
   x0 <- min(max(X[1] + 0.002, r$tx_from / 1e6), X[2] - 0.17)
   text(x0, j - 0.36, r$gene, adj = c(0, 0), cex = 0.62, font = 3, col = "grey15")
   text(x0 + strwidth(r$gene, cex = 0.62, font = 3) + 0.004, j - 0.36, sprintf("%s (%s)", r$transcript, r$strand), adj = c(0, 0), cex = 0.55, col = "grey35") }
-rect(ltr[1], 0.35, ltr[2], nrow(tx) + 1.1, col = adjustcolor("#c42e2f", 0.18), border = "#c42e2f", lwd = 1.2, lty = 2)
-text(ltr[2] + 0.004, nrow(tx) + 0.75, "11 kb LTR, D haplotype only (position to come from long reads)", adj = c(0, 0.5), cex = 0.68, col = "#c42e2f", font = 2)
+rect(ltr[1], 0.35, ltr[2], nrow(tx) + 1.1, col = adjustcolor("#c42e2f", 0.35), border = "#c42e2f", lwd = 1.2); points(mean(ltr), 0.45, pch = 25, bg = "#c42e2f", col = "#c42e2f", cex = 1.3)
+text(ltr[2] + 0.004, nrow(tx) + 0.75, "11 kb LTR insertion in Atp6v1h intron 1, D haplotype only", adj = c(0, 0.5), cex = 0.68, col = "#c42e2f", font = 2)
 letter("d", "Genes (RefSeq, mm10) and the Atp6v1h LTR"); xax()
 # e: founder variants
 par(mai = c(0.15, 0.75, 0.3, 0.2))

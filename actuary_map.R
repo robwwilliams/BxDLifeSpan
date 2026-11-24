@@ -39,8 +39,16 @@ labelTPS <- seq(50, 770, 60)
 map.mai <- c(1.45, 1.5, 0.7, 3.5)                         # bottom, left, top, right (inches)
 map.colz.c <- c("white", "#fceea7", "#fdb863", "#e66101", "#d01c8b", "#c42e2f")
 map.colz.n <- c("white", "#bfe6d8", "#66c2a4", "#2b8cbe", "#253494", "#081d58")
+map.colz.g <- c("white", "#e3e3e3", "#bdbdbd", "#8c8c8c", "#595959", "#262626")   # grays: the UM-HET3 founder not shared with BXD (C or H)
 map.thresholds <- c(0, 1, 2, 3, 4, 5, 100)
 map.bins <- c("1–2", "2–3", "3–4", "4–5", ">5")
+# A wider scale, for maps whose peaks run far above 5 (UM-HET3: Rob, 24 November 2026, "We will need more dynamic range on
+# the P value colors"). The first four bins and colors are the same as above, so the two scales read alike up to 5.
+map.thresholds.wide <- c(0, 1, 2, 3, 4, 5, 6, 8, 100)
+map.bins.wide <- c("1–2", "2–3", "3–4", "4–5", "5–6", "6–8", ">8")
+map.colz.c.wide <- c(map.colz.c[1:5], "#c42e2f", "#8e1622", "#4a0a12")
+map.colz.n.wide <- c(map.colz.n[1:5], "#081d58", "#2c0b5e", "#12002e")
+map.colz.g.wide <- c("white", "#ebebeb", "#cccccc", "#a8a8a8", "#858585", "#636363", "#3d3d3d", "#141414")
 map.cex <- 1.42                                            # axis numbers and legend, 17 pt
 map.cex.title <- 1.9                                       # axis titles, 23 pt
 
@@ -76,16 +84,16 @@ richWidth <- function(label, cex = map.cex){
 }
 
 # The legend, in the right margin: -log10 P bins for each sign, with what the sign means
-mapLegend <- function(sign.labels, x0 = 1.3){
+mapLegend <- function(sign.labels, x0 = 1.3, colz = list(map.colz.c, map.colz.n), bins = map.bins){
   bw <- 0.36; bh <- 0.2
   richText(inchX(x0), inchY(0), "−log10 *P*", font = 2)
   y <- -0.3
   for(s in 1:2){
     richText(inchX(x0), inchY(y), sign.labels[s])
     y <- y - 0.3
-    for(b in 1:5){
-      rect(inchX(x0), inchY(y - bh), inchX(x0 + bw), inchY(y), col = (if(s == 1) map.colz.c else map.colz.n)[b + 1], border = "grey40", lwd = 0.5, xpd = NA)
-      text(inchX(x0 + bw + 0.1), inchY(y - bh / 2), map.bins[b], adj = c(0, 0.5), cex = map.cex, xpd = NA)
+    for(b in seq_along(bins)){
+      rect(inchX(x0), inchY(y - bh), inchX(x0 + bw), inchY(y), col = colz[[s]][b + 1], border = "grey40", lwd = 0.5, xpd = NA)
+      text(inchX(x0 + bw + 0.1), inchY(y - bh / 2), bins[b], adj = c(0, 0.5), cex = map.cex, xpd = NA)
       y <- y - bh - 0.035
     }
     y <- y - 0.08
@@ -95,7 +103,8 @@ mapLegend <- function(sign.labels, x0 = 1.3){
 
 # One panel: lods is markers x T-ages (columns X50 ... X770, as byTPS returns), N the numbers on the right axis
 actuaryMap <- function(lods, map, layout, N = NULL, N.title = NULL, main = "", model = NULL, tps = plotTPS, threshold = 1,
-                       sign.labels = c("*D* allele higher", "*B* allele higher"), chr.numbers = TRUE, letter = NULL, gw.note = NULL){
+                       sign.labels = c("*D* allele higher", "*B* allele higher"), chr.numbers = TRUE, letter = NULL, gw.note = NULL,
+                       colz = list(map.colz.c, map.colz.n), labels = labelTPS, thresholds = map.thresholds, bins = map.bins){             # colors of positive and negative values; labeled T-ages
   lods <- lods[, paste0("X", tps), drop = FALSE]
   nr <- length(tps)
   plot(c(1, layout$l.x), c(1, 1 + nr), t = 'n', bty = 'n', xlab = "", xaxt = 'n', ylab = "", yaxt = 'n', xaxs = "i", yaxs = "i")
@@ -122,13 +131,13 @@ actuaryMap <- function(lods, map, layout, N = NULL, N.title = NULL, main = "", m
     x.e <- c((rr.pos[-1] + rr.pos[-length(rr)]) / 2, chr.s + chr.l)
     for(tp in 1:nr){
       lod <- as.numeric(lods[rr, tp])
-      cN <- pmin(findInterval(abs(lod), map.thresholds, left.open = TRUE), 6)  # 2 for 1 - 2, ..., 6 for > 5, as Danny's bins
+      cN <- pmin(findInterval(abs(lod), thresholds, left.open = TRUE), length(bins) + 1)  # 2 for 1 - 2, ..., 6 for > 5, as Danny's bins
       cN[is.na(lod) | abs(lod) <= threshold] <- 0
       code <- sign(lod) * cN; code[is.na(code)] <- 0
       run <- cumsum(c(TRUE, diff(code) != 0))
       for(g in unique(run[code != 0])){
         i <- which(run == g)
-        rect(x.s[min(i)], tp, x.e[max(i)], tp + 1, col = (if(code[i[1]] < 0) map.colz.n else map.colz.c)[abs(code[i[1]])], border = NA)
+        rect(x.s[min(i)], tp, x.e[max(i)], tp + 1, col = colz[[if(code[i[1]] < 0) 2 else 1]][abs(code[i[1]])], border = NA)
       }
     }
     chr.pe <- chr.s + chr.l
@@ -136,18 +145,18 @@ actuaryMap <- function(lods, map, layout, N = NULL, N.title = NULL, main = "", m
   rect(layout$start, 1, layout$start + layout$length, 1 + nr, lwd = 2, xpd = NA)
   at <- 0.5 + 1:nr
   axis(2, at = at, labels = FALSE, tcl = -0.25)
-  axis(2, at = at[match(labelTPS, tps)], labelTPS, las = 2, cex.axis = map.cex, tcl = -0.5, mgp = c(3, 0.6, 0))
+  axis(2, at = at[match(labels, tps)], labels, las = 2, cex.axis = map.cex, tcl = -0.5, mgp = c(3, 0.6, 0))
   mtext("T-age (days)", side = 2, line = 3.9, cex = map.cex.title)
   if(!is.null(N)){
-    labs <- N[match(labelTPS, tps)]
+    labs <- N[match(labels, tps)]
     axis(4, at = at, labels = FALSE, tcl = -0.25)
-    axis(4, at = at[match(labelTPS, tps)], labs, las = 2, cex.axis = map.cex, tcl = -0.5, mgp = c(3, 0.6, 0))
+    axis(4, at = at[match(labels, tps)], labs, las = 2, cex.axis = map.cex, tcl = -0.5, mgp = c(3, 0.6, 0))
     if(!is.null(N.title)){
       w <- max(strwidth(as.character(labs), units = "inches", cex = map.cex))      # beside the widest number
       text(inchX(0.22 + w + 0.2), mean(par("usr")[3:4]), N.title, srt = -90, cex = map.cex.title, xpd = NA)
     }
   }
-  mapLegend(sign.labels)
+  mapLegend(sign.labels, colz = colz, bins = bins)
   line0 <- if(chr.numbers) 4.3 else 1.1                                          # just under its own panel
   if(!is.null(gw.note)){                                                          # the genome-wide threshold first, larger than the model note
     richText(par("usr")[1], grconvertY(grconvertY(par("usr")[3], "user", "inches") - 0.2 * (line0 + 0.3), "inches", "user"), gw.note, cex = 1.1, vadj = 1)

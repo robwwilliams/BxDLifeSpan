@@ -1,0 +1,30 @@
+UM-HET3 females, maternal (B - C) and paternal (D - H) actuarial maps: genome-wide thresholds (-log10 P) from 1000 permutations within site
+
+maternal: 5% one T-age 3.51 (T20) to 3.53 (T770) and 3.55 (T1100); any T-age to T770 4.29; Cauchy 5% 3.50 (T20-T770), 3.55 (T20-T1100)
+  Chr 1     8.0 Mb B: peak 2.30 at T1100; best level suggestive at T950 T1100; Cauchy (T20-T770) at the chromosome's best marker 0.76
+  Chr 2   165.1 Mb C: peak 3.16 at T1100; best level suggestive at T1070 T1100; Cauchy (T20-T770) at the chromosome's best marker 0.80
+  Chr 4   132.4 Mb B: peak 2.87 at T920; best level suggestive at T920 T950; Cauchy (T20-T770) at the chromosome's best marker 1.40
+  Chr 5   142.2 Mb B: peak 3.72 at T590; best level significant at T590; Cauchy (T20-T770) at the chromosome's best marker 2.67
+  Chr 8    40.9 Mb B: peak 3.12 at T410; best level suggestive at T20 T50 T80 T110 T140 T170 T200 T230 T260 T290 T320 T350 T380 T410 T440 T470 T500 T530 T560 T590 T650 T680 T710 T740 T770 T800; Cauchy (T20-T770) at the chromosome's best marker 2.72
+  Chr 9    34.9 Mb C: peak 5.90 at T80; best level significant at T20 T50 T80 T110 T140 T170 T200 T230 T260 T290 T320 T350 T380 T410 T440 T470 T500 T530 T590 T620 T650; Cauchy (T20-T770) at the chromosome's best marker 5.21
+  Chr 11   88.8 Mb B: peak 3.53 at T860; best level significant at T860; Cauchy (T20-T770) at the chromosome's best marker 2.57
+  Chr 12   30.1 Mb C: peak 2.22 at T470; best level suggestive at T470 T1040 T1100; Cauchy (T20-T770) at the chromosome's best marker 1.73
+  Chr 13   98.5 Mb B: peak 3.15 at T410; best level suggestive at T20 T50 T80 T110 T140 T170 T200 T230 T260 T290 T320 T350 T380 T410 T440 T470 T500 T1040; Cauchy (T20-T770) at the chromosome's best marker 2.67
+  Chr 14   93.7 Mb C: peak 3.18 at T860; best level P 0.10 at T860; Cauchy (T20-T770) at the chromosome's best marker 2.20
+  Chr 15   79.0 Mb B: peak 2.74 at T920; best level suggestive at T890 T920 T1070 T1100; Cauchy (T20-T770) at the chromosome's best marker 0.75
+  Chr 18   74.3 Mb C: peak 4.38 at T380; best level significant at T20 T50 T80 T110 T140 T170 T200 T230 T260 T290 T320 T350 T380 T410 T440 T470 T500 T530 T560 T590; Cauchy (T20-T770) at the chromosome's best marker 3.93
+  Chr 19   17.1 Mb C: peak 2.23 at T1010; best level suggestive at T170 T1010; Cauchy (T20-T770) at the chromosome's best marker 1.76
+
+paternal: 5% one T-age 3.25 (T20) to 3.27 (T770) and 3.42 (T1100); any T-age to T770 4.06; Cauchy 5% 3.25 (T20-T770), 3.32 (T20-T1100)
+  Chr 1     3.0 Mb H: peak 3.68 at T590; best level significant at T440 T530 T590; Cauchy (T20-T770) at the chromosome's best marker 3.00
+  Chr 2   144.5 Mb H: peak 8.83 at T320; best level significant at T20 T50 T80 T110 T140 T170 T200 T230 T260 T290 T320 T350 T380 T410 T440 T470 T500 T530 T560 T590 T620 T650 T680 T710 T740 T770 T800 T830 T860; Cauchy (T20-T770) at the chromosome's best marker 8.28
+  Chr 3   156.4 Mb H: peak 2.17 at T890; best level suggestive at T890; Cauchy (T20-T770) at the chromosome's best marker 0.99
+  Chr 6    81.9 Mb H: peak 2.00 at T680; best level suggestive at T680; Cauchy (T20-T770) at the chromosome's best marker 0.86
+  Chr 7    65.3 Mb H: peak 2.35 at T20; best level suggestive at T20 T50 T80 T110 T140 T170 T200 T230 T260 T290 T320 T350 T380 T440; Cauchy (T20-T770) at the chromosome's best marker 1.96
+  Chr 9   124.1 Mb H: peak 2.11 at T980; best level suggestive at T980; Cauchy (T20-T770) at the chromosome's best marker 1.03
+  Chr 11   82.2 Mb D: peak 3.02 at T1040; best level P 0.10 at T1040; Cauchy (T20-T770) at the chromosome's best marker 1.67
+  Chr 12  112.9 Mb D: peak 2.77 at T620; best level suggestive at T230 T260 T290 T320 T350 T380 T410 T440 T470 T500 T530 T560 T590 T620 T650 T680 T710 T740 T1100; Cauchy (T20-T770) at the chromosome's best marker 2.33
+  Chr 15   55.5 Mb H: peak 2.21 at T80; best level suggestive at T80 T110 T140 T350; Cauchy (T20-T770) at the chromosome's best marker 1.78
+  Chr 16   57.6 Mb D: peak 2.06 at T80; best level suggestive at T80 T110 T140; Cauchy (T20-T770) at the chromosome's best marker 1.75
+  Chr 17   34.5 Mb H: peak 2.48 at T830; best level suggestive at T500 T830 T860; Cauchy (T20-T770) at the chromosome's best marker 1.36
+  Chr 18    4.9 Mb H: peak 3.10 at T680; best level P 0.10 at T650 T680; Cauchy (T20-T770) at the chromosome's best marker 2.38

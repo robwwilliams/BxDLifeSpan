@@ -1,0 +1,13 @@
+map	against	r	largest.difference	peak.new	peak.other
+qtl2_CD_meansF1_add	old table	0.9968	0.71	Chr 1 5.0 Mb T770 +6.71	Chr 1 5.0 Mb T770 +6.29
+qtl2_CD_meansF1_add	with 3694 and 4520	1	0.07	Chr 1 5.0 Mb T770 +6.71	Chr 1 4.9 Mb T770 +6.69
+qtl2_HF_meansF1_add	old table	0.9988	1.12	Chr 1 37.6 Mb T500 +5.41	Chr 1 37.6 Mb T500 +5.43
+qtl2_HF_meansF1_add	with 3694 and 4520	1	0	Chr 1 37.6 Mb T500 +5.41	Chr 1 37.6 Mb T500 +5.41
+qtl2_CD_indF1	old table	0.9979	0.55	Chr 1 4.9 Mb T770 +5.38	Chr 1 4.9 Mb T770 +5.38
+qtl2_CD_indF1	with 3694 and 4520	1	0.05	Chr 1 4.9 Mb T770 +5.38	Chr 1 4.9 Mb T770 +5.38
+qtl2_HF_indF1	old table	0.9999	0.1	Chr 15 13.1 Mb T380 -5.09	Chr 15 13.1 Mb T380 -5.08
+qtl2_HF_indF1	with 3694 and 4520	1	0	Chr 15 13.1 Mb T380 -5.09	Chr 15 13.1 Mb T380 -5.09
+qtl2_main_indF1	old table	0.9992	0.34	Chr 9 106.9 Mb T650 -4.42	Chr 9 106.9 Mb T650 -4.47
+qtl2_main_indF1	with 3694 and 4520	1	0.04	Chr 9 106.9 Mb T650 -4.42	Chr 9 106.9 Mb T650 -4.42
+qtl2_int_indF1	old table	0.9972	0.7	Chr 11 107.7 Mb T50 -5.26	Chr 11 107.7 Mb T50 -5.55
+qtl2_int_indF1	with 3694 and 4520	0.9999	0.11	Chr 11 107.7 Mb T50 -5.26	Chr 11 107.7 Mb T50 -5.22

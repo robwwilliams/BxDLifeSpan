@@ -2,90 +2,91 @@ Strain and F1 means together (qtl2_strainF1.R): genome-wide thresholds (-log10 P
 Levels: significant (genome-wide P = 0.05), P = 0.10, and suggestive (P = 0.63; Lander & Kruglyak 1995)
 
 CD, additive: thresholds over the stable range T20 to T740
-  significant one T-age: median 4.66 (range 4.48 to 4.78 over T-ages); any T-age: 5.83
-  P 0.10      one T-age: median 4.30 (range 4.22 to 4.42 over T-ages); any T-age: 5.41
-  suggestive  one T-age: median 3.16 (range 3.09 to 3.22 over T-ages); any T-age: 4.25
+  significant one T-age: median 4.67 (range 4.54 to 4.76 over T-ages); any T-age: 5.82
+  P 0.10      one T-age: median 4.31 (range 4.21 to 4.40 over T-ages); any T-age: 5.40
+  suggestive  one T-age: median 3.15 (range 3.09 to 3.24 over T-ages); any T-age: 4.24
   Loci reaching at least the suggestive level for their T-age (strongest marker on the chromosome):
-    Chr 3    38.9 Mb D: peak 3.17 at T680; best level suggestive; significant at none; any T-age significant: no
-    Chr 7    87.7 Mb B: peak 3.24 at T740; best level suggestive; significant at none; any T-age significant: no
-    Chr 9   106.9 Mb B: peak 4.91 at T680; best level significant; significant at T680; any T-age significant: no
-    Chr 14   49.0 Mb B: peak 3.53 at T380; best level suggestive; significant at none; any T-age significant: no
-    Chr 19    8.6 Mb B: peak 3.11 at T620; best level suggestive; significant at none; any T-age significant: no
-  Beyond the stable range (T770 to T770), chromosomes whose strongest marker passes the any-T-age 5% threshold (5.83):
-    Chr 1     5.0 Mb D: peak 6.29 at T770 (5% threshold at T770 alone: 4.31)
+    Chr 3    38.9 Mb D: peak 3.21 at T680; best level suggestive; significant at none; any T-age significant: no
+    Chr 6   115.2 Mb D: peak 3.19 at T290; best level suggestive; significant at none; any T-age significant: no
+    Chr 7    87.7 Mb B: peak 3.95 at T740; best level suggestive; significant at none; any T-age significant: no
+    Chr 9   106.9 Mb B: peak 4.83 at T680; best level significant; significant at T680; any T-age significant: no
+    Chr 14   49.0 Mb B: peak 3.63 at T380; best level suggestive; significant at none; any T-age significant: no
+    Chr 19    8.6 Mb B: peak 3.17 at T620; best level suggestive; significant at none; any T-age significant: no
+  Beyond the stable range (T770 to T770), chromosomes whose strongest marker passes the any-T-age 5% threshold (5.82):
+    Chr 1     5.0 Mb D: peak 6.71 at T770 (5% threshold at T770 alone: 4.24)
 
 CD, dominance: thresholds over the stable range T20 to T500
-  significant one T-age: median 1.15 (range 1.06 to 1.32 over T-ages); any T-age: 1.46
-  P 0.10      one T-age: median 1.05 (range 0.97 to 1.21 over T-ages); any T-age: 1.31
-  suggestive  one T-age: median 0.77 (range 0.70 to 0.92 over T-ages); any T-age: 0.97
+  significant one T-age: median 1.20 (range 1.00 to 1.51 over T-ages); any T-age: 1.58
+  P 0.10      one T-age: median 1.11 (range 0.90 to 1.39 over T-ages); any T-age: 1.44
+  suggestive  one T-age: median 0.82 (range 0.64 to 1.04 over T-ages); any T-age: 1.08
   Loci reaching at least the suggestive level for their T-age (strongest marker on the chromosome):
-    Chr 3   138.0 Mb BD < midpoint: peak 0.80 at T500; best level suggestive; significant at none; any T-age significant: no
-    Chr 7    24.9 Mb BD < midpoint: peak 0.82 at T380; best level suggestive; significant at none; any T-age significant: no
-    Chr 9    10.6 Mb BD < midpoint: peak 0.89 at T320; best level suggestive; significant at none; any T-age significant: no
-    Chr 14   48.9 Mb BD < midpoint: peak 0.95 at T410; best level suggestive; significant at none; any T-age significant: no
-    Chr 19   53.0 Mb BD < midpoint: peak 0.89 at T20; best level suggestive; significant at none; any T-age significant: no
-    Chr X    93.3 Mb BD < midpoint: peak 0.84 at T20; best level suggestive; significant at none; any T-age significant: no
-  Beyond the stable range (T530 to T770), chromosomes whose strongest marker passes the any-T-age 5% threshold (1.46):
-    Chr 1   166.7 Mb BD < midpoint: peak 1.86 at T770 (5% threshold at T770 alone: 2.72)
-    Chr 2    14.9 Mb BD < midpoint: peak 1.85 at T770 (5% threshold at T770 alone: 2.72)
-    Chr 3    87.8 Mb BD < midpoint: peak 1.91 at T770 (5% threshold at T770 alone: 2.72)
-    Chr 5    14.4 Mb BD < midpoint: peak 1.85 at T770 (5% threshold at T770 alone: 2.72)
-    Chr 6    72.7 Mb BD < midpoint: peak 2.02 at T770 (5% threshold at T770 alone: 2.72)
-    Chr 7    71.6 Mb BD < midpoint: peak 2.31 at T770 (5% threshold at T770 alone: 2.72)
-    Chr 8    82.4 Mb BD < midpoint: peak 1.60 at T620 (5% threshold at T620 alone: 2.03)
-    Chr 9    98.5 Mb BD < midpoint: peak 2.25 at T770 (5% threshold at T770 alone: 2.72)
-    Chr 10   11.1 Mb BD < midpoint: peak 1.69 at T620 (5% threshold at T620 alone: 2.03)
-    Chr 11   71.3 Mb BD < midpoint: peak 1.88 at T770 (5% threshold at T770 alone: 2.72)
-    Chr 13  119.6 Mb BD < midpoint: peak 1.93 at T770 (5% threshold at T770 alone: 2.72)
-    Chr 14   48.9 Mb BD < midpoint: peak 2.29 at T770 (5% threshold at T770 alone: 2.72)
-    Chr 16   56.2 Mb BD < midpoint: peak 1.55 at T770 (5% threshold at T770 alone: 2.72)
-    Chr 17   71.7 Mb BD < midpoint: peak 1.67 at T770 (5% threshold at T770 alone: 2.72)
+    Chr 2    14.9 Mb BD < midpoint: peak 0.93 at T500; best level suggestive; significant at none; any T-age significant: no
+    Chr 6   106.5 Mb BD < midpoint: peak 0.87 at T290; best level suggestive; significant at none; any T-age significant: no
+    Chr 7    24.9 Mb BD < midpoint: peak 1.04 at T380; best level suggestive; significant at none; any T-age significant: no
+    Chr 8    17.0 Mb BD < midpoint: peak 0.98 at T20; best level suggestive; significant at none; any T-age significant: no
+    Chr 9    83.9 Mb BD < midpoint: peak 0.91 at T20; best level suggestive; significant at none; any T-age significant: no
+    Chr 11   67.4 Mb BD < midpoint: peak 0.96 at T500; best level suggestive; significant at none; any T-age significant: no
+    Chr 14  105.4 Mb BD < midpoint: peak 0.98 at T500; best level suggestive; significant at none; any T-age significant: no
+    Chr 19   53.0 Mb BD < midpoint: peak 0.93 at T20; best level suggestive; significant at none; any T-age significant: no
+    Chr X   167.1 Mb BD > midpoint: peak 0.90 at T500; best level suggestive; significant at none; any T-age significant: no
+  Beyond the stable range (T530 to T770), chromosomes whose strongest marker passes the any-T-age 5% threshold (1.58):
+    Chr 1   166.7 Mb BD < midpoint: peak 1.69 at T620 (5% threshold at T620 alone: 2.02)
+    Chr 2    24.7 Mb BD < midpoint: peak 1.88 at T770 (5% threshold at T770 alone: 2.69)
+    Chr 4    26.5 Mb BD > midpoint: peak 1.58 at T560 (5% threshold at T560 alone: 1.74)
+    Chr 5    16.6 Mb BD < midpoint: peak 1.65 at T620 (5% threshold at T620 alone: 2.02)
+    Chr 6   105.3 Mb BD < midpoint: peak 1.95 at T770 (5% threshold at T770 alone: 2.69)
+    Chr 7    25.9 Mb BD < midpoint: peak 2.11 at T770 (5% threshold at T770 alone: 2.69)
+    Chr 8    17.0 Mb BD < midpoint: peak 1.78 at T770 (5% threshold at T770 alone: 2.69)
+    Chr 9    83.9 Mb BD < midpoint: peak 1.89 at T770 (5% threshold at T770 alone: 2.69)
+    Chr 11   46.4 Mb BD < midpoint: peak 2.07 at T770 (5% threshold at T770 alone: 2.69)
+    Chr 13  119.6 Mb BD < midpoint: peak 1.86 at T770 (5% threshold at T770 alone: 2.69)
+    Chr 14  105.4 Mb BD < midpoint: peak 1.94 at T770 (5% threshold at T770 alone: 2.69)
 
 HF, additive: thresholds over the stable range T20 to T590
-  significant one T-age: median 4.59 (range 4.32 to 4.63 over T-ages); any T-age: 5.46
-  P 0.10      one T-age: median 4.21 (range 4.01 to 4.28 over T-ages); any T-age: 5.08
-  suggestive  one T-age: median 3.07 (range 2.97 to 3.11 over T-ages); any T-age: 3.91
+  significant one T-age: median 4.59 (range 4.35 to 4.65 over T-ages); any T-age: 5.46
+  P 0.10      one T-age: median 4.21 (range 4.03 to 4.29 over T-ages); any T-age: 5.09
+  suggestive  one T-age: median 3.07 (range 2.98 to 3.11 over T-ages); any T-age: 3.93
   Loci reaching at least the suggestive level for their T-age (strongest marker on the chromosome):
-    Chr 1    37.6 Mb D: peak 5.43 at T500; best level significant; significant at T20 T500; any T-age significant: no
-    Chr 2   156.7 Mb B: peak 4.40 at T200; best level P 0.10; significant at none; any T-age significant: no
-    Chr 3    65.5 Mb D: peak 3.44 at T380; best level suggestive; significant at none; any T-age significant: no
-    Chr 5    54.6 Mb D: peak 3.47 at T140; best level suggestive; significant at none; any T-age significant: no
-    Chr 9    65.4 Mb B: peak 3.40 at T350; best level suggestive; significant at none; any T-age significant: no
-    Chr 10   40.4 Mb D: peak 3.79 at T500; best level suggestive; significant at none; any T-age significant: no
-    Chr 12   76.4 Mb D: peak 3.31 at T380; best level suggestive; significant at none; any T-age significant: no
-    Chr 15   14.3 Mb B: peak 4.24 at T50; best level P 0.10; significant at none; any T-age significant: no
+    Chr 1    37.6 Mb D: peak 5.41 at T500; best level significant; significant at T20 T500; any T-age significant: no
+    Chr 2   156.7 Mb B: peak 4.34 at T200; best level P 0.10; significant at none; any T-age significant: no
+    Chr 3    65.5 Mb D: peak 3.43 at T380; best level suggestive; significant at none; any T-age significant: no
+    Chr 5    52.9 Mb D: peak 3.51 at T170; best level suggestive; significant at none; any T-age significant: no
+    Chr 9    65.4 Mb B: peak 3.48 at T350; best level suggestive; significant at none; any T-age significant: no
+    Chr 10   40.4 Mb D: peak 3.78 at T500; best level suggestive; significant at none; any T-age significant: no
+    Chr 12   76.4 Mb D: peak 3.42 at T380; best level suggestive; significant at none; any T-age significant: no
+    Chr 15   14.3 Mb B: peak 4.28 at T50; best level P 0.10; significant at none; any T-age significant: no
   Beyond the stable range (T620 to T770), chromosomes whose strongest marker passes the any-T-age 5% threshold (5.46):
     none
 
 HF, dominance: thresholds over the stable range T20 to T500
-  significant one T-age: median 1.91 (range 1.79 to 2.54 over T-ages); any T-age: 2.58
-  P 0.10      one T-age: median 1.79 (range 1.68 to 2.42 over T-ages); any T-age: 2.48
-  suggestive  one T-age: median 1.27 (range 1.18 to 1.70 over T-ages); any T-age: 1.75
+  significant one T-age: median 1.87 (range 1.76 to 2.51 over T-ages); any T-age: 2.54
+  P 0.10      one T-age: median 1.75 (range 1.64 to 2.37 over T-ages); any T-age: 2.44
+  suggestive  one T-age: median 1.25 (range 1.16 to 1.64 over T-ages); any T-age: 1.71
   Loci reaching at least the suggestive level for their T-age (strongest marker on the chromosome):
-    Chr 1   119.0 Mb BD < midpoint: peak 2.21 at T170; best level significant; significant at T50 T80 T110 T140 T170 T200 T350; any T-age significant: no
-    Chr 2   149.7 Mb BD < midpoint: peak 2.44 at T440; best level significant; significant at T440; any T-age significant: no
-    Chr 4   154.3 Mb BD < midpoint: peak 2.21 at T170; best level significant; significant at T20 T50 T80 T110 T140 T170 T200; any T-age significant: no
-    Chr 6    80.3 Mb BD < midpoint: peak 2.19 at T440; best level suggestive; significant at none; any T-age significant: no
-    Chr 7    36.7 Mb BD < midpoint: peak 2.43 at T440; best level P 0.10; significant at none; any T-age significant: no
-    Chr 8   128.4 Mb BD < midpoint: peak 2.25 at T170; best level significant; significant at T20 T50 T80 T110 T140 T170 T200 T350; any T-age significant: no
-    Chr 9    58.8 Mb BD < midpoint: peak 2.38 at T440; best level P 0.10; significant at none; any T-age significant: no
-    Chr 10   78.2 Mb BD < midpoint: peak 1.78 at T350; best level suggestive; significant at none; any T-age significant: no
-    Chr 11  105.0 Mb BD < midpoint: peak 2.17 at T170; best level significant; significant at T50 T80 T110 T140 T170 T200 T350; any T-age significant: no
-    Chr 12   25.2 Mb BD < midpoint: peak 2.47 at T440; best level significant; significant at T440; any T-age significant: no
-    Chr 13   63.4 Mb BD > midpoint: peak 1.64 at T470; best level suggestive; significant at none; any T-age significant: no
-    Chr 14   28.1 Mb BD > midpoint: peak 1.72 at T320; best level suggestive; significant at none; any T-age significant: no
-    Chr 15   10.4 Mb BD < midpoint: peak 2.46 at T440; best level significant; significant at T440; any T-age significant: no
-    Chr 16   92.7 Mb BD < midpoint: peak 2.12 at T170; best level significant; significant at T50 T80 T110 T140 T170 T200; any T-age significant: no
-    Chr 17   45.2 Mb BD < midpoint: peak 2.42 at T440; best level P 0.10; significant at none; any T-age significant: no
-    Chr 18   66.3 Mb BD < midpoint: peak 2.35 at T440; best level significant; significant at T50 T80 T110 T140 T170 T200 T350; any T-age significant: no
-    Chr 19   15.2 Mb BD > midpoint: peak 1.58 at T440; best level suggestive; significant at none; any T-age significant: no
-    Chr X    61.8 Mb BD < midpoint: peak 2.22 at T170; best level significant; significant at T20 T50 T80 T110 T140 T170 T200 T350; any T-age significant: no
-  Beyond the stable range (T530 to T770), chromosomes whose strongest marker passes the any-T-age 5% threshold (2.58):
-    Chr 2   149.7 Mb BD < midpoint: peak 2.68 at T560 (5% threshold at T560 alone: 3.25)
-    Chr 7    36.7 Mb BD < midpoint: peak 2.64 at T620 (5% threshold at T620 alone: 3.16)
-    Chr 9    60.1 Mb BD < midpoint: peak 2.70 at T620 (5% threshold at T620 alone: 3.16)
-    Chr 11   26.4 Mb BD > midpoint: peak 2.84 at T770 (5% threshold at T770 alone: 4.11)
-    Chr 12   12.8 Mb BD < midpoint: peak 2.69 at T560 (5% threshold at T560 alone: 3.25)
-    Chr 15   10.4 Mb BD < midpoint: peak 2.73 at T560 (5% threshold at T560 alone: 3.25)
-    Chr 17   45.2 Mb BD < midpoint: peak 2.63 at T560 (5% threshold at T560 alone: 3.25)
-    Chr 18   66.3 Mb BD < midpoint: peak 2.69 at T560 (5% threshold at T560 alone: 3.25)
+    Chr 1   119.0 Mb BD < midpoint: peak 2.24 at T170; best level significant; significant at T20 T50 T80 T110 T140 T170 T200 T350; any T-age significant: no
+    Chr 2   149.7 Mb BD < midpoint: peak 2.42 at T440; best level significant; significant at T440; any T-age significant: no
+    Chr 4   154.3 Mb BD < midpoint: peak 2.25 at T170; best level significant; significant at T20 T50 T80 T110 T140 T170 T200 T350; any T-age significant: no
+    Chr 6    80.3 Mb BD < midpoint: peak 2.17 at T440; best level suggestive; significant at none; any T-age significant: no
+    Chr 7    36.7 Mb BD < midpoint: peak 2.41 at T440; best level significant; significant at T440; any T-age significant: no
+    Chr 8   128.4 Mb BD < midpoint: peak 2.27 at T170; best level significant; significant at T20 T50 T80 T110 T140 T170 T200 T350; any T-age significant: no
+    Chr 9    58.8 Mb BD < midpoint: peak 2.37 at T440; best level P 0.10; significant at none; any T-age significant: no
+    Chr 10   78.2 Mb BD < midpoint: peak 1.84 at T350; best level P 0.10; significant at none; any T-age significant: no
+    Chr 11  105.0 Mb BD < midpoint: peak 2.19 at T170; best level significant; significant at T50 T80 T110 T140 T170 T200 T350; any T-age significant: no
+    Chr 12   25.2 Mb BD < midpoint: peak 2.45 at T440; best level significant; significant at T440; any T-age significant: no
+    Chr 13   63.4 Mb BD > midpoint: peak 1.56 at T470; best level suggestive; significant at none; any T-age significant: no
+    Chr 14   28.1 Mb BD > midpoint: peak 1.71 at T320; best level suggestive; significant at none; any T-age significant: no
+    Chr 15   10.4 Mb BD < midpoint: peak 2.44 at T440; best level significant; significant at T440; any T-age significant: no
+    Chr 16   92.7 Mb BD < midpoint: peak 2.14 at T170; best level significant; significant at T50 T80 T110 T140 T170 T200 T350; any T-age significant: no
+    Chr 17   45.2 Mb BD < midpoint: peak 2.40 at T440; best level significant; significant at T440; any T-age significant: no
+    Chr 18   66.3 Mb BD < midpoint: peak 2.34 at T440; best level significant; significant at T20 T50 T80 T110 T140 T170 T200 T350; any T-age significant: no
+    Chr 19   15.2 Mb BD > midpoint: peak 1.51 at T440; best level suggestive; significant at none; any T-age significant: no
+    Chr X    61.8 Mb BD < midpoint: peak 2.24 at T170; best level significant; significant at T20 T50 T80 T110 T140 T170 T200 T350; any T-age significant: no
+  Beyond the stable range (T530 to T770), chromosomes whose strongest marker passes the any-T-age 5% threshold (2.54):
+    Chr 2   149.7 Mb BD < midpoint: peak 2.59 at T560 (5% threshold at T560 alone: 3.13)
+    Chr 7    36.7 Mb BD < midpoint: peak 2.54 at T620 (5% threshold at T620 alone: 3.07)
+    Chr 9    60.1 Mb BD < midpoint: peak 2.60 at T620 (5% threshold at T620 alone: 3.07)
+    Chr 11   26.4 Mb BD > midpoint: peak 2.78 at T770 (5% threshold at T770 alone: 4.23)
+    Chr 12   12.8 Mb BD < midpoint: peak 2.60 at T560 (5% threshold at T560 alone: 3.13)
+    Chr 15   10.4 Mb BD < midpoint: peak 2.64 at T560 (5% threshold at T560 alone: 3.13)
+    Chr 17   45.2 Mb BD < midpoint: peak 2.54 at T560 (5% threshold at T560 alone: 3.13)
+    Chr 18   66.3 Mb BD < midpoint: peak 2.59 at T560 (5% threshold at T560 alone: 3.13)

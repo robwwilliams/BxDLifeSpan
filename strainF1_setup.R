@@ -13,7 +13,7 @@
 # and classCovar(units)
 #
 
-f1file <- if(exists("f1file")) f1file else "../bxd_mortality_rates_2026/data/corrected/AgingBXD_F1_BodyWeight_NaturalDeath_corrected.txt"
+f1file <- if(exists("f1file")) f1file else "../bxd_mortality_rates_2026/data/corrected/AgingBXD_F1_24Nov2026_corrected.txt"
 short <- c("BXD9", "BXD170", "BXD172", "BXD197"); long <- c("BXD65", "BXD73b", "BXD77", "BXD102")
 
 f1 <- read.delim(f1file, check.names = FALSE)

@@ -14,7 +14,7 @@
 
 source("shared.R")
 args <- commandArgs(trailingOnly = TRUE)
-f1file <- if(length(args) >= 1) args[1] else "../bxd_mortality_rates_2026/data/corrected/AgingBXD_F1_BodyWeight_NaturalDeath_corrected.txt"
+f1file <- if(length(args) >= 1) args[1] else "../bxd_mortality_rates_2026/data/corrected/AgingBXD_F1_24Nov2026_corrected.txt"
 short <- c("BXD9", "BXD170", "BXD172", "BXD197")
 f1 <- read.delim(f1file, check.names = FALSE)
 f1 <- f1[f1[, "CauseOfDeath"] == "Natural" & f1[, "DietCode"] %in% c("CD", "HF") & !is.na(f1[, "AgeAtDeath (days)"]), ]

@@ -8,7 +8,7 @@
 # positions of the Chr 1 loci. Earlier, of F1 type: "the two types of F1 were by design, so just add the 'type' as a
 # cofactor", and "They are genetically just like an F2 cross."
 #   - Units: at each diet and T-age (20 to 770 days, 30-day steps), the BXD strains of shared.R and the F1 types of Suheeta
-#     Roy's F1 workbook (data/corrected/AgingBXD_F1_BodyWeight_NaturalDeath_corrected.txt in bxd_mortality_rates_2026,
+#     Roy's F1 workbook (data/corrected/AgingBXD_F1_24Nov2026_corrected.txt in bxd_mortality_rates_2026,
 #     euthanized F1s counted as natural deaths), each with at least 3 mice alive at T. The trait is the unit's mean age
 #     at death of those mice. Every unit is weighted equally. B6D2F1, D2B6F1 and the parental strains are left out, as in
 #     the other maps.
@@ -32,7 +32,7 @@ source("qtl2_cross.R")                                                          
 library(parallel)
 
 args <- commandArgs(trailingOnly = TRUE)
-f1file <- if(length(args) >= 1) args[1] else "../bxd_mortality_rates_2026/data/corrected/AgingBXD_F1_BodyWeight_NaturalDeath_corrected.txt"
+f1file <- if(length(args) >= 1) args[1] else "../bxd_mortality_rates_2026/data/corrected/AgingBXD_F1_24Nov2026_corrected.txt"
 tps <- seq(20, 770, 30)
 short <- c("BXD9", "BXD170", "BXD172", "BXD197"); long <- c("BXD65", "BXD73b", "BXD77", "BXD102")
 

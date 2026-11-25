@@ -15,7 +15,7 @@ source("shared.R")
 source("qtl2_cross.R")                                                              # strains, pr and the map
 
 args <- commandArgs(trailingOnly = TRUE)
-f1file <- if(length(args) >= 1) args[1] else "../bxd_mortality_rates_2026/data/corrected/AgingBXD_F1_BodyWeight_NaturalDeath_corrected.txt"
+f1file <- if(length(args) >= 1) args[1] else "../bxd_mortality_rates_2026/data/corrected/AgingBXD_F1_24Nov2026_corrected.txt"
 zoomMb <- 50
 views <- list(c("CD", 770), c("HF", 20), c("HF", 260), c("HF", 500))
 source("strainF1_setup.R")                                                         # types, f1class, AP and Kloco, as in qtl2_strainF1.R

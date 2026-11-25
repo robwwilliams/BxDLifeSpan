@@ -67,6 +67,16 @@ Correlation over markers of the signed −log10 P, at T20, T380, T500 and T620:
 - **The permutation swaps strains within two strata (Taylor's and newer) and takes no account of kinship** beyond that.
 - **Within strains only** (`ctl_permutations.R 1000 12 within`; a different question, not your statistic): chow real 6.3 against a threshold of 8.7 (P = 0.68); high fat 8.7 against 11.9 (P = 0.37).
 
+### The other design: weight at one age, survivorship rising (25 November 2026)
+
+Rob: "did you take body weight at 3 months and then compute lifespan:weight correlations of the survivorship up toward 800 days?" The runs above did not: as in `CTL.R`, weight is taken at the T-age itself, so weight and survivorship move together. The other design holds weight at 90, 180, 365 or 545 days and steps only the survivorship, every 30 days (`weight_lifespan_fixed.R`, and `ctl_permutations.R 1000 4 fixed 90`).
+
+- **The change of sign goes away.** With weight held at 90 or 180 days, the pooled correlation is negative at nearly every T-age, up to T770: heavier young mice die sooner, whichever survivors are asked. No T-age on either diet, at any of the four weight ages, has an interval wholly above zero. So the change of sign in section 4 comes from the age of the weight, late weights meaning something else (wasting), and not from the survivorship.
+- **It is established on high fat.** Weight at 90 days, within strains: −0.15 at T90, −0.23 (95% CI −0.36 to −0.11) at T380, and no longer detectable from T500 on, where survivors are few. Weight at 180 days, pooled: −0.15 (−0.26 to −0.03) at T180 to −0.24 (−0.36 to −0.11) at T590.
+- **On chow it is weaker:** mostly negative, and pooled intervals exclude zero at 7 of 21 T-ages for weight at 180 days and at one or none for the others.
+- **Caution:** only 309 chow and 329 high-fat mice have a weight at 90 days, half the numbers at 180 days, and few survive to late T-ages (HF at T680: 84).
+- **CTL maps, same design, 1,000 permutations of strains:** nothing passes genome-wide at any weight age (largest P 0.21 on high fat, weight at 180 days; 0.33 to 0.70 otherwise). Four of 124 single scans fall below 5% on their own, about 6 expected by chance. B&H again calls markers in 100% of the permuted maps.
+
 **Suggestions for the paper:** show your CTL maps in Extended Data as exploratory, say that they were tested by permuting strains, and leave the Results claim out; or look for a design with more power, such as a model of weight × genotype with a strain intercept and slope (not yet tried).
 
 **Not done (stretch goals, Rob, 24 November 2026):** CTL × diet, and epistasis (Vita1a × Vita6b, 9a and 11a in BXD females). For CTL × diet, power will be below that of either diet alone.

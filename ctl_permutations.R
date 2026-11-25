@@ -16,7 +16,10 @@
 #     diet and T-age and over the T-ages, and how many markers B&H and Bonferroni call.
 # Writes output/ctl_permutations_maxima.txt (one row per permutation; 0 = real data) and output/ctl_permutations.txt
 #   Rscript ctl_permutations.R [permutations, 1000] [cores, 12] [mode, strains]
+#   Rscript ctl_permutations.R 1000 12 fixed 90      (the weight at 90 days)
 # Modes (output names take the mode as a suffix, except strains):
+#   fixed    Rob's design (25 November 2026): weight at one age W (fourth argument), and the survivorships from W on in 30-day steps. In
+#            all other modes weight is taken at the T-age of the survivorship, as in CTL.R. Mice on their diet by W.
 #   strains  as above
 #   mice     a null without strain structure: the (weight, lifespan) pairs are shuffled among the mice of each diet and T-age, and the
 #            strains keep their genotypes. If P values that count mice were right, this would give no inflation beyond the weights.
@@ -33,6 +36,8 @@ cores <- if(length(args) >= 2) as.numeric(args[2]) else 12
 mode <- if(length(args) >= 3) args[3] else "strains"
 sfx <- if(mode == "strains") "" else paste0("_", mode)
 spike <- if(length(args) >= 4) as.numeric(args[4]) else 25                                  # days of lifespan per SD of weight, in D mice
+W <- if(mode == "fixed") args[4] else NA
+if(mode == "fixed") sfx <- paste0("_fixed", W)
 spike.marker <- "rsm10000004000"
 RNGkind("L'Ecuyer-CMRG"); set.seed(20261124)
 
@@ -77,6 +82,13 @@ ldata[which(ldata[, "AgeAtSetUp.in.colony..days."] < 0), "AgeAtSetUp.in.colony..
 BWs <- read.table("output/bodyweightInterpolatedData.txt", sep = "\t", quote = "", check.names = FALSE)
 invisible(capture.output(suppressWarnings(source("adjust.R"))))
 tps <- TPStodo
+if(mode == "fixed"){                                                                        # weight at W, adjusted as in adjust.R
+  tps <- tps[as.numeric(tps) >= as.numeric(W)]; wa <- setNames(rep(NA_real_, nrow(BWs)), rownames(BWs))
+  for(d in c("CD", "HF")){ ids <- rownames(BWs)[which(ldata[rownames(BWs), "Diet"] == d)]
+    v <- ldata[ids, "vivarium"]; a <- as.factor(cut(as.numeric(ldata[ids, "AgeAtSetUp.in.colony..days."]), seq(0, 1000, 180))); Y <- BWs[ids, W]
+    ok <- !is.na(Y) & !is.na(v) & !is.na(a) & as.numeric(ldata[ids, "AgeAtSetUp.in.colony..days."]) <= as.numeric(W)
+    m <- if(nlevels(droplevels(a[ok])) > 1) lm(Y ~ v + a, subset = ok) else lm(Y ~ v, subset = ok); wa[ids[ok]] <- residuals(m) + mean(Y[ok]) }
+}
 bxd <- unique(as.character(ldata[grepl("BXD", ldata[, "StrainName"]), "StrainName"])); st <- sort(bxd[bxd %in% colnames(geno)])
 G0 <- matrix(match(as.matrix(geno[, st]), c("B", "D"), nomatch = 0L), nrow(geno)); dimnames(G0) <- list(rownames(geno), st)
 key <- apply(G0, 1, paste, collapse = ""); u <- !duplicated(key); pat <- match(key, key[u]); G <- t(G0[u, ])                     # strains x distinct patterns
@@ -86,12 +98,13 @@ cat(nrow(geno), "markers,", ncol(G), "distinct strain patterns,", length(st), "s
 # The mice of each diet and T-age, as in CTL.R; strains without genotypes are left out, and the >= 20 rule counts mice before weights are required
 dat <- list()
 for(diet in c("CD", "HF")) for(tp in tps){
-  iix <- which(ldata[, "AgeAtSetUp.in.colony..days."] <= as.numeric(tp) & ldata[, "AgeAtDeath..days."] >= as.numeric(tp) & grepl("BXD", ldata[, "StrainName"]) & ldata[, "Diet"] == diet)
+  iix <- which(ldata[, "AgeAtSetUp.in.colony..days."] <= as.numeric(if(mode == "fixed") W else tp) & ldata[, "AgeAtDeath..days."] >= as.numeric(tp) & grepl("BXD", ldata[, "StrainName"]) & ldata[, "Diet"] == diet)
   x <- ldata[iix, ]; x <- x[rownames(x) %in% rownames(BWsAdj) & as.character(x[, "StrainName"]) %in% st, ]
   s <- match(as.character(x[, "StrainName"]), st); nall <- tabulate(s, length(st))
-  w <- BWsAdj[rownames(x), tp]; y <- x[, "Yadj"]; ok <- !is.na(w) & !is.na(y); w <- w[ok]; y <- y[ok]; s <- s[ok]
+  w <- if(mode == "fixed") wa[rownames(x)] else BWsAdj[rownames(x), tp]; y <- x[, "Yadj"]; ok <- !is.na(w) & !is.na(y); w <- w[ok]; y <- y[ok]; s <- s[ok]
   if(mode == "within"){ k <- ave(w, s, FUN = length) > 1; w <- w[k]; y <- y[k]; s <- s[k]; w <- w - ave(w, s); y <- y - ave(y, s) }
   if(mode == "spike"){ if(as.numeric(tp) >= 200 && as.numeric(tp) <= 500){ gd <- G0[spike.marker, st[s]] == 2; zw <- (w - ave(w, s)) / sd(w - ave(w, s)); y <- y + ifelse(gd, spike * zw, 0) } }
+  if(mode == "fixed" && length(w) < 100) next                                                # too few mice for 20 of each genotype at most markers
   n <- tabulate(s, length(st)); ow <- order(w); oy <- order(y)
   dat[[paste(diet, tp)]] <- list(s = s - 1L, wt = 1 / n[s], ow = ow - 1L, tw = as.integer(match(w[ow], unique(w[ow]))), oy = oy - 1L, ty = as.integer(match(y[oy], unique(y[oy]))), nall = nall)
 }

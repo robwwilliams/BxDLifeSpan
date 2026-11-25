@@ -14,6 +14,9 @@
 #     ones), the same one at every T-age and on both diets. Every mouse keeps its weight, lifespan and strain. So the mice of a strain
 #     move together, and the correlation within and between strains is kept. Recorded per permutation: the largest -log10 P for each
 #     diet and T-age and over the T-ages, and how many markers B&H and Bonferroni call.
+#   - The Cauchy combination over T-ages (added 25 November 2026, exploratory: Danny asked whether we had used it; we had not). At each marker
+#     the P values of its T-ages are combined as in Danny's Cauchy.R, here on their own 1 d.f.; T-ages without a value are left out. Judged by
+#     Bonferroni and B&H over markers, and by the same permutations (largest value over markers).
 # Writes output/ctl_permutations_maxima.txt (one row per permutation; 0 = real data) and output/ctl_permutations.txt
 #   Rscript ctl_permutations.R [permutations, 1000] [cores, 12] [mode, strains]
 #   Rscript ctl_permutations.R 1000 12 fixed 90      (the weight at 90 days)
@@ -24,7 +27,8 @@
 #   anystrain  as strains, but any strain may take any other's genotypes (no strata)
 #   mice     the naive permutation, any mouse to any mouse: strain labels, and with them genotypes, are shuffled once among all the mice
 #            of a diet, so that the mice of a strain no longer share a genotype. Weight and lifespan of a mouse stay together, and the
-#            nesting of survivorships is kept. (Until 25 November 2026 this mode shuffled each T-age anew.)
+#            nesting of survivorships is kept. "micewt1" is the same with every mouse weighted 1, in the real data too: not Danny's statistic, but
+#            a control in which every mouse counts, so Bonferroni should hold. (Until 25 November 2026 this mode shuffled each T-age anew.)
 # With "F1" as a further argument, the BXD x BXD F1 mice are added (25 November 2026): table of 24 November 2026, natural deaths. An F1 type
 # counts as B (or D) at markers where both its parents are B (D), and is left out where they differ, as a heterozygous call is. Weights are
 # interpolated as in bodyweight.R, without weighings after death or out of order; they have not been through our full QC. Lifespan
@@ -138,7 +142,7 @@ for(diet in c("CD", "HF")) for(tp in tps){
   if(mode == "spike"){ if(as.numeric(tp) >= 200 && as.numeric(tp) <= 500){ gd <- G0[spike.marker, st[s]] == 2; zw <- (w - ave(w, s)) / sd(w - ave(w, s)); y <- y + ifelse(gd, spike * zw, 0) } }
   if(mode == "fixed" && length(w) < 100) next                                                # too few mice for 20 of each genotype at most markers
   n <- tabulate(s, length(st)); ow <- order(w); oy <- order(y)
-  dat[[paste(diet, tp)]] <- list(s = s - 1L, wt = 1 / n[s], ow = ow - 1L, tw = as.integer(match(w[ow], unique(w[ow]))), oy = oy - 1L, ty = as.integer(match(y[oy], unique(y[oy]))), nall = nall, id = id, aid = aid, diet = diet)
+  dat[[paste(diet, tp)]] <- list(s = s - 1L, wt = if(mode == "micewt1") rep(1, length(s)) else 1 / n[s], ow = ow - 1L, tw = as.integer(match(w[ow], unique(w[ow]))), oy = oy - 1L, ty = as.integer(match(y[oy], unique(y[oy]))), nall = nall, id = id, aid = aid, diet = diet)
 }
 scanAll <- function(G, dat. = dat) sapply(dat., function(d){
   r <- ctlScan(G, d$s, d$wt, d$ow, d$tw, d$oy, d$ty, d$nall); z <- atanh(r[, 1:2]); df <- r[, 3:4] - 1
@@ -153,22 +157,24 @@ if(mode == "strains") for(diet in c("CD", "HF")){
   cat(diet, ": against CTL.R,", sum(!is.na(d)), "values; largest difference", max(abs(d - m), na.rm = TRUE), "; cells missing in one only:", sum(is.na(d) != is.na(m)), "\n")
 }
 mult <- tabulate(pat, ncol(G))                                                              # markers per pattern, for counts over markers
+cauchy <- function(p){ v <- ifelse(p < 1e-15, 1 / (p * pi), tan((0.5 - pmin(p, 1 - 1e-10)) * pi)); -pcauchy(rowMeans(v, na.rm = TRUE), lower.tail = FALSE, log.p = TRUE) / log(10) }
 summarize <- function(x, perm){                                                            # x: patterns x scans, signed -log10 P
   ax <- abs(x); p <- 10^-ax; p[is.na(p)] <- 1; pm <- p[pat, ]
   mx <- apply(ax, 2, max, na.rm = TRUE)
   f <- function(diet){ j <- grep(paste0("^", diet, " "), colnames(x)); q <- pm[, j]
     cs <- apply(q, 2, function(v) sum(p.adjust(v, "BH") <= 0.05)); bf <- sum(q <= 0.05 / nrow(q)); bh.all <- sum(p.adjust(as.vector(q), "BH") <= 0.05); bf.all <- sum(q <= 0.05 / length(q))
     lam <- median(qchisq(q, 1, lower.tail = FALSE)) / qchisq(0.5, 1)
-    c(any = max(mx[j]), BH.scans = sum(cs > 0), BH.one.T.markers = sum(cs), BH.all.markers = bh.all, Bonf.one.T.markers = bf, Bonf.all.markers = bf.all, lambda = lam) }
+    cc <- cauchy(10^-ax[, j, drop = FALSE])[pat]; cp <- 10^-cc[is.finite(cc)]
+    c(cauchy = max(-log10(cp)), cauchy.Bonf = sum(cp <= 0.05 / length(cp)), cauchy.BH = sum(p.adjust(cp, "BH") <= 0.05), any = max(mx[j]), BH.scans = sum(cs > 0), BH.one.T.markers = sum(cs), BH.all.markers = bh.all, Bonf.one.T.markers = bf, Bonf.all.markers = bf.all, lambda = lam) }
   data.frame(perm = perm, t(mx), CD = t(f("CD")), HF = t(f("HF")), check.names = FALSE)
 }
 r0 <- summarize(scanAll(G), 0)
 t0 <- Sys.time()
 ch <- split(1:nperm, rep(1:cores, length.out = nperm))
 one <- function(i){ set.seed(20261124 + i)
-  if(mode == "mice"){                                                                      # any mouse to any mouse: one shuffle of the labels of a diet's mice
+  if(mode %in% c("mice", "micewt1")){                                                                      # any mouse to any mouse: one shuffle of the labels of a diet's mice
     lab <- lapply(split(allmice, allmice[, "diet"]), function(a) setNames(sample(a[, "s"]), a[, "id"]))
-    d2 <- lapply(dat, function(d){ d$s <- unname(lab[[d$diet]][d$id]); n <- tabulate(d$s + 1L, length(st)); d$wt <- 1 / n[d$s + 1L]; d$nall <- tabulate(unname(lab[[d$diet]][d$aid]) + 1L, length(st)); d })
+    d2 <- lapply(dat, function(d){ d$s <- unname(lab[[d$diet]][d$id]); n <- tabulate(d$s + 1L, length(st)); d$wt <- if(mode == "mice") 1 / n[d$s + 1L] else rep(1, length(d$s)); d$nall <- tabulate(unname(lab[[d$diet]][d$aid]) + 1L, length(st)); d })
     return(summarize(scanAll(G, d2), i)) }
   o <- seq_along(st); if(mode == "anystrain") o <- sample.int(length(st)) else for(k in unique(stratum)){ j <- which(stratum == k); o[j] <- j[sample.int(length(j))] }; summarize(scanAll(G[o, , drop = FALSE]), i) }
 rp <- mclapply(1:nperm, one, mc.cores = cores, mc.preschedule = TRUE)
@@ -190,6 +196,9 @@ for(diet in c("CD", "HF")){
   cat(sprintf("Bonferroni over one T-age's markers: real %d calls; permutations, at least one call in %.0f%%\n", rl[, paste0(diet, ".Bonf.one.T.markers")], 100 * mean(nul[, paste0(diet, ".Bonf.one.T.markers")] > 0)))
   cat(sprintf("Bonferroni over all markers and T-ages: real %d calls; permutations, at least one call in %.0f%%\n", rl[, paste0(diet, ".Bonf.all.markers")], 100 * mean(nul[, paste0(diet, ".Bonf.all.markers")] > 0)))
   an <- paste0(diet, ".any"); cat(sprintf("Any marker, any T-age: largest real %.2f; permutation thresholds 5%% %.2f, 10%% %.2f, 63%% %.2f; genome-wide P = %.3f\n", rl[, an], quantile(nul[, an], .95), quantile(nul[, an], .9), quantile(nul[, an], .37), (1 + sum(nul[, an] >= rl[, an])) / (nperm + 1)))
+  cn <- paste0(diet, c(".cauchy", ".cauchy.Bonf", ".cauchy.BH")); cr <- cauchy(10^-abs(real[, grep(paste0("^", diet, " "), colnames(real)), drop = FALSE])); ci <- which.max(cr)
+  cat(sprintf("Cauchy over T-ages, per marker: largest real %.2f (Chr %s %.1f Mb); permutation thresholds 5%% %.2f, 10%% %.2f; genome-wide P = %.3f\n", rl[, cn[1]], map[ci, "Chr"], map[ci, "Mb"], quantile(nul[, cn[1]], .95), quantile(nul[, cn[1]], .9), (1 + sum(nul[, cn[1]] >= rl[, cn[1]])) / (nperm + 1)))
+  cat(sprintf("Cauchy, corrected over markers: Bonferroni real %d calls; permutations, at least one call in %.0f%%. B&H real %d calls; permutations, at least one call in %.0f%%\n", rl[, cn[2]], 100 * mean(nul[, cn[2]] > 0), rl[, cn[3]], 100 * mean(nul[, cn[3]] > 0)))
   tab <- data.frame(T = sub(".*\\.T", "", m), real = as.numeric(rl[, m]), P05 = apply(nul[, m], 2, quantile, .95), P10 = apply(nul[, m], 2, quantile, .9), P63 = apply(nul[, m], 2, quantile, .37), P.genomewide = sapply(m, function(k) (1 + sum(nul[, k] >= rl[, k])) / (nperm + 1)))
   jj <- sapply(m, function(k){ x <- real[, sub("\\.T", " ", k)]; i <- which.max(abs(x)); sprintf("Chr %s %.1f Mb %s", map[i, "Chr"], map[i, "Mb"], if(x[i] > 0) "r(D) > r(B)" else "r(B) > r(D)") })
   tab$peak <- jj; print(cbind(tab[1], round(tab[2:5], 2), P.gw = round(tab$P.genomewide, 3), peak = tab$peak), row.names = FALSE)

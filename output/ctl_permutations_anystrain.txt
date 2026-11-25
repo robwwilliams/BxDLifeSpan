@@ -7,6 +7,8 @@ B&H over all markers and T-ages: real 40756 calls; permutations, at least one ca
 Bonferroni over one T-age's markers: real 2226 calls; permutations, at least one call in 100%
 Bonferroni over all markers and T-ages: real 349 calls; permutations, at least one call in 100%
 Any marker, any T-age: largest real 10.19; permutation thresholds 5% 16.16, 10% 15.28, 63% 11.50; genome-wide P = 0.860
+Cauchy over T-ages, per marker: largest real 8.80 (Chr 11 99.7 Mb); permutation thresholds 5% 14.79, 10% 13.93; genome-wide P = 0.878
+Cauchy, corrected over markers: Bonferroni real 292 calls; permutations, at least one call in 100%. B&H real 8041 calls; permutations, at least one call in 100%
    T  real   P05   P10   P63  P.gw                        peak
   50  9.55 10.01  9.15  6.56 0.073  Chr 6 122.8 Mb r(B) > r(D)
   80  8.11  9.64  8.89  6.47 0.210  Chr 10 66.6 Mb r(B) > r(D)
@@ -41,6 +43,8 @@ B&H over all markers and T-ages: real 28912 calls; permutations, at least one ca
 Bonferroni over one T-age's markers: real 1134 calls; permutations, at least one call in 100%
 Bonferroni over all markers and T-ages: real 183 calls; permutations, at least one call in 99%
 Any marker, any T-age: largest real 9.41; permutation thresholds 5% 12.24, 10% 11.36, 63% 8.84; genome-wide P = 0.470
+Cauchy over T-ages, per marker: largest real 8.01 (Chr 18 18.7 Mb); permutation thresholds 5% 10.88, 10% 10.04; genome-wide P = 0.497
+Cauchy, corrected over markers: Bonferroni real 167 calls; permutations, at least one call in 100%. B&H real 7593 calls; permutations, at least one call in 100%
    T real   P05   P10  P63  P.gw                        peak
   50 5.28  7.06  6.65 4.77 0.405  Chr 2 116.6 Mb r(D) > r(B)
   80 5.35  6.99  6.54 4.82 0.413  Chr 16 97.4 Mb r(D) > r(B)

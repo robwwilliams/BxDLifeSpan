@@ -87,6 +87,36 @@ Rob: "the full actuarial scan across all ages at which animals were weighed (ove
 - **Single scans below 5%: 35 of 595, about 30 expected by chance** (11 on chow, 24 on high fat). Neighboring scans share mice and weights, so the colored cells come in runs; the count is not unusual on either diet (P = 0.49 and 0.19; in the permutations the median count is 10 and 12, and the 95th percentile 46 and 39).
 - **Strongest leads:** high fat Chr 6 at 17.6 Mb, weight at 200–290 days, T620 (P = 0.007–0.019 in single scans), and chow Chr 11 at 111 Mb at T770, weight at 470–530 days (P = 0.004–0.014).
 
+### Danny's questions: the actuarial scan, and why Bonferroni is so far off (25 November 2026)
+
+Danny: "I wouldnt have exected the permutations to be so far off the BF adjustment... Did you permute the whole actuarial T(age) scan? If so, how did you deal with the correlation across ages ? did you use a Cauchi Correction ?"
+
+- **Yes, the whole scan.** One permutation moves the genotypes of whole strains, once, and then reruns every T-age and both diets with that assignment. Mice keep their weights and lifespans, so the correlation across ages (and among linked markers) is the same in every permutation as in the data.
+- **The correlation is handled by the maximum.** Each permutation keeps its largest −log10 P over all markers and T-ages. No independence is assumed and no number of effective tests is needed.
+- **We had not used the Cauchy combination. It is now added, with the same permutations, and the answer is the same** (1,000 permutations; exploratory, after the results above). The Cauchy code gives the same numbers as `cauchycombination()` in your `Cauchy.R` (difference 4e-15), on the 1 d.f. P values of the CTL test.
+
+| | Chow | High fat |
+|---|---|---|
+| Largest Cauchy −log10 P over markers | 8.8 (Chr 11, 99.7 Mb) | 8.0 (Chr 18, 18.7 Mb) |
+| Bonferroni threshold for it, 5% over 21,056 markers | 5.6 | 5.6 |
+| 5% permutation threshold, whole strains | 15.4 | 11.1 |
+| Genome-wide P, whole strains (any T-age, as above) | 0.89 (0.88) | 0.53 (0.50) |
+| Scrambled strains with at least one Bonferroni call on the Cauchy P | 100% | 100% |
+| Same, B&H | 100% | 100% |
+
+- **Cauchy cannot repair this.** It allows for the correlation among T-ages, but it takes each P value as correct, as Bonferroni does. Here each one is too small before any correction: the inflation is 2.55 and 2.24 with no CTL at all. The problem is the number of independent genomes, not the number of tests.
+- **A control: where the unit is right, Bonferroni is right.** Shuffle any mouse with any mouse and give every mouse weight 1 (mode `micewt1`):
+
+| No CTL at all; inflation (median χ² / expected) | Chow | High fat |
+|---|---|---|
+| Mice shuffled, weights 1 | 1.02 | 0.99 |
+| Mice shuffled, weights 1 / (mice of the strain) | 1.72 | 1.52 |
+| Whole strains shuffled, weights 1 / (mice of the strain): the real design | 2.55 | 2.24 |
+
+  In the first row, Bonferroni over all markers and T-ages calls something in 9 (chow) and 3 (high fat) of 1,000 maps, Bonferroni on the Cauchy P in 10 and 6, and B&H on the Cauchy P in 52 and 38: none above its nominal 5% by more than chance, and Bonferroni is conservative, as expected for correlated tests. So Bonferroni is off for two separate reasons, which the next two rows add one at a time.
+  1. **Weights.** At T200 on chow, 623 mice with these weights carry the information of 359 equally weighted ones (Kish), yet Fisher's z uses 623. The ratio, 1.74, is the chow inflation in row 2.
+  2. **Shared genomes.** The 623 mice are 95 strains, and the intraclass correlation of mice within strains is 0.29 for lifespan and 0.52 for weight.
+
 **Suggestions for the paper:** show your CTL maps in Extended Data as exploratory, say that they were tested by permuting strains, and leave the Results claim out; or look for a design with more power, such as a model of weight × genotype with a strain intercept and slope (not yet tried).
 
 **Not done (stretch goals, Rob, 24 November 2026):** CTL × diet, and epistasis (Vita1a × Vita6b, 9a and 11a in BXD females). For CTL × diet, power will be below that of either diet alone.

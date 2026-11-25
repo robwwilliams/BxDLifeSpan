@@ -1,0 +1,53 @@
+CTL, weight at W, survivorships T from W on, BXD and F1 mice, 1,000 hierarchical permutations
+   W diet scans  real   P05 P.any.T scans.P05
+  80   CD    24  9.38 12.47   0.537         0
+  80   HF    22  7.01 10.94   0.930         0
+ 110   CD    23  9.65 13.49   0.627         0
+ 110   HF    22  7.02  9.92   0.768         0
+ 140   CD    22 10.25 14.31   0.556         2
+ 140   HF    22  8.16 10.75   0.550         0
+ 170   CD    21  9.01 14.42   0.870         0
+ 170   HF    21 10.78 12.28   0.183         3
+ 200   CD    20  8.45 14.16   0.948         0
+ 200   HF    20 11.64 12.20   0.089         3
+ 230   CD    19  8.00 14.89   0.986         1
+ 230   HF    19 10.32 12.39   0.259         1
+ 260   CD    18  9.06 15.82   0.947         1
+ 260   HF    18 10.36 12.73   0.333         3
+ 290   CD    17  9.28 15.88   0.928         1
+ 290   HF    17  9.83 12.86   0.462         2
+ 320   CD    16  9.91 16.22   0.859         0
+ 320   HF    16  9.89 12.39   0.395         1
+ 350   CD    15 12.39 16.59   0.415         1
+ 350   HF    15  8.79 11.59   0.489         0
+ 380   CD    14  9.90 14.11   0.650         1
+ 380   HF    14  8.83 11.41   0.417         0
+ 410   CD    13  7.54 12.21   0.927         0
+ 410   HF    13  8.04 11.28   0.620         1
+ 440   CD    12  6.89 10.69   0.911         0
+ 440   HF    12  8.46 11.03   0.422         1
+ 470   CD    11  7.79  9.93   0.406         1
+ 470   HF    11 10.27  9.32   0.011         3
+ 500   CD    10  8.40  9.57   0.172         1
+ 500   HF    10  8.12  9.04   0.145         2
+ 530   CD     9  7.90  9.61   0.285         1
+ 530   HF     9  7.23  8.82   0.313         2
+ 560   CD     8  6.08  9.12   0.784         1
+ 560   HF     8  6.70  8.93   0.506         1
+ 590   CD     7  6.59  8.80   0.516         0
+ 590   HF     7  6.71  8.77   0.455         0
+ 620   CD     6  6.49  8.85   0.535         0
+ 620   HF     6  5.62  8.75   0.866         0
+ 650   CD     5  5.60  8.80   0.851         0
+ 650   HF     5  7.22  9.08   0.352         0
+ 680   CD     4  6.57  8.38   0.332         0
+ 680   HF     4  6.45  8.11   0.368         0
+ 710   CD     3  5.72  8.19   0.582         0
+ 710   HF     3  7.37  6.97   0.028         1
+ 740   CD     2  5.00  7.14   0.571         0
+ 740   HF     2  6.38  6.68   0.083         0
+CD: largest over all W and T: 12.39; permutation 5% threshold 17.63; P = 0.678
+HF: largest over all W and T: 11.64; permutation 5% threshold 13.78; P = 0.310
+CD: scans above their own 5% threshold: 11 of 299 in the real data; permutations median 10, 95th percentile 46; P = 0.489
+HF: scans above their own 5% threshold: 24 of 296 in the real data; permutations median 12, 95th percentile 39; P = 0.186
+All scans: 595; with P <= 0.05 on their own: 35 (about 30 expected by chance)

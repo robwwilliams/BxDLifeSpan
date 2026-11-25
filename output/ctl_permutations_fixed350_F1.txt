@@ -1,0 +1,49 @@
+CTL maps of BXD mice (Danny Arends's method), with 1000 permutations, mode: fixed 
+
+==== CD
+Inflation (median chi-square / expected): real 2.56; permutations, median 2.68 (5% to 95%: 2.27 to 3.24)
+B&H at 5% FDR over one T-age's markers: real data, 12 of 15 T-ages call at least one marker (24679 marker x T-age calls); in the permutations, at least one call in 100%, median calls 27504
+B&H over all markers and T-ages: real 23131 calls; permutations, at least one call in 100% 
+Bonferroni over one T-age's markers: real 786 calls; permutations, at least one call in 100%
+Bonferroni over all markers and T-ages: real 210 calls; permutations, at least one call in 100%
+Any marker, any T-age: largest real 12.39; permutation thresholds 5% 16.59, 10% 15.37, 63% 11.33; genome-wide P = 0.415
+   T  real   P05   P10   P63  P.gw                        peak
+ 350  7.51 15.75 14.59 10.46 0.992  Chr 12 59.4 Mb r(D) > r(B)
+ 380  8.18 16.08 14.82 10.56 0.968  Chr 12 59.4 Mb r(D) > r(B)
+ 410 12.39 14.68 13.42  9.65 0.188   Chr 1 28.5 Mb r(B) > r(D)
+ 440  6.43 11.10 10.22  7.38 0.864   Chr 9 64.5 Mb r(B) > r(D)
+ 470  6.57 10.45  9.76  7.11 0.767   Chr 3 99.8 Mb r(B) > r(D)
+ 500  5.09  9.04  8.50  6.19 0.930   Chr 3 99.8 Mb r(B) > r(D)
+ 530  4.21  8.29  7.55  5.41 0.961  Chr 16 84.8 Mb r(B) > r(D)
+ 560  4.37  8.44  7.80  5.52 0.968    Chr 4 9.3 Mb r(D) > r(B)
+ 590  4.58  9.02  8.34  5.87 0.961   Chr 4 19.6 Mb r(D) > r(B)
+ 620  5.60  9.10  8.34  6.05 0.765   Chr 1 22.1 Mb r(B) > r(D)
+ 650  5.08  8.24  7.47  5.34 0.733   Chr 4 32.1 Mb r(D) > r(B)
+ 680  4.68  9.04  8.47  5.98 0.967   Chr X 57.7 Mb r(B) > r(D)
+ 710  6.48  9.49  8.74  6.35 0.585 Chr 10 116.1 Mb r(D) > r(B)
+ 740  6.17  9.85  9.19  6.60 0.765  Chr 19 57.7 Mb r(B) > r(D)
+ 770  7.11  6.91  6.41  4.61 0.040  Chr 4 125.6 Mb r(D) > r(B)
+
+==== HF
+Inflation (median chi-square / expected): real 2.61; permutations, median 2.25 (5% to 95%: 1.95 to 2.70)
+B&H at 5% FDR over one T-age's markers: real data, 13 of 15 T-ages call at least one marker (26779 marker x T-age calls); in the permutations, at least one call in 100%, median calls 14932
+B&H over all markers and T-ages: real 24928 calls; permutations, at least one call in 100% 
+Bonferroni over one T-age's markers: real 791 calls; permutations, at least one call in 100%
+Bonferroni over all markers and T-ages: real 251 calls; permutations, at least one call in 97%
+Any marker, any T-age: largest real 8.79; permutation thresholds 5% 11.59, 10% 10.85, 63% 8.32; genome-wide P = 0.489
+   T real   P05  P10  P63  P.gw                       peak
+ 350 7.26 10.28 9.51 6.77 0.490  Chr 5 57.6 Mb r(B) > r(D)
+ 380 7.12 10.04 9.29 6.53 0.471  Chr 5 57.6 Mb r(B) > r(D)
+ 410 8.79 10.19 9.43 6.75 0.168  Chr 5 57.6 Mb r(B) > r(D)
+ 440 7.06 10.01 9.16 6.67 0.526  Chr 5 55.5 Mb r(B) > r(D)
+ 470 6.61  9.07 8.43 6.16 0.490 Chr X 166.4 Mb r(D) > r(B)
+ 500 6.52  8.03 7.47 5.43 0.250 Chr 2 134.1 Mb r(D) > r(B)
+ 530 8.19  9.42 8.77 6.43 0.170 Chr 2 134.1 Mb r(D) > r(B)
+ 560 6.89 10.16 9.55 7.05 0.673 Chr 2 134.1 Mb r(D) > r(B)
+ 590 5.02  7.56 7.06 5.10 0.675   Chr 2 9.0 Mb r(D) > r(B)
+ 620 6.42  6.90 6.35 4.70 0.093 Chr 18 67.3 Mb r(D) > r(B)
+ 650 6.28  7.15 6.69 4.76 0.148 Chr 1 151.9 Mb r(D) > r(B)
+ 680 5.84  7.58 6.89 5.08 0.317 Chr 5 117.5 Mb r(D) > r(B)
+ 710 3.59  7.15 6.66 4.77 0.979 Chr 5 126.7 Mb r(D) > r(B)
+ 740 4.99  7.26 6.60 4.72 0.506 Chr 1 128.5 Mb r(D) > r(B)
+ 770 4.61  7.38 6.85 4.83 0.707 Chr X 139.5 Mb r(D) > r(B)

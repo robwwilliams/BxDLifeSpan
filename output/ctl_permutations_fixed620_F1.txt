@@ -1,0 +1,31 @@
+CTL maps of BXD mice (Danny Arends's method), with 1000 permutations, mode: fixed 
+
+==== CD
+Inflation (median chi-square / expected): real 1.84; permutations, median 1.85 (5% to 95%: 1.50 to 2.37)
+B&H at 5% FDR over one T-age's markers: real data, 1 of 6 T-ages call at least one marker (255 marker x T-age calls); in the permutations, at least one call in 100%, median calls 1692
+B&H over all markers and T-ages: real 1 calls; permutations, at least one call in 94% 
+Bonferroni over one T-age's markers: real 1 calls; permutations, at least one call in 83%
+Bonferroni over all markers and T-ages: real 1 calls; permutations, at least one call in 56%
+Any marker, any T-age: largest real 6.49; permutation thresholds 5% 8.85, 10% 8.24, 63% 6.21; genome-wide P = 0.535
+   T real  P05  P10  P63  P.gw                        peak
+ 620 4.13 6.33 5.89 4.29 0.718 Chr 10 105.5 Mb r(D) > r(B)
+ 650 4.28 6.67 6.24 4.55 0.747 Chr 13 106.4 Mb r(D) > r(B)
+ 680 6.49 7.68 7.18 5.27 0.212 Chr 10 115.8 Mb r(D) > r(B)
+ 710 5.26 8.39 7.80 5.58 0.734 Chr 10 115.8 Mb r(D) > r(B)
+ 740 4.35 8.21 7.60 5.45 0.940   Chr 3 72.8 Mb r(B) > r(D)
+ 770 3.75 6.30 5.86 4.22 0.818   Chr 1 18.2 Mb r(B) > r(D)
+
+==== HF
+Inflation (median chi-square / expected): real 1.89; permutations, median 1.88 (5% to 95%: 1.54 to 2.33)
+B&H at 5% FDR over one T-age's markers: real data, 5 of 6 T-ages call at least one marker (1128 marker x T-age calls); in the permutations, at least one call in 100%, median calls 1764
+B&H over all markers and T-ages: real 1251 calls; permutations, at least one call in 96% 
+Bonferroni over one T-age's markers: real 0 calls; permutations, at least one call in 87%
+Bonferroni over all markers and T-ages: real 0 calls; permutations, at least one call in 59%
+Any marker, any T-age: largest real 5.62; permutation thresholds 5% 8.75, 10% 8.22, 63% 6.28; genome-wide P = 0.866
+   T real  P05  P10  P63  P.gw                        peak
+ 620 4.40 7.20 6.62 4.83 0.811  Chr 13 48.3 Mb r(B) > r(D)
+ 650 4.63 7.31 6.72 4.85 0.731  Chr 13 48.3 Mb r(B) > r(D)
+ 680 5.34 7.11 6.51 4.76 0.384 Chr 12 102.7 Mb r(D) > r(B)
+ 710 5.31 8.07 7.51 5.39 0.656 Chr 12 100.6 Mb r(D) > r(B)
+ 740 5.62 7.65 7.02 5.14 0.445 Chr 12 106.8 Mb r(D) > r(B)
+ 770 4.69 7.17 6.69 4.70 0.635  Chr 3 107.8 Mb r(D) > r(B)

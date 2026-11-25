@@ -1,0 +1,37 @@
+CTL maps of BXD mice (Danny Arends's method), with 1000 permutations, mode: fixed 
+
+==== CD
+Inflation (median chi-square / expected): real 2.21; permutations, median 2.03 (5% to 95%: 1.66 to 2.52)
+B&H at 5% FDR over one T-age's markers: real data, 9 of 9 T-ages call at least one marker (8423 marker x T-age calls); in the permutations, at least one call in 100%, median calls 4170
+B&H over all markers and T-ages: real 7022 calls; permutations, at least one call in 97% 
+Bonferroni over one T-age's markers: real 57 calls; permutations, at least one call in 96%
+Bonferroni over all markers and T-ages: real 3 calls; permutations, at least one call in 74%
+Any marker, any T-age: largest real 7.90; permutation thresholds 5% 9.61, 10% 8.92, 63% 6.85; genome-wide P = 0.285
+   T real  P05  P10  P63  P.gw                        peak
+ 530 5.86 7.83 7.28 5.25 0.409  Chr 1 176.1 Mb r(D) > r(B)
+ 560 5.49 7.50 6.94 5.05 0.460    Chr 7 4.8 Mb r(B) > r(D)
+ 590 5.39 8.25 7.58 5.45 0.651   Chr 4 19.7 Mb r(D) > r(B)
+ 620 5.38 7.30 6.74 4.96 0.461   Chr 15 9.9 Mb r(D) > r(B)
+ 650 6.14 7.59 6.85 5.01 0.232  Chr 2 116.7 Mb r(D) > r(B)
+ 680 6.14 8.10 7.49 5.50 0.377 Chr 10 115.8 Mb r(D) > r(B)
+ 710 5.66 8.53 7.91 5.76 0.665 Chr 13 110.0 Mb r(D) > r(B)
+ 740 5.89 8.78 8.14 5.81 0.606  Chr 2 114.1 Mb r(D) > r(B)
+ 770 7.90 6.49 5.98 4.32 0.008 Chr 11 111.2 Mb r(B) > r(D)
+
+==== HF
+Inflation (median chi-square / expected): real 2.24; permutations, median 1.78 (5% to 95%: 1.49 to 2.15)
+B&H at 5% FDR over one T-age's markers: real data, 8 of 9 T-ages call at least one marker (7387 marker x T-age calls); in the permutations, at least one call in 100%, median calls 2203
+B&H over all markers and T-ages: real 6663 calls; permutations, at least one call in 94% 
+Bonferroni over one T-age's markers: real 32 calls; permutations, at least one call in 90%
+Bonferroni over all markers and T-ages: real 15 calls; permutations, at least one call in 56%
+Any marker, any T-age: largest real 7.23; permutation thresholds 5% 8.82, 10% 8.21, 63% 6.42; genome-wide P = 0.313
+   T real  P05  P10  P63  P.gw                        peak
+ 530 7.23 7.15 6.70 4.86 0.049   Chr 2 14.9 Mb r(D) > r(B)
+ 560 6.09 6.59 6.03 4.45 0.094   Chr 2 14.9 Mb r(D) > r(B)
+ 590 7.04 6.52 6.10 4.48 0.024   Chr 2 15.0 Mb r(D) > r(B)
+ 620 4.17 5.31 4.92 3.57 0.313  Chr 18 68.2 Mb r(D) > r(B)
+ 650 5.90 6.63 6.06 4.34 0.132   Chr 2 15.0 Mb r(D) > r(B)
+ 680 5.18 6.90 6.31 4.54 0.358  Chr 1 167.0 Mb r(D) > r(B)
+ 710 4.76 7.75 7.11 5.08 0.751 Chr 13 100.4 Mb r(D) > r(B)
+ 740 5.54 7.84 7.21 5.15 0.479  Chr 3 107.1 Mb r(D) > r(B)
+ 770 6.69 7.73 7.16 5.08 0.161  Chr 9 107.8 Mb r(B) > r(D)

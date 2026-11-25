@@ -23,5 +23,8 @@ for(W in seq(80, 740, 30)){
 sink("output/ctl_grid_summary.txt", split = TRUE)
 cat("CTL, weight at W, survivorships T from W on, BXD and F1 mice, 1,000 hierarchical permutations\n"); options(width = 120); print(out, row.names = FALSE)
 for(d in names(best)){ r <- apply(best[[d]], 1, max); cat(sprintf("%s: largest over all W and T: %.2f; permutation 5%% threshold %.2f; P = %.3f\n", d, r[1], quantile(r[-1], .95), (1 + sum(r[-1] >= r[1])) / length(r))) }
+for(d in names(best)){                                                                     # is the number of scans at P <= 0.05 unusual? Neighboring scans share mice
+  M <- do.call(cbind, lapply(seq(80, 740, 30), function(W){ x <- read.delim(sprintf("output/ctl_permutations_fixed%d_F1_maxima.txt", W), check.names = FALSE); as.matrix(x[, grep(paste0("^", d, "\\.T"), colnames(x)), drop = FALSE]) }))
+  th <- apply(M[-1, ], 2, quantile, 0.95); n <- rowSums(sweep(M, 2, th, ">=")); cat(sprintf("%s: scans above their own 5%% threshold: %d of %d in the real data; permutations median %.0f, 95th percentile %.0f; P = %.3f\n", d, n[1], ncol(M), median(n[-1]), quantile(n[-1], .95), (1 + sum(n[-1] >= n[1])) / length(n))) }
 cat(sprintf("All scans: %d; with P <= 0.05 on their own: %d (about %.0f expected by chance)\n", sum(out$scans), sum(out$scans.P05), 0.05 * sum(out$scans)))
 sink()

@@ -69,7 +69,7 @@ Correlation over markers of the signed −log10 P, at T20, T380, T500 and T620:
 - **The permutation swaps strains within two strata (Taylor's and newer) and takes no account of kinship** beyond that.
 - **Within strains only** (`ctl_permutations.R 1000 12 within`; a different question, not your statistic): chow real 6.3 against a threshold of 8.7 (P = 0.68); high fat 8.7 against 11.9 (P = 0.37).
 
-### The other design: weight at one age, survivorship rising (25 November 2026)
+### The design of Arends et al. 2026: weight at one age, survivorship rising (25 November 2026)
 
 Rob: "did you take body weight at 3 months and then compute lifespan:weight correlations of the survivorship up toward 800 days?" The runs above did not: as in `CTL.R`, weight is taken at the T-age itself, so weight and survivorship move together. The other design holds weight at 90, 180, 365 or 545 days and steps only the survivorship, every 30 days (`weight_lifespan_fixed.R`, and `ctl_permutations.R 1000 4 fixed 90`).
 
@@ -78,6 +78,14 @@ Rob: "did you take body weight at 3 months and then compute lifespan:weight corr
 - **On chow it is weaker:** mostly negative, and pooled intervals exclude zero at 7 of 21 T-ages for weight at 180 days and at one or none for the others.
 - **Caution:** only 309 chow and 329 high-fat mice have a weight at 90 days, half the numbers at 180 days, and few survive to late T-ages (HF at T680: 84).
 - **CTL maps, same design, 1,000 permutations of strains:** nothing passes genome-wide at any weight age (largest P 0.21 on high fat, weight at 180 days; 0.33 to 0.70 otherwise). Four of 124 single scans fall below 5% on their own, about 6 expected by chance. B&H again calls markers in 100% of the permuted maps.
+
+### The full scan (25 November 2026)
+
+Rob: "the full actuarial scan across all ages at which animals were weighed (overkill)". Weight at every 30 days from 80 to 740, against every later survivorship to T770; BXD and F1 mice; 1,000 hierarchical permutations, the same at every weight age (`ctl_permutations.R 1000 3 fixed <W> F1`, `ctl_grid_summary.R`, `ctl_grid_figure.R`; figure `output/maps/CTL_grid.svg`).
+
+- **No CTL passes.** Over all 595 scans the largest −log10 P is 12.4 on chow (5% threshold 17.6, P = 0.68) and 11.6 on high fat (13.8, P = 0.31).
+- **Single scans below 5%: 35 of 595, about 30 expected by chance** (11 on chow, 24 on high fat). Neighboring scans share mice and weights, so the colored cells come in runs; the count is not unusual on either diet (P = 0.49 and 0.19; in the permutations the median count is 10 and 12, and the 95th percentile 46 and 39).
+- **Strongest leads:** high fat Chr 6 at 17.6 Mb, weight at 200–290 days, T620 (P = 0.007–0.019 in single scans), and chow Chr 11 at 111 Mb at T770, weight at 470–530 days (P = 0.004–0.014).
 
 **Suggestions for the paper:** show your CTL maps in Extended Data as exploratory, say that they were tested by permuting strains, and leave the Results claim out; or look for a design with more power, such as a model of weight × genotype with a strain intercept and slope (not yet tried).
 

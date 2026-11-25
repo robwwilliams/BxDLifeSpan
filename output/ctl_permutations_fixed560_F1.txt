@@ -1,0 +1,35 @@
+CTL maps of BXD mice (Danny Arends's method), with 1000 permutations, mode: fixed 
+
+==== CD
+Inflation (median chi-square / expected): real 2.04; permutations, median 1.94 (5% to 95%: 1.58 to 2.43)
+B&H at 5% FDR over one T-age's markers: real data, 8 of 8 T-ages call at least one marker (4247 marker x T-age calls); in the permutations, at least one call in 100%, median calls 2806
+B&H over all markers and T-ages: real 2551 calls; permutations, at least one call in 94% 
+Bonferroni over one T-age's markers: real 3 calls; permutations, at least one call in 92%
+Bonferroni over all markers and T-ages: real 0 calls; permutations, at least one call in 61%
+Any marker, any T-age: largest real 6.08; permutation thresholds 5% 9.12, 10% 8.46, 63% 6.49; genome-wide P = 0.784
+   T real  P05  P10  P63  P.gw                        peak
+ 560 5.05 7.80 7.17 5.17 0.673   Chr 9 35.0 Mb r(D) > r(B)
+ 590 5.04 7.84 7.10 5.28 0.718  Chr 1 163.3 Mb r(D) > r(B)
+ 620 5.54 6.94 6.44 4.81 0.327   Chr 15 9.9 Mb r(D) > r(B)
+ 650 5.49 7.15 6.52 4.82 0.355   Chr 15 4.0 Mb r(D) > r(B)
+ 680 5.80 7.64 7.22 5.22 0.390 Chr 10 115.8 Mb r(D) > r(B)
+ 710 4.99 8.00 7.42 5.37 0.758  Chr 16 28.0 Mb r(B) > r(D)
+ 740 5.10 8.22 7.63 5.45 0.765 Chr 13 106.4 Mb r(D) > r(B)
+ 770 6.08 6.05 5.61 4.06 0.048 Chr 11 111.2 Mb r(B) > r(D)
+
+==== HF
+Inflation (median chi-square / expected): real 2.12; permutations, median 1.77 (5% to 95%: 1.47 to 2.13)
+B&H at 5% FDR over one T-age's markers: real data, 7 of 8 T-ages call at least one marker (3980 marker x T-age calls); in the permutations, at least one call in 100%, median calls 2010
+B&H over all markers and T-ages: real 3633 calls; permutations, at least one call in 94% 
+Bonferroni over one T-age's markers: real 28 calls; permutations, at least one call in 88%
+Bonferroni over all markers and T-ages: real 6 calls; permutations, at least one call in 57%
+Any marker, any T-age: largest real 6.70; permutation thresholds 5% 8.93, 10% 8.39, 63% 6.36; genome-wide P = 0.506
+   T real  P05  P10  P63  P.gw                        peak
+ 560 6.12 6.53 6.07 4.46 0.093   Chr 2 15.0 Mb r(D) > r(B)
+ 590 6.40 6.35 5.95 4.34 0.046   Chr 2 15.0 Mb r(D) > r(B)
+ 620 4.03 5.47 4.98 3.68 0.428   Chr 2 15.0 Mb r(D) > r(B)
+ 650 4.95 6.56 6.04 4.32 0.374   Chr 2 15.0 Mb r(D) > r(B)
+ 680 5.21 6.92 6.42 4.64 0.409 Chr 12 104.3 Mb r(D) > r(B)
+ 710 5.60 7.94 7.28 5.33 0.533 Chr 12 106.8 Mb r(D) > r(B)
+ 740 6.70 8.07 7.43 5.32 0.206 Chr 12 106.8 Mb r(D) > r(B)
+ 770 6.66 7.72 7.20 5.15 0.186  Chr 9 107.8 Mb r(B) > r(D)

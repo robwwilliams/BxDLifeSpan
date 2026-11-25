@@ -25,27 +25,35 @@ f1class <- ifelse(parents[, 1] %in% short & parents[, 2] %in% short, "short", if
 names(f1class) <- types
 stopifnot(!any(is.na(f1class)))
 
+# A "unit" is one row of the maps: a BXD strain or an F1 type. Everything below is indexed by unit name, never by position.
 units <- c(strains, types)
 G3 <- pr; AP <- pr
 for(chr in names(pr)){
   p <- pr[[chr]]; pD <- p[, "DD", ]; pB <- p[, "BB", ]; p1 <- parents[, 1]; p2 <- parents[, 2]
   g <- array(0, c(length(units), 3, dim(p)[3]), list(units, c("BB", "BD", "DD"), dimnames(p)[[3]]))
+  # strains: as they are (a strain is BB or DD)
   g[strains, "BB", ] <- pB[strains, ]; g[strains, "DD", ] <- pD[strains, ]
+  # an F1 takes one allele from each parent: BB if both parents give B, DD if both give D, BD otherwise. The parents are inbred, so
+  # this is a product of two strains' probabilities, marker by marker (it would be an exact 0 or 1 where both calls are certain)
   g[types, "BB", ] <- pB[p1, ] * pB[p2, ]
   g[types, "BD", ] <- pB[p1, ] * pD[p2, ] + pD[p1, ] * pB[p2, ]
   g[types, "DD", ] <- pD[p1, ] * pD[p2, ]
   G3[[chr]] <- g
+  # additive coding: the share of alleles that are D (strain 0 or 1; an F1 that is BD, 0.5). The coefficient is DD minus BB in days.
   a <- array(0, c(length(units), 2, dim(p)[3]), list(units, c("B", "D"), dimnames(p)[[3]]))
   a[, "B", ] <- g[, "BB", ] + g[, "BD", ] / 2; a[, "D", ] <- g[, "DD", ] + g[, "BD", ] / 2
   AP[[chr]] <- a
 }
 attr(G3, "crosstype") <- "f2"; attr(G3, "alleleprobs") <- FALSE
 attr(AP, "alleleprobs") <- TRUE
+# LOCO kinship of every pair of units: alleles shared, summed over all markers except the chromosome scanned, divided by their number
 S <- lapply(AP, function(a){ m <- matrix(a, nrow = dim(a)[1]); tcrossprod(m) })      # allele sharing summed over a chromosome's markers
 nm <- sapply(AP, function(a) dim(a)[3])
 Kloco <- lapply(names(AP), function(chr){ k <- (Reduce(`+`, S) - S[[chr]]) / (sum(nm) - nm[chr]); dimnames(k) <- list(units, units); k })
 names(Kloco) <- names(AP)
 
+# The trait: mean age at death of a unit's mice alive at T; NA with fewer than 3. F1 class (below) is a covariate so that the average
+# hybrid vigor of short x short or long x long F1s is not read as an effect of every marker.
 # Unit means (units x T-ages, NA where a unit has fewer than 3 mice alive at T); strains = FALSE leaves the F1s out
 unitMeans <- function(diet, tps, strains.only = FALSE){
   x <- ld[which(ld[, "Diet"] == diet), ]; z <- f1[f1[, "DietCode"] == diet, ]

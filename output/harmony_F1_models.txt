@@ -1,0 +1,29 @@
+comparison	diet	T	r	n	peaks
+strain + F1 means: mixed model vs plain lm with F1 class	CD	20	0.949	106	3
+strains alone: mixed model vs plain lm	CD	20	0.998	93	5
+mixed model: strains + F1s vs strains alone	CD	20	0.963	106	3
+strain + F1 means: mixed model vs plain lm with F1 class	CD	380	0.965	102	4
+strains alone: mixed model vs plain lm	CD	380	1	89	5
+mixed model: strains + F1s vs strains alone	CD	380	0.964	102	4
+strain + F1 means: mixed model vs plain lm with F1 class	CD	500	0.983	99	4
+strains alone: mixed model vs plain lm	CD	500	0.999	86	5
+mixed model: strains + F1s vs strains alone	CD	500	0.981	99	4
+strain + F1 means: mixed model vs plain lm with F1 class	CD	620	0.958	86	3
+strains alone: mixed model vs plain lm	CD	620	0.979	73	4
+mixed model: strains + F1s vs strains alone	CD	620	0.986	86	3
+strain + F1 means: mixed model vs plain lm with F1 class	HF	20	0.876	100	3
+strains alone: mixed model vs plain lm	HF	20	0.951	87	3
+mixed model: strains + F1s vs strains alone	HF	20	0.978	100	4
+strain + F1 means: mixed model vs plain lm with F1 class	HF	380	0.839	94	3
+strains alone: mixed model vs plain lm	HF	380	0.959	81	4
+mixed model: strains + F1s vs strains alone	HF	380	0.954	94	3
+strain + F1 means: mixed model vs plain lm with F1 class	HF	500	0.945	84	5
+strains alone: mixed model vs plain lm	HF	500	0.979	71	5
+mixed model: strains + F1s vs strains alone	HF	500	0.978	84	5
+strain + F1 means: mixed model vs plain lm with F1 class	HF	620	0.955	73	3
+strains alone: mixed model vs plain lm	HF	620	0.997	60	5
+mixed model: strains + F1s vs strains alone	HF	620	0.966	73	4
+individual mice: R/qtl2 with LOCO kinship vs lmer with a random strain intercept (300 markers)	CD	20	0.805	1085	NA
+individual mice: R/qtl2 with LOCO kinship vs lmer with a random strain intercept (300 markers)	CD	500	0.866	868	NA
+individual mice: R/qtl2 with LOCO kinship vs lmer with a random strain intercept (300 markers)	HF	20	0.858	980	NA
+individual mice: R/qtl2 with LOCO kinship vs lmer with a random strain intercept (300 markers)	HF	500	0.863	704	NA

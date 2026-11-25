@@ -84,6 +84,6 @@ In **c**–**f**, kinship explains 33% of the variance in age at death at T20 on
 - Within each genotype the correlation is mostly negative in younger survivorships (heavier mice die sooner) and mostly positive in older ones. Both genotypes' correlations are negative at most markers up to about 290 days on high fat and 470 on chow, and positive at most markers from about 440 and 560 days; between, they are near zero. The correlations pooled over all mice are small (−0.17 to +0.22), and most of their 95% intervals over strains include zero, so the change of sign is gradual, not a date (`weight_lifespan_sign.R`). So a warm color means a weaker negative correlation, or a stronger positive one, in *D* carriers.
 - Mice entered a map if they were on their diet by the age and alive at it. Markers with fewer than 20 mice of either genotype are blank.
 
-Rows, bins, colors, ticks and white shading are as in Fig. 2. *P* values are not corrected for the number of markers or ages. Exploratory analyzes.
+Permutations of strains (1,000; `ctl_permutations.R`) find no CTL that passes a genome-wide 5% threshold for any T-age. Rows, bins, colors, ticks and white shading are as in Fig. 2. *P* values are not corrected for the number of markers or ages. Exploratory analyzes.
 
 *Source: `bodyweight.R`, `adjust.R` and `CTL.R` (run by `run_CTL.R`); Danny Arends's `QTL_BW_5Nov.xlsx`; the signs of the correlations from `ctl_signs.R` (`output/ctl_signs.txt`); panels `output/maps/Figure3_bodyweight_CTL.svg`.*

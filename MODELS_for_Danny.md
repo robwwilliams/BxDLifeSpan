@@ -117,6 +117,9 @@ Danny: "I wouldnt have exected the permutations to be so far off the BF adjustme
   1. **Weights.** At T200 on chow, 623 mice with these weights carry the information of 359 equally weighted ones (Kish), yet Fisher's z uses 623. The ratio, 1.74, is the chow inflation in row 2.
   2. **Shared genomes.** The 623 mice are 95 strains, and the intraclass correlation of mice within strains is 0.29 for lifespan and 0.52 for weight.
 
+- **With the F1 mice:** Cauchy P = 0.92 on chow and 0.37 on high fat (the maximum: 0.92 and 0.35).
+- **The full grid was not redone with Cauchy.** The rerun was stopped on 25 November 2026 after 17 of 23 weighing ages (80–560 days), at Rob's word that the CTL work is closed ("Nothing is significant and this work is only going into a paper as a note that sample size is inadequate"). The grid results above (595 scans, chow P = 0.68, high fat P = 0.31) are complete and are what that note rests on.
+
 **Suggestions for the paper:** show your CTL maps in Extended Data as exploratory, say that they were tested by permuting strains, and leave the Results claim out; or look for a design with more power, such as a model of weight × genotype with a strain intercept and slope (not yet tried).
 
 **Not done (stretch goals, Rob, 24 November 2026):** CTL × diet, and epistasis (Vita1a × Vita6b, 9a and 11a in BXD females). For CTL × diet, power will be below that of either diet alone.

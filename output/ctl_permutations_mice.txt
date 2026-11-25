@@ -1,69 +1,69 @@
-CTL maps of BXD mice (Danny Arends's method), with 200 permutations, mode: mice 
+CTL maps of BXD mice (Danny Arends's method), with 1000 permutations, mode: mice 
 
 ==== CD
-Inflation (median chi-square / expected): real 2.75; permutations, median 1.77 (5% to 95%: 1.63 to 1.91)
-B&H at 5% FDR over one T-age's markers: real data, 21 of 25 T-ages call at least one marker (43815 marker x T-age calls); in the permutations, at least one call in 100%, median calls 6846
-B&H over all markers and T-ages: real 40756 calls; permutations, at least one call in 100% 
-Bonferroni over one T-age's markers: real 2226 calls; permutations, at least one call in 100%
-Bonferroni over all markers and T-ages: real 349 calls; permutations, at least one call in 76%
-Any marker, any T-age: largest real 10.19; permutation thresholds 5% 9.81, 10% 9.06, 63% 7.36; genome-wide P = 0.030
+Inflation (median chi-square / expected): real 2.75; permutations, median 1.72 (5% to 95%: 1.43 to 2.12)
+B&H at 5% FDR over one T-age's markers: real data, 21 of 25 T-ages call at least one marker (43815 marker x T-age calls); in the permutations, at least one call in 100%, median calls 5234
+B&H over all markers and T-ages: real 40756 calls; permutations, at least one call in 91% 
+Bonferroni over one T-age's markers: real 2226 calls; permutations, at least one call in 95%
+Bonferroni over all markers and T-ages: real 349 calls; permutations, at least one call in 50%
+Any marker, any T-age: largest real 10.19; permutation thresholds 5% 9.45, 10% 8.86, 63% 6.71; genome-wide P = 0.023
    T  real  P05  P10  P63  P.gw                        peak
-  50  9.55 7.08 6.36 4.05 0.005  Chr 6 122.8 Mb r(B) > r(D)
-  80  8.11 7.05 6.53 4.48 0.020  Chr 10 66.6 Mb r(B) > r(D)
- 110  7.89 7.13 6.44 4.62 0.030 Chr 11 101.5 Mb r(B) > r(D)
- 140 10.19 6.80 6.43 4.42 0.005  Chr 11 99.7 Mb r(B) > r(D)
- 170  8.37 6.72 6.25 4.28 0.015  Chr 11 99.7 Mb r(B) > r(D)
- 200  7.78 7.04 6.59 4.48 0.025 Chr 10 121.3 Mb r(D) > r(B)
- 230  7.94 7.56 6.80 4.53 0.030  Chr 6 115.5 Mb r(B) > r(D)
- 260  7.75 7.39 6.76 4.65 0.055  Chr 18 58.4 Mb r(B) > r(D)
- 290  8.07 7.62 7.26 4.85 0.035  Chr 2 178.7 Mb r(D) > r(B)
- 320  7.66 8.12 7.25 5.03 0.075  Chr 2 178.7 Mb r(D) > r(B)
- 350  6.94 7.69 7.19 4.90 0.149  Chr 12 59.4 Mb r(D) > r(B)
- 380  9.50 7.25 6.69 4.61 0.005   Chr 1 28.5 Mb r(B) > r(D)
- 410  6.83 6.82 6.10 4.46 0.055  Chr 1 176.1 Mb r(D) > r(B)
- 440  5.78 6.90 6.59 4.50 0.239  Chr 1 172.6 Mb r(D) > r(B)
- 470  6.15 7.10 6.31 4.35 0.129  Chr 1 172.6 Mb r(D) > r(B)
- 500  6.07 7.05 6.55 4.47 0.184  Chr 1 176.1 Mb r(D) > r(B)
- 530  5.38 6.53 6.12 4.31 0.274  Chr 1 176.1 Mb r(D) > r(B)
- 560  4.76 7.11 6.29 4.15 0.388   Chr 9 35.0 Mb r(D) > r(B)
- 590  6.58 6.83 6.24 4.35 0.080   Chr 4 33.9 Mb r(D) > r(B)
- 620  4.56 6.82 6.29 4.36 0.567 Chr 10 103.4 Mb r(D) > r(B)
- 650  4.81 7.22 6.54 4.37 0.498 Chr 10 103.4 Mb r(D) > r(B)
- 680  5.51 6.41 6.11 4.22 0.194   Chr 1 22.1 Mb r(B) > r(D)
- 710  4.29 7.02 6.38 4.38 0.667  Chr 2 113.4 Mb r(D) > r(B)
- 740  4.49 6.25 5.67 4.16 0.502   Chr 1 13.0 Mb r(B) > r(D)
- 770  3.49 6.27 5.88 4.13 0.871  Chr 18 29.1 Mb r(B) > r(D)
+  50  9.55 5.77 5.19 3.70 0.002  Chr 6 122.8 Mb r(B) > r(D)
+  80  8.11 6.38 5.90 4.11 0.006  Chr 10 66.6 Mb r(B) > r(D)
+ 110  7.89 6.71 6.16 4.32 0.011 Chr 11 101.5 Mb r(B) > r(D)
+ 140 10.19 6.98 6.40 4.51 0.002  Chr 11 99.7 Mb r(B) > r(D)
+ 170  8.37 7.21 6.72 4.62 0.011  Chr 11 99.7 Mb r(B) > r(D)
+ 200  7.78 7.47 6.94 4.72 0.034 Chr 10 121.3 Mb r(D) > r(B)
+ 230  7.94 7.66 6.87 4.79 0.037  Chr 6 115.5 Mb r(B) > r(D)
+ 260  7.75 7.66 7.10 4.89 0.049  Chr 18 58.4 Mb r(B) > r(D)
+ 290  8.07 7.95 7.15 4.87 0.044  Chr 2 178.7 Mb r(D) > r(B)
+ 320  7.66 8.03 7.18 4.91 0.070  Chr 2 178.7 Mb r(D) > r(B)
+ 350  6.94 7.58 6.94 4.81 0.101  Chr 12 59.4 Mb r(D) > r(B)
+ 380  9.50 7.49 6.81 4.70 0.006   Chr 1 28.5 Mb r(B) > r(D)
+ 410  6.83 7.53 6.91 4.74 0.106  Chr 1 176.1 Mb r(D) > r(B)
+ 440  5.78 7.26 6.73 4.69 0.288  Chr 1 172.6 Mb r(D) > r(B)
+ 470  6.15 7.31 6.57 4.61 0.168  Chr 1 172.6 Mb r(D) > r(B)
+ 500  6.07 7.13 6.48 4.52 0.162  Chr 1 176.1 Mb r(D) > r(B)
+ 530  5.38 6.98 6.41 4.48 0.309  Chr 1 176.1 Mb r(D) > r(B)
+ 560  4.76 6.84 6.37 4.37 0.487   Chr 9 35.0 Mb r(D) > r(B)
+ 590  6.58 6.74 6.23 4.32 0.062   Chr 4 33.9 Mb r(D) > r(B)
+ 620  4.56 6.64 6.14 4.16 0.453 Chr 10 103.4 Mb r(D) > r(B)
+ 650  4.81 6.50 5.91 4.10 0.354 Chr 10 103.4 Mb r(D) > r(B)
+ 680  5.51 6.12 5.63 3.88 0.118   Chr 1 22.1 Mb r(B) > r(D)
+ 710  4.29 6.34 5.91 4.05 0.532  Chr 2 113.4 Mb r(D) > r(B)
+ 740  4.49 6.33 5.82 4.04 0.426   Chr 1 13.0 Mb r(B) > r(D)
+ 770  3.49 5.90 5.53 3.82 0.786  Chr 18 29.1 Mb r(B) > r(D)
 
 ==== HF
-Inflation (median chi-square / expected): real 2.51; permutations, median 1.61 (5% to 95%: 1.47 to 1.75)
-B&H at 5% FDR over one T-age's markers: real data, 23 of 25 T-ages call at least one marker (32063 marker x T-age calls); in the permutations, at least one call in 100%, median calls 3951
-B&H over all markers and T-ages: real 28912 calls; permutations, at least one call in 97% 
-Bonferroni over one T-age's markers: real 1134 calls; permutations, at least one call in 98%
-Bonferroni over all markers and T-ages: real 183 calls; permutations, at least one call in 47%
-Any marker, any T-age: largest real 9.41; permutation thresholds 5% 8.86, 10% 8.29, 63% 6.77; genome-wide P = 0.030
+Inflation (median chi-square / expected): real 2.51; permutations, median 1.52 (5% to 95%: 1.29 to 1.80)
+B&H at 5% FDR over one T-age's markers: real data, 23 of 25 T-ages call at least one marker (32063 marker x T-age calls); in the permutations, at least one call in 100%, median calls 2352
+B&H over all markers and T-ages: real 28912 calls; permutations, at least one call in 74% 
+Bonferroni over one T-age's markers: real 1134 calls; permutations, at least one call in 86%
+Bonferroni over all markers and T-ages: real 183 calls; permutations, at least one call in 30%
+Any marker, any T-age: largest real 9.41; permutation thresholds 5% 8.41, 10% 7.88, 63% 6.22; genome-wide P = 0.019
    T real  P05  P10  P63  P.gw                        peak
-  50 5.28 4.91 4.67 3.05 0.035  Chr 2 116.6 Mb r(D) > r(B)
-  80 5.35 5.55 5.28 3.61 0.095  Chr 16 97.4 Mb r(D) > r(B)
- 110 5.99 5.86 5.56 3.80 0.045  Chr 16 97.4 Mb r(D) > r(B)
- 140 5.40 6.06 5.45 3.76 0.119  Chr 16 97.4 Mb r(D) > r(B)
- 170 5.32 5.87 5.30 3.75 0.104  Chr 16 32.5 Mb r(B) > r(D)
- 200 6.60 6.58 6.07 4.30 0.055  Chr 16 31.6 Mb r(B) > r(D)
- 230 7.03 6.75 6.23 4.07 0.045  Chr 16 31.6 Mb r(B) > r(D)
- 260 7.71 6.55 6.16 4.15 0.010  Chr 16 31.6 Mb r(B) > r(D)
- 290 7.50 6.76 6.33 4.36 0.030   Chr 16 8.0 Mb r(B) > r(D)
- 320 7.05 6.76 6.28 4.37 0.035   Chr 5 57.6 Mb r(B) > r(D)
- 350 6.69 6.58 6.11 4.24 0.040   Chr 5 57.6 Mb r(B) > r(D)
- 380 8.23 7.24 6.66 4.45 0.030   Chr 5 57.6 Mb r(B) > r(D)
- 410 7.58 6.57 6.18 4.37 0.020   Chr 5 57.6 Mb r(B) > r(D)
- 440 6.62 7.28 6.44 4.63 0.090   Chr 10 4.9 Mb r(B) > r(D)
- 470 9.41 6.84 6.21 4.34 0.005  Chr 18 18.7 Mb r(B) > r(D)
- 500 6.42 6.32 6.00 4.28 0.045  Chr 18 18.7 Mb r(B) > r(D)
- 530 5.63 6.58 6.07 4.13 0.189   Chr 2 14.9 Mb r(D) > r(B)
- 560 5.25 6.36 5.75 4.03 0.164   Chr 10 4.9 Mb r(B) > r(D)
- 590 4.69 6.70 6.01 4.34 0.458  Chr 4 140.8 Mb r(B) > r(D)
- 620 4.65 6.91 6.20 4.27 0.507  Chr 13 48.3 Mb r(B) > r(D)
- 650 7.15 6.26 6.01 4.14 0.025  Chr 8 127.8 Mb r(D) > r(B)
- 680 4.74 5.92 5.47 3.89 0.284   Chr 6 91.7 Mb r(D) > r(B)
- 710 5.99 6.44 5.91 4.22 0.095  Chr 18 56.0 Mb r(D) > r(B)
- 740 6.17 6.22 5.70 3.89 0.060  Chr 18 45.8 Mb r(D) > r(B)
- 770 5.51 6.41 5.89 4.01 0.139 Chr 15 103.1 Mb r(B) > r(D)
+  50 5.28 4.76 4.34 3.13 0.016  Chr 2 116.6 Mb r(D) > r(B)
+  80 5.35 5.55 5.05 3.60 0.070  Chr 16 97.4 Mb r(D) > r(B)
+ 110 5.99 6.13 5.66 3.86 0.070  Chr 16 97.4 Mb r(D) > r(B)
+ 140 5.40 6.28 5.74 3.94 0.162  Chr 16 97.4 Mb r(D) > r(B)
+ 170 5.32 6.37 5.95 4.08 0.215  Chr 16 32.5 Mb r(B) > r(D)
+ 200 6.60 6.60 6.06 4.14 0.051  Chr 16 31.6 Mb r(B) > r(D)
+ 230 7.03 6.69 6.24 4.24 0.034  Chr 16 31.6 Mb r(B) > r(D)
+ 260 7.71 6.68 6.13 4.25 0.014  Chr 16 31.6 Mb r(B) > r(D)
+ 290 7.50 6.81 6.18 4.34 0.015   Chr 16 8.0 Mb r(B) > r(D)
+ 320 7.05 6.89 6.31 4.40 0.039   Chr 5 57.6 Mb r(B) > r(D)
+ 350 6.69 6.86 6.19 4.24 0.062   Chr 5 57.6 Mb r(B) > r(D)
+ 380 8.23 6.81 6.17 4.30 0.008   Chr 5 57.6 Mb r(B) > r(D)
+ 410 7.58 6.68 6.18 4.35 0.017   Chr 5 57.6 Mb r(B) > r(D)
+ 440 6.62 7.03 6.31 4.31 0.066   Chr 10 4.9 Mb r(B) > r(D)
+ 470 9.41 6.75 6.18 4.28 0.004  Chr 18 18.7 Mb r(B) > r(D)
+ 500 6.42 6.58 6.01 4.13 0.062  Chr 18 18.7 Mb r(B) > r(D)
+ 530 5.63 6.49 5.94 4.14 0.151   Chr 2 14.9 Mb r(D) > r(B)
+ 560 5.25 6.36 5.76 3.99 0.199   Chr 10 4.9 Mb r(B) > r(D)
+ 590 4.69 6.33 5.84 4.05 0.378  Chr 4 140.8 Mb r(B) > r(D)
+ 620 4.65 6.25 5.71 3.98 0.357  Chr 13 48.3 Mb r(B) > r(D)
+ 650 7.15 5.96 5.44 3.90 0.013  Chr 8 127.8 Mb r(D) > r(B)
+ 680 4.74 5.66 5.30 3.72 0.223   Chr 6 91.7 Mb r(D) > r(B)
+ 710 5.99 5.85 5.33 3.73 0.044  Chr 18 56.0 Mb r(D) > r(B)
+ 740 6.17 5.08 4.70 3.32 0.008  Chr 18 45.8 Mb r(D) > r(B)
+ 770 5.51 5.20 4.79 3.40 0.026 Chr 15 103.1 Mb r(B) > r(D)

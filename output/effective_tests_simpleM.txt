@@ -1,0 +1,28 @@
+Effective number of independent tests in the genotypes of the 118 BXD strains of the CTL scans (simpleM, 99.5%)
+
+ Chr markers simpleM LiJi
+   1    1452      73   96
+   2    1106      69   81
+   3     759      62   65
+   4     731      65   69
+   5    1288      60   75
+   6    1517      57   78
+   7    1553      61   83
+   8     722      50   53
+   9    1414      59   79
+  10     939      52   59
+  11    1752      56   81
+  12     961      48   55
+  13     978      54   63
+  14    1505      40   59
+  15     983      47   58
+  16     690      51   53
+  17     632      44   46
+  18     693      48   51
+  19     778      54   60
+   X     603      49   49
+
+Sum over chromosomes: simpleM 1099, Li & Ji 1313 (of 21056 polymorphic markers)
+Whole genome at once: simpleM 108, Li & Ji 173 (at most 117: strains - 1)
+Bonferroni 5% for 1099 tests: -log10 P 4.34 (one T-age)
+Bonferroni 5% for 108 tests: -log10 P 3.33 (one T-age)

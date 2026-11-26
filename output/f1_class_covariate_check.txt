@@ -1,0 +1,11 @@
+F1 class coefficients (days) in the null model of qtl2_strainF1.R, with kinship (as mapped) and without (plain lm), against heterosis
+proper (F1 mean minus midparent). Units: strains and F1 types with at least 3 mice alive at T.
+
+CD T20  h2 0.57 | with kinship: short +149, long +111 | plain lm: short  +97, long +191 | heterosis proper: short +212, long  +52
+CD T200 h2 0.11 | with kinship: short +109, long +153 | plain lm: short  +93, long +169 | heterosis proper: short +224, long  +41
+CD T380 h2 0.50 | with kinship: short +133, long  +90 | plain lm: short  +80, long +142 | heterosis proper: short +186, long  +31
+CD T560 h2 0.40 | with kinship: short  +50, long  +66 | plain lm: short  +26, long  +93 | heterosis proper: short  +97, long  +18
+HF T20  h2 0.80 | with kinship: short +121, long  +70 | plain lm: short  +56, long +128 | heterosis proper: short +145, long  +60
+HF T200 h2 0.80 | with kinship: short +116, long  +51 | plain lm: short  +53, long +117 | heterosis proper: short +141, long  +36
+HF T380 h2 0.81 | with kinship: short  +98, long  +51 | plain lm: short  +42, long  +92 | heterosis proper: short +119, long  +37
+HF T560 h2 0.18 | with kinship: short  +31, long  +42 | plain lm: short  +28, long  +43 | heterosis proper: short   NA, long   +7

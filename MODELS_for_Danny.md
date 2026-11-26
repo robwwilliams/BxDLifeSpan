@@ -18,7 +18,28 @@
 
 ## 2. The F1 part, which is the unfamiliar bit
 
-**Read [`strainF1_setup.R`](strainF1_setup.R) first;** it is 70 lines, and everything else uses it.
+**Rewritten on 26 November 2026, at your request.** The strain + F1 maps now have their own files:
+- [`strainF1_functions.R`](strainF1_functions.R) opens with the model and has one function per step, with descriptive names.
+- [`qtl2_strainF1.R`](qtl2_strainF1.R) and [`qtl2_strainF1_perm.R`](qtl2_strainF1_perm.R) have settings at the top, no command-line input, and a `*_run_info.txt` record (settings, md5 of inputs and code).
+- [`strainF1_tests.R`](strainF1_tests.R) checks them against the committed outputs. They agree to 5e-15 in 6 sampled scans, 6 permutations and the unit counts of all 52 scans, so the committed maps and thresholds stand.
+
+[`strainF1_setup.R`](strainF1_setup.R) is unchanged and still serves six other scripts, under the same rules.
+
+**Your question about the class covariate** (Danny: "there's a genetic component to your parents being a long-lived or a short-lived mouse"): **yes, it absorbs more than heterosis** ([`f1_class_covariate_check.R`](f1_class_covariate_check.R), exploratory). In the null model, without any marker, the class coefficients are:
+
+| Days | Short × short | Long × long |
+|---|---|---|
+| Plain `lm`, no kinship (heterosis + parental merit) | +97 | +191 |
+| As mapped, with kinship | +149 | +111 |
+| Heterosis proper (F1 mean − midparent) | +212 | +52 |
+
+These are chow at T20. Every row of the check, at four T-ages on each diet, shows the same pattern. The kinship term takes up part of the parents' merit: most where heritability is high (high fat, h² ≈ 0.8), little where it is low (chow T200, h² 0.11: long × long +153 against +41). So the covariate does two things:
+- **Long × long:** it carries part of the long-lived parents' genetic merit.
+- **Short × short:** it leaves part of the short × short heterosis to the markers and the dominance term.
+
+How to model this instead (a single F1 indicator, or a midparent covariate) is for you and Rob to decide. Nothing has been changed.
+
+**Read [`strainF1_functions.R`](strainF1_functions.R) first.**
 1. **An F1 type has no genotypes of its own.** It takes its two parents' probabilities, marker by marker: P(*BD*) = P(parent 1 *B*) P(parent 2 *D*) + P(parent 1 *D*) P(parent 2 *B*). So it is *BD* exactly where its parents differ.
 2. **Each F1 type is one row** of the strain-mean maps, with the same weight as a strain.
 3. **F1 class** (inbred, short × short, long × long) is a covariate. Without it, the F1s' hybrid vigor would be read as an effect of every marker at which F1s differ from strains.

@@ -1,0 +1,19 @@
+ok   13 F1 types (6 short x short, 7 long x long), 319 F1 mice
+ok   the three genotype probabilities of every unit sum to 1 at every marker
+ok   a strain is never BD
+ok   on Chr 1, an F1 is BD (P > 0.99) where its parents' calls differ, and not BD (P < 0.01) where they agree
+ok   allele dosage of D = P(DD) + P(BD) / 2
+ok   LOCO kinship is symmetric, and leaving out Chr 1 changes it
+ok   strains and F1 types per scan equal the committed qtl2_meansF1_N.txt in all 52 scans
+ok   CD T20: additive and dominance maps equal the committed ones (largest differences 5.1e-15, 5.6e-16)
+ok   CD T380: additive and dominance maps equal the committed ones (largest differences 5.1e-15, 4.9e-15)
+ok   CD T770: additive and dominance maps equal the committed ones (largest differences 5.3e-15, 5.1e-15)
+ok   HF T20: additive and dominance maps equal the committed ones (largest differences 5.3e-15, 5.1e-15)
+ok   HF T380: additive and dominance maps equal the committed ones (largest differences 5.3e-15, 5.1e-15)
+ok   HF T770: additive and dominance maps equal the committed ones (largest differences 5.1e-15, 5.1e-15)
+ok   CD permutation 0: the largest -log10 P at every T-age equals the committed run (largest difference 4.4e-15)
+ok   CD permutation 1: the largest -log10 P at every T-age equals the committed run (largest difference 4.9e-15)
+ok   CD permutation 2: the largest -log10 P at every T-age equals the committed run (largest difference 4.9e-15)
+ok   HF permutation 0: the largest -log10 P at every T-age equals the committed run (largest difference 4.9e-15)
+ok   HF permutation 1: the largest -log10 P at every T-age equals the committed run (largest difference 4.9e-15)
+ok   HF permutation 2: the largest -log10 P at every T-age equals the committed run (largest difference 4.9e-15)

@@ -1,4 +1,5 @@
 #
+# SUPERSEDED on 26 November 2026 by ctl_scan.R (BXD only, one path, tested by ctl_tests.R). Kept so the committed outputs it made can be traced.
 # ctl_permutations.R - Danny Arends's CTL maps of the BXD mice reproduced, and tested with B&H, Bonferroni and permutations of strains
 #
 # Rob Williams's fork, 24 November 2026. Exploratory. Written by Claude (Opus 5.5) for Rob and Danny. Rob: "We can run it both his

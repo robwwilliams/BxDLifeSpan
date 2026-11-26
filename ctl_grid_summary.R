@@ -1,4 +1,5 @@
 #
+# SUPERSEDED on 26 November 2026 by ctl_scan.R (BXD only, one path, tested by ctl_tests.R). Kept so the committed outputs it made can be traced.
 # ctl_grid_summary.R - CTL scans of every weighing age (W) against every survivorship (T), with the F1s, judged together
 #
 # Rob Williams's fork, 25 November 2026. Exploratory. Written by Claude (Opus 5.5). Rob: "the full actuarial scan across all ages at which

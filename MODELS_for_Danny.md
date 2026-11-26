@@ -43,6 +43,72 @@ Correlation over markers of the signed −log10 P, at T20, T380, T500 and T620:
 
 ## 4. Your CTL map, run both ways ([`ctl_permutations.R`](ctl_permutations.R))
 
+### The code cleaned up, at your request (26 November 2026)
+
+`ctl_permutations.R` is replaced by four short files. Each has one path and takes no command-line input.
+
+| File | What it does |
+|---|---|
+| [`ctl_inputs.R`](ctl_inputs.R) | Builds the two input tables (`output/ctl_scan/mice.txt`, `genotypes.txt`) through your `shared.R` and `adjust.R`, unchanged |
+| [`ctl_functions.R`](ctl_functions.R) | One function per step, numbered as below |
+| [`ctl_scan.R`](ctl_scan.R) | The settings, then the steps in order; writes `output/ctl_scan/` |
+| [`ctl_tests.R`](ctl_tests.R) | Checks every function against your code or a committed result; writes `output/ctl_scan/tests.txt` |
+
+**The approach, in six steps:**
+1. **Inputs.** Lifespan and weight of the BXD mice on chow or high fat, adjusted by your `adjust.R` within each diet: `~ vivarium + set-up age class` (0–180, 180–360, … days), residual + mean, rounded to a day. BXD mice only; no F1s.
+2. **Scans.** A scan is one diet, one survivorship age T and one weighing age W. Its mice were on the diet by W and alive at T.
+   - Your design (`actuarial`) weighs at T.
+   - The grid designs (`W80` to `W740`) weigh at one age and follow T from W to 770 days.
+3. **Map.** Your test at each marker and scan: the weighted Spearman correlations in the B and the D mice, compared by Fisher's z and your chi-square on 1 d.f. It gives a signed −log10 P.
+4. **Two statistics per design and diet.** They are separate tests and are not expected to be equal:
+   - **max:** the largest −log10 P over all markers and T-ages;
+   - **cauchy:** at each marker, its T-ages' P values joined by your `cauchycombination()`, then the largest over markers.
+5. **Permutations.** Each strain takes the genotypes of another strain of its stratum (BXD1–42, or the newer strains), and the whole map is rescanned.
+   - One assignment serves every scan, diet and design.
+   - Mice keep their weights, lifespans and strain mates.
+6. **Verdict.** Each statistic of the real map is judged against the same statistic of the 1,000 permuted maps: a 5% threshold and a genome-wide P.
+
+**Your six points:**
+1. **F1s are dropped.**
+2. **The linear adjustments** are your `adjust.R`, called in `ctl_inputs.R`, with the models written out in its header.
+3. **Structure.** The steps are named functions, and `ctl_scan.R` is the settings plus about 40 lines that call them.
+4. **The `atanh()`.** It is gone: `ctlTest()` uses your own expression, `0.5 * log((1 + r) / (1 - r))`. The tests:
+   - compare it with your loop body from `CTL.R` on 5,000 random pairs (identical);
+   - r = 0 gives z = 0;
+   - |r| = 1 gives NA (`CTL.R` gives NaN);
+   - P below about 1e-308 gives infinity in both versions.
+5. **The approach** is the six steps above.
+6. **No command-line inputs.** The settings are at the top of `ctl_scan.R`. `run_info.txt` records them, with the md5 of the input tables and of the code.
+
+**The tests** (`output/ctl_scan/tests.txt`) all pass:
+- **The C++ correlation** equals your `cov.wt(apply(mat, 2, rank), wt = weights, cor = TRUE)` line, both on made-up data with ties and at 100 real markers (difference below 1e-15).
+- **The real map** equals your `CTL_CD_LODmatrix.txt` and `CTL_HF_LODmatrix.txt` to the 2 decimals you saved, with the same cells missing.
+- **Six maps of the committed run (the real one and five permutations)** come out the same:
+  - the largest −log10 P, the Bonferroni and B&H calls and the inflation agree to 4 decimals;
+  - the Cauchy maximum agrees within 0.013.
+
+**One fault found in the old code.** `ctl_permutations.R` computed the Cauchy quantile as `tan((0.5 - p) * pi)`. This loses digits for P between about 1e-15 and 1e-12: at P = 1e-15 the quantile is off by 0.9%. Your `qcauchy()`, now used, is exact.
+- The real map is unaffected.
+- One permuted map of the six checked moves by 0.012.
+- The 1,000-permutation rerun will give the exact thresholds.
+
+**Why 1,000 permutations took minutes and `CTL.R` takes hours.** Every permutation does rescan every marker, T-age and diet. Three things make it fast:
+- the correlations run in C++;
+- markers with the same strain pattern are computed once;
+- the permutations run in parallel.
+
+`CTL.R` also writes and re-reads a table at every T-age.
+
+**How the old code handled the F1 mice, and why they are now dropped.**
+- **Genotype.** An F1 type counted as B (or D) at a marker where both its parents are B (or D), because there it is homozygous.
+- **Heterozygous markers.** Where the parents differ, the F1 is B/D. It was left out of both groups at that marker, as `CTL.R` leaves out an H or unknown call in a BXD strain.
+- **No H group.** There was no third group and no model of heterozygotes. About half the markers are homozygous for each F1 type (0.45 to 0.58; mean 0.50, weighted by mice), so each F1 type entered the B or D group at about half the markers and was absent at the rest.
+- **Centering.** Lifespan and weight of the F1 mice were centered on their class (short × short, long × long) within diet, so that hybrid vigor would not be read as a CTL.
+- **Permutations.** F1 types swapped genotypes only within their class.
+- **Why they are dropped.** The F1 mice are heterozygous across about half the genome, at markers other than the one tested, and centering by class is a rough correction for that. This is the reason the clean code leaves them out.
+
+**Still to run.** The 1,000 permutations of every design, BXD only, take about an hour on 8 cores and about 4 GB. Until they are back, the grid results below include the F1s.
+
 **Your way is reproduced exactly:** 1,052,572 values at 25 T-ages and two diets differ from your `CTL_<diet>_LODmatrix.txt` only by rounding (at most 0.005), and the same cells are missing.
 
 **Then the corrections of Arends et al. 2026, and permutations of strains** (1,000; each strain takes another strain's genotypes; every mouse keeps its weight, lifespan and strain):

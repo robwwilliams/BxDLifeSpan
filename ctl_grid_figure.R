@@ -1,4 +1,5 @@
 #
+# SUPERSEDED on 26 November 2026 by ctl_scan.R (BXD only, one path, tested by ctl_tests.R). Kept so the committed outputs it made can be traced.
 # ctl_grid_figure.R - One heat map of the CTL scans: every weighing age against every later survivorship
 #
 # Rob Williams's fork, 25 November 2026. Exploratory. Written by Claude (Opus 5.5). Each cell is one genome scan, colored by the genome-wide P

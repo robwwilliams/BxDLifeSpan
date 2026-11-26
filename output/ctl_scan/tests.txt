@@ -1,0 +1,25 @@
+ok   ctlTest equals CTL.R on 5,000 random pairs of correlations (largest difference 0.0e+00)
+ok   where P is below about 1e-308 (22 of 5,000, |r| near 0.99 and n in the hundreds), both give infinity, with the same sign
+ok   0.5 log((1 + r) / (1 - r)) is atanh(r)
+ok   r = 0 in both groups: z = 0 and -log10 P = 0
+ok   r = 0 in one group: the same as CTL.R
+ok   equal r in both groups: -log10 P = 0
+ok   r = 1 or -1: NA (CTL.R gives NaN)
+ok   r = NA: NA
+ok   the sign is positive where r(D) > r(B)
+ok   cauchyCombine equals Cauchy.R on 200 markers, P from 1 to 1e-20, NA left out (largest difference 3.6e-15)
+ok   ctlCor (C++) equals cov.wt on ranks (CTL.R) at 50 made-up markers with ties (largest difference 1.9e-16)
+ok   50 scans in Danny's design: 2 diets x 25 T-ages
+ok   ctlCor equals cov.wt on ranks at 100 real markers, chow T200 (largest difference 8.3e-16)
+ok   CD: the real map equals CTL.R's CD matrix, rounded as he saved it (526325 values; largest difference 0.005; cells missing in one only: 0)
+ok   HF: the real map equals CTL.R's HF matrix, rounded as he saved it (526247 values; largest difference 0.005; cells missing in one only: 0)
+ok   a permutation moves strains only within their stratum
+ok   the same seed gives the same permutation
+     the old Cauchy quantile at P = 1e-15, 1e-14, 1e-13, 1e-12 is off by -0.89, 0.15, -0.03, 0.0014%
+ok   qcauchy() gives the exact quantile at P = 1e-14
+ok   map 0 (real) gives the committed max, Bonferroni, B&H and lambda (largest difference 0.0000), and the Cauchy maximum within 0.02 (0.0000)
+ok   map 1 (permuted) gives the committed max, Bonferroni, B&H and lambda (largest difference 0.0000), and the Cauchy maximum within 0.02 (0.0008)
+ok   map 2 (permuted) gives the committed max, Bonferroni, B&H and lambda (largest difference 0.0000), and the Cauchy maximum within 0.02 (0.0000)
+ok   map 3 (permuted) gives the committed max, Bonferroni, B&H and lambda (largest difference 0.0000), and the Cauchy maximum within 0.02 (0.0000)
+ok   map 4 (permuted) gives the committed max, Bonferroni, B&H and lambda (largest difference 0.0000), and the Cauchy maximum within 0.02 (0.0124)
+ok   map 5 (permuted) gives the committed max, Bonferroni, B&H and lambda (largest difference 0.0000), and the Cauchy maximum within 0.02 (0.0000)

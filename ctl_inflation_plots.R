@@ -39,9 +39,11 @@ scrambled <- lapply(c(CD = "CD", HF = "HF"), function(diet){
   lapply(names(TEST.COLOR), function(t) unlist(lapply(per.map, `[[`, t))) |> setNames(names(TEST.COLOR)) })
 
 lambda <- function(log10P){ p <- 10^-log10P[!is.na(log10P)]; median(qchisq(p, 1, lower.tail = FALSE)) / qchisq(0.5, 1) }
-qqPoints <- function(log10P){                                              # observed against expected -log10 P, thinned below 1 for drawing
-  obs <- sort(log10P[!is.na(log10P)], decreasing = TRUE); expected <- -log10(seq_along(obs) / (length(obs) + 1))
-  keep <- expected > 1 | seq_along(obs) %% 50 == 0; list(x = expected[keep], y = obs[keep]) }
+qqPoints <- function(log10P){                                              # observed against expected -log10 P, every test
+  obs <- sort(log10P[!is.na(log10P)], decreasing = TRUE); list(x = -log10(seq_along(obs) / (length(obs) + 1)), y = obs) }
+thinToDrawing <- function(p, xlim, ylim, cells = 2000){                    # one point per cell of a cells x cells grid over the panel
+  cell <- paste(round(p$x / diff(xlim) * cells), round(p$y / diff(ylim) * cells))   # (0.1 pt here): closer points overlap on the page,
+  keep <- !duplicated(cell); list(x = p$x[keep], y = p$y[keep]) }                   # so the drawing is the same and the SVG stays small
 
 # ---- The figure: rows scrambled (no CTL) and real; columns chow and high fat ----------------------------------------------------------
 dir.create("output/maps", showWarnings = FALSE)
@@ -51,9 +53,10 @@ panel <- 0
 for(which.maps in c("scrambled", "real")) for(diet in c("CD", "HF")){
   sets <- if(which.maps == "scrambled") scrambled[[diet]] else real[[diet]]
   pts <- lapply(sets, qqPoints); top <- max(sapply(pts, function(p) max(p$y)), sapply(pts, function(p) max(p$x)))
-  plot(NA, xlim = c(0, max(sapply(pts, function(p) max(p$x)))), ylim = c(0, top), xlab = "Expected -log10 P", ylab = "Observed -log10 P", bty = "l")
+  xlim <- c(0, max(sapply(pts, function(p) max(p$x)))); ylim <- c(0, top)
+  plot(NA, xlim = xlim, ylim = ylim, xlab = "Expected -log10 P", ylab = "Observed -log10 P", bty = "l")
   abline(0, 1, col = "grey60", lty = 2)
-  for(t in names(sets)) points(pts[[t]]$x, pts[[t]]$y, col = TEST.COLOR[t], pch = 16, cex = 0.25)
+  for(t in names(sets)){ p <- thinToDrawing(pts[[t]], xlim, ylim); points(p$x, p$y, col = TEST.COLOR[t], pch = 16, cex = 0.25) }
   legend("topleft", sprintf("%s (lambda %.2f)", names(sets), sapply(sets, lambda)), col = TEST.COLOR, pch = 16, bty = "n", cex = 0.85)
   panel <- panel + 1; mtext(letters[panel], 3, line = 0.5, at = grconvertX(0.01, "nfc", "user"), adj = 0, font = 2, cex = 1.15)
   mtext(sprintf("%s, %s", DIET.NAME[diet], if(which.maps == "scrambled") sprintf("%d maps with genotypes scrambled among strains", N.SCRAMBLED) else "real data"), 3, line = 0.5, cex = 0.8)

@@ -23,3 +23,6 @@ ok   map 2 (permuted) gives the committed max, Bonferroni, B&H and lambda (large
 ok   map 3 (permuted) gives the committed max, Bonferroni, B&H and lambda (largest difference 0.0000), and the Cauchy maximum within 0.02 (0.0000)
 ok   map 4 (permuted) gives the committed max, Bonferroni, B&H and lambda (largest difference 0.0000), and the Cauchy maximum within 0.02 (0.0124)
 ok   map 5 (permuted) gives the committed max, Bonferroni, B&H and lambda (largest difference 0.0000), and the Cauchy maximum within 0.02 (0.0000)
+ok   the scan's mice are those of the mice table
+ok   strain-level map equals Spearman of strain means in plain R at 100 markers, chow T140 (largest difference 2.7e-15)
+ok   chow Chr 11 (rs13481185), T140: -log10 P 10.19 with mice as n, 2.19 with strains as n

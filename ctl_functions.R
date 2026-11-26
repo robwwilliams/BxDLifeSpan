@@ -103,14 +103,30 @@ scanMice <- function(mice, strains, diet, Tage, Wage){
        s = s - 1L, wt = 1 / n[s], nall = nall, ow = ow - 1L, tw = match(w[ow], unique(w[ow])), oy = oy - 1L, ty = match(y[oy], unique(y[oy])))
 }
 
+# The same scan with strains as the units (added 26 November 2026, exploratory, after the mouse-level results: Rob and Danny asked
+# why mice give such small P values). Each strain with at least min.mice mice in the scan becomes one unit: the mean adjusted weight and
+# mean adjusted lifespan of those mice, weight 1. ctlCor() then gives the Spearman correlation of strain means within the B strains and
+# within the D strains, with n = strains. The rule of 20 mice is kept (nall), so the same markers are tested.
+# Returns a list like scanMice()'s: s (strain index from 0), wt, ow/tw, oy/ty, nall, and w, y (the strain means).
+strainUnits <- function(d, min.mice){
+  mice.per.strain <- tabulate(d$s + 1L, length(d$nall))                    # strain -> weighed mice in this scan
+  kept <- which(mice.per.strain >= min.mice) - 1L                           # strain indices (from 0)
+  mean.weight <- as.numeric(tapply(d$w, d$s, mean)[as.character(kept)])
+  mean.lifespan <- as.numeric(tapply(d$y, d$s, mean)[as.character(kept)])
+  ow <- order(mean.weight); oy <- order(mean.lifespan)
+  list(s = kept, wt = rep(1, length(kept)), nall = d$nall, w = mean.weight, y = mean.lifespan,
+       ow = ow - 1L, tw = match(mean.weight[ow], unique(mean.weight[ow])), oy = oy - 1L, ty = match(mean.lifespan[oy], unique(mean.lifespan[oy])))
+}
+
 # All scans of the designs. designs: named weighing ages, NA for Danny's design (weight at T). A scan with fewer than 40 mice is left
-# out, as it cannot have 20 B and 20 D mice at any marker.
-buildScans <- function(mice, strains, designs, Tages){
+# out, as it cannot have 20 B and 20 D mice at any marker. Each scan also carries its strain-level version (strainUnits()).
+buildScans <- function(mice, strains, designs, Tages, strain.min.mice){
   scans <- list()
   for(dn in names(designs)) for(diet in c("CD", "HF")) for(Tage in Tages){
     Wage <- if(is.na(designs[[dn]])) Tage else designs[[dn]]
     if(Tage < Wage) next
     d <- scanMice(mice, strains, diet, Tage, Wage); d$design <- dn
+    d$strain.units <- strainUnits(d, strain.min.mice)
     if(d$nmice >= 40) scans[[paste(dn, diet, paste0("T", Tage))]] <- d
   }
   scans
@@ -120,6 +136,12 @@ buildScans <- function(mice, strains, designs, Tages){
 # G: strains x distinct marker patterns. Returns distinct patterns x scans of signed -log10 P.
 scanAll <- function(G, scans){
   sapply(scans, function(d){ r <- ctlCor(G, d$s, d$wt, d$ow, d$tw, d$oy, d$ty, d$nall); ctlTest(r[, 1], r[, 2], r[, 3], r[, 4]) })
+}
+
+# The same, with strains as the units (strainUnits()): n in Fisher's z is the number of strains. A group with fewer than 5 strains is NA.
+scanAllStrains <- function(G, scans){
+  sapply(scans, function(d){ u <- d$strain.units; r <- ctlCor(G, u$s, u$wt, u$ow, u$tw, u$oy, u$ty, u$nall)
+    r[which(r[, 3] < 5 | r[, 4] < 5), ] <- NA; ctlTest(r[, 1], r[, 2], r[, 3], r[, 4]) })
 }
 
 # ==== 6. One permutation: each strain takes the genotypes of another strain of its stratum =============================================
@@ -145,14 +167,19 @@ summarizeMap <- function(L, pat){
 }
 
 # ==== 8. One map, real (i = 0) or permuted (permutation i uses seed + i) ===============================================================
-# Returns the summaries of step 7 for each design and diet ("<design>.<diet>.<summary>") and the largest -log10 P of each scan.
+# Both levels, mice (Danny's test) and strains, from the same permutation. Returns
+#   summary  the summaries of step 7: "<design>.<diet>.<summary>" for mice, "<design>.<diet>.strain.<summary>" for strains
+#   scanmax  the largest -log10 P of each scan (mice, then strains, whose names start "strain ")
+#   L, LS    the maps (distinct patterns x scans) of mice and of strains
 runMap <- function(i, inp, scans, seed){
   o <- if(i == 0) seq_along(inp$strains) else permuteStrains(inp$stratum, seed + i)
-  L <- scanAll(inp$G[o, , drop = FALSE], scans)
+  L <- scanAll(inp$G[o, , drop = FALSE], scans); LS <- scanAllStrains(inp$G[o, , drop = FALSE], scans)
   sets <- split(seq_along(scans), paste(sapply(scans, `[[`, "design"), sapply(scans, `[[`, "diet"), sep = "."))
-  s <- lapply(sets, function(j) summarizeMap(L[, j, drop = FALSE], inp$pat))
-  smax <- suppressWarnings(apply(abs(L), 2, max, na.rm = TRUE)); smax[!is.finite(smax)] <- NA
-  list(summary = setNames(unlist(s, use.names = FALSE), paste(rep(names(s), lengths(s)), unlist(lapply(s, names)), sep = ".")), scanmax = smax, L = L)
+  s <- c(lapply(sets, function(j) summarizeMap(L[, j, drop = FALSE], inp$pat)),
+         setNames(lapply(sets, function(j) summarizeMap(LS[, j, drop = FALSE], inp$pat)), paste0(names(sets), ".strain")))
+  scanMax <- function(M){ m <- suppressWarnings(apply(abs(M), 2, max, na.rm = TRUE)); m[!is.finite(m)] <- NA; m }
+  list(summary = setNames(unlist(s, use.names = FALSE), paste(rep(names(s), lengths(s)), unlist(lapply(s, names)), sep = ".")),
+       scanmax = c(scanMax(L), setNames(scanMax(LS), paste("strain", colnames(LS)))), L = L, LS = LS)
 }
 
 # Genome-wide P from a permutation distribution: (1 + permutations at least as large) / (permutations + 1)

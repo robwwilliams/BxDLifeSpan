@@ -22,7 +22,7 @@ DIET.NAME <- c(CD = "Chow", HF = "High fat")
 # ---- 1. The real map -------------------------------------------------------------------------------------------------------------------
 inp <- readInputs(DIR)
 Tages <- as.numeric(sub("^w", "", grep("^w[0-9]+$", colnames(inp$mice), value = TRUE)))
-scans <- buildScans(inp$mice, inp$strains, c(actuarial = NA), Tages)
+scans <- buildScans(inp$mice, inp$strains, c(actuarial = NA), Tages, 2)
 real.map <- scanAll(inp$G, scans)                                           # distinct patterns x scans, signed -log10 P
 
 # ---- 2-3. The strongest marker and T-age of each diet, and its correlations at every T-age ------------------------------------------

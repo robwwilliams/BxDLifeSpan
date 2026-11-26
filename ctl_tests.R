@@ -47,7 +47,7 @@ check(sprintf("ctlCor (C++) equals cov.wt on ranks (CTL.R) at 50 made-up markers
 # ---- 4. The real data: Danny's design against Danny's matrices ------------------------------------------------------------------------
 inp <- readInputs("output/ctl_scan")
 Tages <- as.numeric(sub("^w", "", grep("^w[0-9]+$", colnames(inp$mice), value = TRUE)))
-scans <- buildScans(inp$mice, inp$strains, c(actuarial = NA), Tages)
+scans <- buildScans(inp$mice, inp$strains, c(actuarial = NA), Tages, 2)
 check(paste(length(scans), "scans in Danny's design: 2 diets x", length(Tages), "T-ages"), length(scans) == 2 * length(Tages))
 d <- scans[["actuarial CD T200"]]; L0 <- scanAll(inp$G, list(d))[, 1]; set.seed(2); k <- sample(which(!is.na(L0)), 100)
 rr <- t(sapply(k, function(p) ctlCorR(d$w, d$y, d$s, inp$G[d$s + 1L, p])))
@@ -82,4 +82,16 @@ for(i in 0:5){
   check(sprintf("map %d (%s) gives the committed max, Bonferroni, B&H and lambda (largest difference %.4f), and the Cauchy maximum within 0.02 (%.4f)",
                 i, if(i == 0) "real" else "permuted", max(dif[!ca, ]), max(dif[ca, ])), max(dif[!ca, ]) < 1e-3 && max(dif[ca, ]) < 0.02)
 }
+
+# ---- 7. The strain-level map: C++ on strain units against plain R on strain means ----------------------------------------------------
+d <- scans[["actuarial CD T140"]]; x <- inp$mice[match(d$id, inp$mice$mouse), ]
+check("the scan's mice are those of the mice table", all(x$w140 == d$w) && all(x$lifespan == d$y))
+mice.per.strain <- table(x$strain); kept <- names(mice.per.strain)[mice.per.strain >= 2]                   # strains with 2 or more mice
+strain.weight <- tapply(x$w140, x$strain, mean)[kept]; strain.life <- tapply(x$lifespan, x$strain, mean)[kept]
+LS <- scanAllStrains(inp$G, list(d))[, 1]; set.seed(3); k <- sample(which(!is.na(LS)), 100)
+plainR <- sapply(k, function(p){ g <- inp$G[match(kept, inp$strains), p]
+  r <- sapply(1:2, function(j) cor(strain.weight[g == j], strain.life[g == j], method = "spearman")); ctlTest(r[1], r[2], sum(g == 1), sum(g == 2)) })
+check(sprintf("strain-level map equals Spearman of strain means in plain R at 100 markers, chow T140 (largest difference %.1e)", max(abs(LS[k] - plainR))), max(abs(LS[k] - plainR)) < 1e-10)
+peak <- inp$pat[inp$map$Locus == "rs13481185"]
+check(sprintf("chow Chr 11 (rs13481185), T140: -log10 P %.2f with mice as n, %.2f with strains as n", abs(scanAll(inp$G, list(d))[peak, 1]), abs(LS[peak])), abs(LS[peak]) < abs(scanAll(inp$G, list(d))[peak, 1]))
 sink()

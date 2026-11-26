@@ -128,6 +128,19 @@ Correlation over markers of the signed −log10 P, at T20, T380, T500 and T620:
 - **Permutations.** F1 types swapped genotypes only within their class.
 - **Why they are dropped.** The F1 mice are heterozygous across about half the genome, at markers other than the one tested, and centering by class is a rough correction for that. This is the reason the clean code leaves them out.
 
+**A strain-level test, added at your and Rob's request** (26 November 2026, exploratory, after the mouse-level results). `ctl_scan.R` now also maps strains as the units:
+- **The statistic.** Spearman correlation of strain means (mean adjusted weight against mean adjusted lifespan, strains with at least 2 mice in the scan) within the B strains and within the D strains. Then your Fisher z test, with n = strains. The rule of 20 mice is kept, so the same markers are tested.
+- **Checked:** it equals `cor(..., method = "spearman")` on strain means in plain R (difference below 1e-14).
+- **At the strongest chow locus** (Chr 11, 99.7 Mb, T140), −log10 P is 10.2 with mice as n and 2.2 with strains as n. The figure [`output/maps/CTL_best_locus.png`](output/maps/CTL_best_locus.png) (`ctl_best_locus.R`) shows why: the correlation of the mice (B +0.29, D −0.31) is almost that of the strain means (+0.37, −0.32). So the information is in 31 B and 59 D strains, not in 520 mice.
+- **A first look, 20 permutations, Danny's design only** (not saved; the full run is below). With strains as units the inflation nearly disappears:
+
+| Median χ² / expected | Mice as n | Strains as n |
+|---|---|---|
+| Chow, permuted maps | 2.52 | 1.14 |
+| High fat, permuted maps | 2.19 | 1.06 |
+
+  Bonferroni (7.0 over markers and T-ages) and the permutation threshold (about 8, rough with 20 permutations) come close together. The largest real values are 7.0 (chow) and 6.2 (high fat), so nothing passes either way.
+
 **Still to run.** The 1,000 permutations of every design, BXD only, take about an hour on 8 cores and about 4 GB. Until they are back, the grid results below include the F1s.
 
 **Your way is reproduced exactly:** 1,052,572 values at 25 T-ages and two diets differ from your `CTL_<diet>_LODmatrix.txt` only by rounding (at most 0.005), and the same cells are missing.

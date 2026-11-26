@@ -56,7 +56,7 @@ check(sprintf("ctlCor equals cov.wt on ranks at 100 real markers, chow T200 (lar
 real <- runMap(0, inp, scans, 20261124)
 for(diet in c("CD", "HF")){
   dm <- as.matrix(read.table(paste0("output/CTL_", diet, "_LODmatrix.txt"), sep = "\t", check.names = FALSE))
-  m <- real$L[inp$pat, paste("actuarial", diet, paste0("T", colnames(dm)))]; rownames(m) <- inp$map$Locus; m <- m[rownames(dm), ]
+  m <- real$maps$mice[inp$pat, paste("actuarial", diet, paste0("T", colnames(dm)))]; rownames(m) <- inp$map$Locus; m <- m[rownames(dm), ]
   check(sprintf("%s: the real map equals CTL.R's %s matrix, rounded as he saved it (%d values; largest difference %.3f; cells missing in one only: %d)",
                 diet, diet, sum(!is.na(dm)), max(abs(dm - m), na.rm = TRUE), sum(is.na(dm) != is.na(m))), max(abs(dm - round(m, 2)), na.rm = TRUE) <= 0.0100001 && all(is.na(dm) == is.na(m)))
 }
@@ -88,10 +88,23 @@ d <- scans[["actuarial CD T140"]]; x <- inp$mice[match(d$id, inp$mice$mouse), ]
 check("the scan's mice are those of the mice table", all(x$w140 == d$w) && all(x$lifespan == d$y))
 mice.per.strain <- table(x$strain); kept <- names(mice.per.strain)[mice.per.strain >= 2]                   # strains with 2 or more mice
 strain.weight <- tapply(x$w140, x$strain, mean)[kept]; strain.life <- tapply(x$lifespan, x$strain, mean)[kept]
-LS <- scanAllStrains(inp$G, list(d))[, 1]; set.seed(3); k <- sample(which(!is.na(LS)), 100)
+LS <- scanAllStrains(inp$G, list(d))$coded[, 1]; set.seed(3); k <- sample(which(!is.na(LS)), 100)
 plainR <- sapply(k, function(p){ g <- inp$G[match(kept, inp$strains), p]
   r <- sapply(1:2, function(j) cor(strain.weight[g == j], strain.life[g == j], method = "spearman")); ctlTest(r[1], r[2], sum(g == 1), sum(g == 2)) })
 check(sprintf("strain-level map equals Spearman of strain means in plain R at 100 markers, chow T140 (largest difference %.1e)", max(abs(LS[k] - plainR))), max(abs(LS[k] - plainR)) < 1e-10)
 peak <- inp$pat[inp$map$Locus == "rs13481185"]
 check(sprintf("chow Chr 11 (rs13481185), T140: -log10 P %.2f with mice as n, %.2f with strains as n", abs(scanAll(inp$G, list(d))[peak, 1]), abs(LS[peak])), abs(LS[peak]) < abs(scanAll(inp$G, list(d))[peak, 1]))
+
+# ---- 8. The standard test: formula, edge cases and calibration with no CTL -----------------------------------------------------------
+standardByHand <- function(rB, rD, nB, nD){ z <- 0.5 * log((1 + c(rB, rD)) / (1 - c(rB, rD))); w <- (c(nB, nD) - 3) / 1.06
+  Cv <- sum(w * z^2) - sum(w * z)^2 / sum(w); sign(rD - rB) * -log10(pchisq(Cv, 1, lower.tail = FALSE)) }
+r <- cbind(runif(2000, -0.95, 0.95), runif(2000, -0.95, 0.95)); n <- cbind(sample(20:120, 2000, TRUE), sample(20:120, 2000, TRUE))
+d1 <- max(abs(ctlTestStandard(r[, 1], r[, 2], n[, 1], n[, 2]) - sapply(1:2000, function(i) standardByHand(r[i, 1], r[i, 2], n[i, 1], n[i, 2]))))
+check(sprintf("ctlTestStandard equals the formula written out, weights (n - 3) / 1.06, on 2,000 random cases (largest difference %.1e)", d1), d1 < 1e-12)
+check("ctlTestStandard: r = 0 in both gives 0; |r| = 1 gives NA; fewer than 20 strains in a group gives NA",
+      ctlTestStandard(0, 0, 30, 30) == 0 && is.na(ctlTestStandard(1, 0.2, 30, 30)) && is.na(ctlTestStandard(0.2, 0.3, 19, 40)))
+set.seed(4); sims <- t(replicate(20000, c(cor(rnorm(20), rnorm(20), method = "spearman"), cor(rnorm(20), rnorm(20), method = "spearman"))))
+p <- 10^-abs(ctlTestStandard(sims[, 1], sims[, 2], 20, 20)); infl <- median(qchisq(p, 1, lower.tail = FALSE)) / qchisq(0.5, 1)
+check(sprintf("with no CTL and 20 strains per group, the standard test is calibrated: inflation %.2f, P < 0.01 in %.2f%% (expected 1%%)", infl, 100 * mean(p < 0.01)),
+      infl > 0.85 && infl < 1.1 && mean(p < 0.01) < 0.015)
 sink()

@@ -1,0 +1,15 @@
+CTL test under three assumptions, BXD mice, Danny's design. Scrambled: genotypes permuted among strains ( 10 maps)
+Rates are over distinct strain patterns x T-ages; a valid test gives lambda 1, P < 0.001 in 0.1% and P < 1e-4 in 0.01%.
+
+scrambled CD mice as n     tests  1092416  lambda 2.62  P<0.001  4.613%  P<1e-4  1.947%  largest 15.95
+scrambled CD strains as n  tests  1092357  lambda 1.20  P<0.001  0.289%  P<1e-4  0.046%  largest 7.93
+scrambled CD standard      tests  1034178  lambda 1.05  P<0.001  0.138%  P<1e-4  0.016%  largest 7.13
+scrambled HF mice as n     tests  1092275  lambda 2.20  P<0.001  2.638%  P<1e-4  0.860%  largest 13.08
+scrambled HF strains as n  tests  1086477  lambda 1.10  P<0.001  0.302%  P<1e-4  0.050%  largest 7.69
+scrambled HF standard      tests   865527  lambda 0.90  P<0.001  0.075%  P<1e-4  0.006%  largest 4.90
+real      CD mice as n     tests   109237  lambda 2.75  P<0.001  4.811%  P<1e-4  2.062%  largest 10.19
+real      CD strains as n  tests   109229  lambda 1.24  P<0.001  0.249%  P<1e-4  0.026%  largest 6.98
+real      CD standard      tests   102973  lambda 1.10  P<0.001  0.066%  P<1e-4  0.000%  largest 3.82
+real      HF mice as n     tests   109215  lambda 2.52  P<0.001  3.342%  P<1e-4  0.970%  largest 9.41
+real      HF strains as n  tests   108593  lambda 1.29  P<0.001  0.297%  P<1e-4  0.062%  largest 6.23
+real      HF standard      tests    86582  lambda 1.12  P<0.001  0.142%  P<1e-4  0.015%  largest 4.74

@@ -26,3 +26,6 @@ ok   map 5 (permuted) gives the committed max, Bonferroni, B&H and lambda (large
 ok   the scan's mice are those of the mice table
 ok   strain-level map equals Spearman of strain means in plain R at 100 markers, chow T140 (largest difference 2.7e-15)
 ok   chow Chr 11 (rs13481185), T140: -log10 P 10.19 with mice as n, 2.19 with strains as n
+ok   ctlTestStandard equals the formula written out, weights (n - 3) / 1.06, on 2,000 random cases (largest difference 0.0e+00)
+ok   ctlTestStandard: r = 0 in both gives 0; |r| = 1 gives NA; fewer than 20 strains in a group gives NA
+ok   with no CTL and 20 strains per group, the standard test is calibrated: inflation 0.92, P < 0.01 in 0.91% (expected 1%)
